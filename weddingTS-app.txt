@@ -1,0 +1,52 @@
+[done] Stwórz bazę danych - nosql, na szybko 
+[change] Dodaj jakiś rekord do bazy danych: id, name, surname, confirmed (yes/no/maybe/null), isInInvitation, comment
+[] Stwórz projekt
+[] Stwórz apkę backendową
+[] Dodaj zapytanie API pobierające kolekcję o danym id (test postmanem)
+[] Swtórz projekt angulara 18
+[] Zainstaluj angular-material / primeng
+[] Dodaj połączenie z backendem (przycisk testowy który odbije się od backedu)
+[] Dodaj signal store do apki angularowej
+[] Na podstawie odpowiedzi z backendu stwórz formularz (imie, nazwisko - zablokowane, ilość potomych dla każdego pole imie nazwisko)
+[] Dodaj style - w kolorach wesela (zielono - biały) 
+[] Dodaj przcisk 'potwierdź przybycie' oraz 'odmów' 
+[] Na podstawie odpowiedzi z backendu jeśli jakikolwiek osoba z zaproszenia ma staus, że będzie to zielony przcisk powinen się pokazać jako zaznaczony. 
+[] Stwórz na backendzie request typu patch, który zaupdatuje wartość confirmed na 'yes/no/maybe' dla każdego z zaproszenia
+[] Stwórz na backendzie request typu patch, który zaupdatuje imie i nazwisko osoby (zmiana jest jedynie możliwa dla osób nie wyszczegónionych w zaproszeniu - flaga isInInvitation)
+[] Zakładki "Potwierdzenie zaproszenia" oraz "Lista osób"
+[] Na podstawie odpowiedzi z backedu stwórz listę osób
+[] Na liście osób dodaj komponent kółeczka ze statusem yes/maybe/no
+[] Dodaj komunikat pod kółeczkiem ze statusem maybe
+[] Dodaj przycisk "edytuj listę obecnych"
+[] Po wejsciu w tryb edycji na liście osób z zaproszenia: 
+	a) pola osób 'isInInvitation = false' można zmienić imię i naziwisko
+	b) można zmieniać staus kółeczka 
+	c) przyciski zatwierdź (wysyła na backend + zamyka tryb edycji) i anuluj (wraca do stanu początkowego)
+	d) pojawia się komunikat: "naciśnij kółko aby zmienić status osoby: check - potwierdzam, ? - może, X - nie przyjde i chuj"
+[] Stwórz resolver, który pobierze id z url i odpyta backend o dane -> zapis w store
+[] Dodaj pole z komentarzem dla każdej osoby w trybie edycji na zakładce listy osób
+[] Dostosuj dla mobile/tablet/desktop
+
+
+1. przypadek testowy 
+Waldi i Ania, bez dzieci. Wchodzą na link i widzą "Serdecznie zapraszamy Waldemara i Annę na wesele..." + 2 przyciski "Potwierdzam przybycie" oraz "Nie pojawię się".
+a) jeśli klikną "potwierdzam przybycie" przycisk zmieni eytkietę na potwierdzono ze znaczkiem 'check'
+b) jeśli klikną "odmów" wyskoczy okno dialogowe "Czy na pewno chcesz odmówić? Pamiętaj, że do dnia dd.mm.yyyy możesz zmienić swoją decyzję" -> 2 przyciski "potwierdź" lub "jeszcze się zanstanowię"
+
+2. przypadek testowy 
+Asia i Dawid mają 2 dzieci. Zakładamy że Olga pojechała na wakacje ze szkołą i nie da rady być. Dawid chce o tym poinformować poprzez stronę internetową. 
+Wchodzi na stronę i widzi zaproszenie. Pod przyciskami jest komunikat "Nie dacie rady być w pełnym składzie? Daj znam znać kto będzie tutaj"
+Przejście do kolejnego taba, wyświetla się lista gości z zaproszenia i przy nich zielone kółeczka jeśli zaproszenie zostało potwierdzone / czerwone jeśli zostało odrzucone. 
+Po prawej u góry jest przycisk "edytuj listę obecnych" -> zmienia się obramowanie kółek na sugerujące że można w nie kliknąć + na dole przycisk zatwierdź. Bez zatwierdzenia zmiany nie będą zapisane.
+
+3. Bartosz ma zaprosznie z osobą towrzyszącą. Chce iść sam.
+Wchodzi na strone, komunikat o "pełnym składzie" 
+a) tam zaznacza czerwone kółeczko przy osobie towarzyszącej. Przy swoim imieniu zaznacza zielone kółeczko.
+b) tam zaznacza czerwone kółeczko przy osobie towarzyszącej. Potiwerdza przybycie na pierwszym ekranie.
+a) potwierdza przybycie na pierwszym ekranie, edytuje listę obecnych na drukiej zakładce.
+
+4. Ania idzie na wesele ale nie jest pewna czy idzie z partnerem
+Wchodzi na strone, komunikat o "pełnym składzie" 
+a) tam zaznacza żółte kółko z pytajnikiem przy osobie towarzyszącej. Przy swoim imieniu zaznacza zielone kółeczko. Pod tm pojawia się komunikat, że jeśli nie zostanie zmienione do dd.mm.yyyy to status zostanie zmieniony na odmowę.
+b) tam zaznacza czerwone kółeczko przy osobie towarzyszącej. Potiwerdza przybycie na pierwszym ekranie.
+a) potwierdza przybycie na pierwszym ekranie, edytuje listę obecnych na drukiej zakładce.
