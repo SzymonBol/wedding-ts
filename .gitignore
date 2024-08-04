@@ -1,1 +1,2 @@
-/backend-wgc/variables.env
+/backend-wgc/.env.keys
+/backend-wgc/node_modules
