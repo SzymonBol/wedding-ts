@@ -1,9 +1,9 @@
 [done] Stwórz bazę danych - nosql, na szybko 
 [change] Dodaj jakiś rekord do bazy danych: id, name, surname, confirmed (yes/no/maybe/null), isInInvitation, comment
-[] Stwórz projekt
-[] Stwórz apkę backendową
+[done] Stwórz projekt
+[done] Stwórz apkę backendową
 [] Dodaj zapytanie API pobierające kolekcję o danym id (test postmanem)
-[] Swtórz projekt angulara 18
+[done] Stwórz projekt angulara 18
 [] Zainstaluj angular-material / primeng
 [] Dodaj połączenie z backendem (przycisk testowy który odbije się od backedu)
 [] Dodaj signal store do apki angularowej

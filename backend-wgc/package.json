@@ -1,16 +1,15 @@
 {
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.6.4",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongodb": "^6.8.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/index.js"
   },
   "name": "backend-wgc",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "src/index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
