@@ -1,9 +1,10 @@
 [done] Stwórz bazę danych - nosql, na szybko 
-[change] Dodaj jakiś rekord do bazy danych: id, name, surname, confirmed (yes/no/maybe/null), isInInvitation, comment
+[done] Dodaj jakiś rekord do bazy danych: id, name, surname, isGoing (yes/no/maybe/null), isInInvitation, comment, isVege
 [done] Stwórz projekt
 [done] Stwórz apkę backendową
-[] Dodaj zapytanie API pobierające kolekcję o danym id (test postmanem)
+[done] Dodaj zapytanie API pobierające kolekcję o danym id (test postmanem)
 [done] Stwórz projekt angulara 18
+[done] Stwórz na backendzie request typu patch, który zaupdatuje wartość isGoing na 'yes/no/maybe' dla każdego z zaproszenia
 [] Zainstaluj angular-material / primeng
 [] Dodaj połączenie z backendem (przycisk testowy który odbije się od backedu)
 [] Dodaj signal store do apki angularowej
@@ -11,7 +12,6 @@
 [] Dodaj style - w kolorach wesela (zielono - biały) 
 [] Dodaj przcisk 'potwierdź przybycie' oraz 'odmów' 
 [] Na podstawie odpowiedzi z backendu jeśli jakikolwiek osoba z zaproszenia ma staus, że będzie to zielony przcisk powinen się pokazać jako zaznaczony. 
-[] Stwórz na backendzie request typu patch, który zaupdatuje wartość confirmed na 'yes/no/maybe' dla każdego z zaproszenia
 [] Stwórz na backendzie request typu patch, który zaupdatuje imie i nazwisko osoby (zmiana jest jedynie możliwa dla osób nie wyszczegónionych w zaproszeniu - flaga isInInvitation)
 [] Zakładki "Potwierdzenie zaproszenia" oraz "Lista osób"
 [] Na podstawie odpowiedzi z backedu stwórz listę osób
@@ -26,6 +26,32 @@
 [] Stwórz resolver, który pobierze id z url i odpyta backend o dane -> zapis w store
 [] Dodaj pole z komentarzem dla każdej osoby w trybie edycji na zakładce listy osób
 [] Dostosuj dla mobile/tablet/desktop
+[] Wygeneruj QR code dla localhost z zaproszeniem + testy 
+
+
+
+[] Dodaj sól dla haseł w pliku .env
+[] Dodaj algorytm hashujcym z solą 
+[] Stwórz request w API który zapisze użytkownika z hashem: username, password
+[] Dodaj użytkownika do bazy 'users'
+[] Stwórz request w API który sprawdzi czy użytkownik o podanym loginie i haśle już istnieje + zapisze jakiś hash jako token
+[] Stwórz route /admin do komponentu Admin-Management
+[] Dodaj komponent logowania
+[] Dodaj komponent zarządzania
+[] Dodaj interceptor który będzie dokładał token do wysyłanych zapytań
+[] Obsługa tokenu po stronie bazy -> 
+[] Zaloguj na użytkownika
+[] Podczas wejścia pobierana jest lista wszystkich kolekcji z bazy i wyświetlana w formie tabeli :
+	| QR code dla zaprzoszenia 
+	| Imiona i nazwiska na zaproszeniu - jedno pod drugim 
+	| Kółko zielone jeśli wszyscy potwierdzili - Czerwone jeśli wszyscy odmówili - dla każdego osobno jesli jest mix ide + nie ide 
+	| isVege - ikonka z badge (ilość osób vege na zaproszeniu) + tooltip kto / ikonka mięsa
+[] Przycisk importuj dane - Dodaj odczyt z xml -> każdy wiersz to jedno zaproszenie
+[] Po imporcie danych wyświetla się tabela na dole z przyciskiem "Zaktualizuj dane"
+[] Dodaj mechnizm który będzie generował QR code dla każdego zaproszenia
+[] Dodaj przycisk "Pobierz dane" do excela (na początek) + mechanizm który będzie w stanie przerobić dane i zapisać w excel
+[] Po prawej stronie nad tabelą będzie przycisk "Edytuj dane" -> dla każdej osoby będzie można zmienić status, dopisać kaszojada, zazanczyć czy jest ktoś vege
+[] Dodaj request który masowo zmieni dane -> dostanie całą tabice i na podstawie id zmieni dane w środku lub utworzy obiekt 
 
 
 1. przypadek testowy 
