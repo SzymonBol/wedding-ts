@@ -1,0 +1,42 @@
+[
+	{
+		"id": "bolowie_rodzice",
+		"values" : [
+			{
+				"name": "Alicja",
+				"surname": "Ból",
+				"isGoing": null,
+				"isInInvitation" : false,
+				"isVege" : false
+			},
+			{
+				"name": "Stanisław",
+				"surname": "Ból",
+				"isGoing": false,
+				"isInInvitation" : false,
+				"isVege" : false
+			}
+		],
+		"comment" : null
+	},
+	{
+		"id" : "bol_brat_marek",
+		"values" : [
+		{
+				"name": "Marek",
+				"surname": "Ból",
+				"isGoing": null,
+				"isInInvitation" : false,
+				"isVege" : false
+			},
+			{
+				"name": null,
+				"surname": null,
+				"isGoing": null,
+				"isInInvitation" : false,
+				"isVege" : false
+			}
+		],
+		"comment" : null
+	}
+]
