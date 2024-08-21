@@ -27,11 +27,6 @@ app.post('/create-invitation', async (req, res) => {
   res.send(reulst);
 })
 
-// {
-// 	   "id": "wercia_jawor_test",
-//     "name": "Weronika",
-//     "isGoing": "yes"
-// }
 app.patch('/update-is-going', async (req, res) => {
   const {id, name, isGoing}= req.body;  
   const reulst = await updateIsGoing(guestCollection, id, name, isGoing);
