@@ -11,6 +11,6 @@ export function getMongodbClient() {
     } catch (error) {
         console.error('Connection to MongoDB Atlas failed!', error);
         process.exit();
-    }
+    } 
  }
 
