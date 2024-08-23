@@ -1,0 +1,12 @@
+<mat-drawer-container [hasBackdrop]="true" class="main-container">
+    <mat-drawer #drawer mode="over" >
+        <app-menu />
+    </mat-drawer>
+    <mat-drawer-content>
+        <button mat-mini-fab (click)="toggleDrawer(drawer)">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <router-outlet />
+    </mat-drawer-content>
+</mat-drawer-container>
+

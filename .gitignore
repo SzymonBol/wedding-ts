@@ -1,2 +1,14 @@
 /backend-wgc/.env
 /backend-wgc/node_modules
+
+/frontend-wgc/.angular
+/frontend-wgc/.vscode
+/frontend-wgc/node_modules
+/frontend-wgc/dist
+/frontend-wgc/tmp
+/frontend-wgc/out-tsc
+/frontend-wgc/bazel-out
+/frontend-wgc/npm-debug.log
+/frontend-wgc/.idea/
+/frontend-wgc/.project
+/frontend-wgc/.classpath
