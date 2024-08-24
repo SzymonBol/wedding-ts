@@ -1,4 +1,4 @@
-import { signalStore, withState } from "@ngrx/signals";
+import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
 
 type GuestData = {
     invitationId?: string;
@@ -12,5 +12,15 @@ const initialState: GuestData = {
 
 export const GuestDataStore = signalStore(
     { providedIn: 'root' },
-    withState(initialState)
+    withState(initialState),
+    withMethods((store) => (
+        {
+            loadingData(): void {
+                patchState(store, { isLoading: true });
+            },
+            finishLoading(): void {
+                    patchState(store, { isLoading: false });
+            }
+        }
+    ))
   );

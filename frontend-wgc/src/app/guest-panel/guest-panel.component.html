@@ -1,12 +1,32 @@
 <mat-drawer-container [hasBackdrop]="true" class="main-container">
-    <mat-drawer #drawer mode="over" >
-        <app-menu />
+    <mat-drawer #drawer mode="over" autoFocus="false" position="end">
+        <div class="menu-content">
+            <button mat-icon-button class="close-button" (click)="toggleDrawer(drawer)" color="">
+                <mat-icon>close-button</mat-icon>
+            </button>
+            <img src="ts_wedding_logo.png" height="100" width="100" class="menu-logo-img">
+            <app-menu (itemClicked)="toggleDrawer(drawer)" />
+        </div>
     </mat-drawer>
     <mat-drawer-content>
-        <button mat-mini-fab (click)="toggleDrawer(drawer)">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <router-outlet />
+        <div class="header">
+            <span class="header-logo-text">
+                <img src="ts_wedding_logo.png"  class="header-logo-img">
+                <span class="header-text">Wesele Tereski i Szymona</span> 
+            </span>
+            <button mat-mini-fab (click)="toggleDrawer(drawer)" color="">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <div class="content">
+            <router-outlet />
+        </div>
+
+        
     </mat-drawer-content>
 </mat-drawer-container>
-
+@if(isLoadingSig()){
+    <div class="spinner">
+        <mat-spinner />
+    </div>
+}
