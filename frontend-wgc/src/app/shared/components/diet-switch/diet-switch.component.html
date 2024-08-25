@@ -1,0 +1,8 @@
+<span class="switch-container" [ngClass]="isVege() ? 'vege': 'meat'" (click)="changeValue()">
+    <span class="switch-slider" [ngClass]="isVege() ? 'vege': 'meat'">
+
+    </span>
+    <mat-icon fontIcon="eco" class="switch-icon" [ngClass]="{'focused': isVege()}"/>
+    <mat-icon fontIcon="lunch_dining" class="switch-icon right-icon" [ngClass]="{'focused': !isVege()}"/>
+</span>
+

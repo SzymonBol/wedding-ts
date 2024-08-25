@@ -1,0 +1,60 @@
+.switch-container{
+    display: flex;
+    width: 48px;
+    height: 28px;
+    border-radius: 16px;
+    border: solid 1px #000;
+    padding: 2px;
+    cursor: pointer;
+    position: relative;
+
+    &.vege{
+        background: #afbeb2;
+    }
+
+    &.meat{
+        background: #ffeee0;
+    }
+}
+
+.switch-slider{
+    display: flex;
+    height: 28px;
+    width: 28px;
+    background: #cbf7d2;
+    border-radius: 50%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s;
+
+    &.vege{
+        background: #56685a;
+        left: 2px;
+    }
+
+    &.meat{
+        background: #e9b082;
+        left: 22px;
+    }
+}
+
+.switch-icon{
+    font-size: 16px;
+    position: absolute;
+    top: 8px;
+    transition: 0.4s;
+
+    &.focused{
+        font-size: 24px;
+        top: 4px;
+    }
+}
+
+.right-icon{
+    right: -5px;
+
+    &.focused{
+        right: 3px;
+    }
+}

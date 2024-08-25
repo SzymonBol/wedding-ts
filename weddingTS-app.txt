@@ -5,11 +5,13 @@
 [done] Dodaj zapytanie API pobierające kolekcję o danym id (test postmanem)
 [done] Stwórz projekt angulara 18
 [done] Stwórz na backendzie request typu patch, który zaupdatuje wartość isGoing na 'yes/no/maybe' dla każdego z zaproszenia
-[] Zainstaluj angular-material / primeng
-[] Dodaj połączenie z backendem (przycisk testowy który odbije się od backedu)
-[] Dodaj signal store do apki angularowej
+[done] Zainstaluj angular-material / primeng
+[done] Dodaj signal store do apki angularowej
+[done] Dodaj style - w kolorach wesela (zielono - biały) // lepiej wyglądał beżowy
+[done] Dodaj połączenie z backendem (przycisk testowy który odbije się od backedu)
+[done] Przycisk switch vege/normalny
+[] Kontrolka noclegu (np. jakieś łóżko z badge)
 [] Na podstawie odpowiedzi z backendu stwórz formularz (imie, nazwisko - zablokowane, ilość potomych dla każdego pole imie nazwisko)
-[] Dodaj style - w kolorach wesela (zielono - biały) 
 [] Dodaj przcisk 'potwierdź przybycie' oraz 'odmów' 
 [] Na podstawie odpowiedzi z backendu jeśli jakikolwiek osoba z zaproszenia ma staus, że będzie to zielony przcisk powinen się pokazać jako zaznaczony. 
 [] Stwórz na backendzie request typu patch, który zaupdatuje imie i nazwisko osoby (zmiana jest jedynie możliwa dla osób nie wyszczegónionych w zaproszeniu - flaga isInInvitation)

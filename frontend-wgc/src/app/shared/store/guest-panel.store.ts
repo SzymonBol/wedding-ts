@@ -1,26 +1,49 @@
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
+import { GuestStoreData } from "../../types/guests-store-data.types";
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
+import { inject } from "@angular/core";
+import { InvitationService } from "../../services/invitation-service.service";
+import { tapResponse } from '@ngrx/operators';
 
-type GuestData = {
-    invitationId?: string;
-    isLoading: boolean
-}
-
-const initialState: GuestData = {
+const initialState: GuestStoreData = {
     invitationId: undefined,
-    isLoading: false
+    isLoading: false,
+    guestsData: undefined
 }
 
 export const GuestDataStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
-    withMethods((store) => (
+    withMethods((store, invitationService = inject(InvitationService)) => (
         {
             loadingData(): void {
                 patchState(store, { isLoading: true });
             },
             finishLoading(): void {
                     patchState(store, { isLoading: false });
-            }
+            },
+            fetchInvitationDataById: rxMethod<string>(
+                pipe(
+                  distinctUntilChanged(),
+                  tap(() => patchState(store, { isLoading: true })),
+                  switchMap((id) => {
+                    return invitationService.fetchInvitationData(id).pipe(
+                      tapResponse({
+                        next: (invitation) => patchState(store, { guestsData : invitation.guests, invitationId: invitation.id, isLoading: false }),
+                        error: (err) => {
+                          patchState(store, { isLoading: false });
+                          console.error(err);
+                        },
+                      })
+                    );
+                  })
+                )
+              ),
         }
     ))
   );
+
+function WritableSignal(undefined: undefined): import("../../types/guests-store-data.types").GuestData[] | undefined {
+    throw new Error("Function not implemented.");
+}

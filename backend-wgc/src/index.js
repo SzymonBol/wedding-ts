@@ -2,6 +2,7 @@ import { config } from 'dotenv';
 import { getMongodbClient } from './connection.js';
 import express from 'express';
 import { createInvitation, findInvitationById, updateIsGoing } from './wedding-crud.js'
+import cors from 'cors';
 
 config();
 
@@ -14,11 +15,23 @@ const db = mongoClient.db(dbName);
 const guestCollection = db.collection(collectionName);
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.get('/invitation/:id', async (req, res) => {
     const id = req.params.id;
-    const reulst = await findInvitationById(guestCollection, id);
-    res.send(reulst);
+    let result = await findInvitationById(guestCollection, id);
+    if(result.length === 1){
+      res.status(200);
+      result = result[0];
+      res.send(result);
+    } else if(result.length === 0){
+      res.status(400);
+      res.send('Error: No invitation with given id: ' + id);
+    } else {
+      res.status(500);
+      res.send('Error: More then 1 invitation matches with given id: '+ id);
+    }
+    
 })
 
 app.post('/create-invitation', async (req, res) => {

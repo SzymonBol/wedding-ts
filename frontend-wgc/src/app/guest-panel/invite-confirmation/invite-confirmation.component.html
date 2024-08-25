@@ -1,1 +1,6 @@
-<p>invite-confirmation works!</p>
+@if(guestsSig()){
+    <span>
+        {{guestsSig() | json}}
+    </span>
+}
+<app-diet-switch></app-diet-switch>
