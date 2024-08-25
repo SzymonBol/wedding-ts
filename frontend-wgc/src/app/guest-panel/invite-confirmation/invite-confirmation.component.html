@@ -1,6 +1,37 @@
 @if(guestsSig()){
-    <span>
-        {{guestsSig() | json}}
-    </span>
+
+    <div>
+        <h1>
+            Witajcie drodzy goście
+        </h1>
+        <span>
+            Z radaością chcielibyśmy Was zaprosić na nasze wesele! 
+            Poniżej znajdziecie panel w którym macie możliwość potwierdzić swoje przybycie.
+            Bardzo prosimy o zaznaczenie diety oraz informacje czy potrzebujecie noclegu. 
+        </span>
+        <table mat-table [dataSource]="guestsSig()!" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="isGoing">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let element"> {{element.isGoing}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nameAndSurname">
+                <th mat-header-cell *matHeaderCellDef> Imie i nazwisko </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} {{element.surname}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="diet">
+                <th mat-header-cell *matHeaderCellDef> Dieta </th>
+                <td mat-cell *matCellDef="let element"> <app-diet-switch [(ngModel)]="element.isVege"></app-diet-switch> </td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
 }
-<app-diet-switch></app-diet-switch>

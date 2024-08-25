@@ -45,7 +45,7 @@
     top: 8px;
     transition: 0.4s;
 
-    &.focused{
+    &.selected{
         font-size: 24px;
         top: 4px;
     }
@@ -54,7 +54,7 @@
 .right-icon{
     right: -5px;
 
-    &.focused{
+    &.selected{
         right: 3px;
     }
 }
