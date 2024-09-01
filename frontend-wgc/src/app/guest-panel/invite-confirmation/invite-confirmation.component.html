@@ -1,3 +1,6 @@
+<app-guest-confirmation-status [editMode]="editModeSig()"></app-guest-confirmation-status>
+
+<button (click)="changeEditMode()">Edit Mode</button>
 @if(guestsSig()){
 
     <div>
@@ -10,14 +13,12 @@
             Bardzo prosimy o zaznaczenie diety oraz informacje czy potrzebujecie noclegu. 
         </span>
         <table mat-table [dataSource]="guestsSig()!" class="mat-elevation-z8">
-
-            <!--- Note that these columns can be defined in any order.
-                  The actual rendered columns are set as a property on the row definition" -->
-          
-            <!-- Position Column -->
+            
             <ng-container matColumnDef="isGoing">
               <th mat-header-cell *matHeaderCellDef> Status </th>
-              <td mat-cell *matCellDef="let element"> {{element.isGoing}} </td>
+              <td mat-cell *matCellDef="let element"> 
+                <app-guest-confirmation-status [editMode]="editModeSig()" [(ngModel)]="element.isGoing"></app-guest-confirmation-status>  
+              </td>
             </ng-container>
 
             <ng-container matColumnDef="nameAndSurname">
@@ -33,5 +34,6 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
+          <button mat-button (click)="updateData()"> pokaz co tam sie stalo</button>
     </div>
 }

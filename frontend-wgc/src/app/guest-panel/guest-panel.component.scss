@@ -61,7 +61,8 @@ mat-drawer-content {
         margin-top: 76px;
         height: calc(100vh - 76px);
         overflow: auto;
-        width: 100%;
+        width: calc(100% - 32px);
+        padding: 16px;
     }
 }
 

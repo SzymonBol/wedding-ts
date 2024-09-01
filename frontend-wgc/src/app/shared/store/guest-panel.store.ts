@@ -9,7 +9,8 @@ import { tapResponse } from '@ngrx/operators';
 const initialState: GuestStoreData = {
     invitationId: undefined,
     isLoading: false,
-    guestsData: undefined
+    guestsData: undefined,
+    isConfirmed: false,
 }
 
 export const GuestDataStore = signalStore(
@@ -43,7 +44,3 @@ export const GuestDataStore = signalStore(
         }
     ))
   );
-
-function WritableSignal(undefined: undefined): import("../../types/guests-store-data.types").GuestData[] | undefined {
-    throw new Error("Function not implemented.");
-}

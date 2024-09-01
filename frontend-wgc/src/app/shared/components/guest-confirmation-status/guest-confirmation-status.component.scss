@@ -1,0 +1,70 @@
+$maybe-color: #e0872b;
+$yes-color: #5bc980;
+$no-color: #a80710;
+
+.guest-confirmation-status-container{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1.5px 1.5px 5px -2px black;
+
+    &.maybe{
+        border: 1px solid $maybe-color;
+        background-color: $maybe-color;
+        
+        mat-icon{
+            color: #FFF;
+        }
+    }
+
+    &.yes{
+        border: 1px solid $yes-color;
+        background-color: $yes-color;
+        
+        mat-icon{
+            color: #FFF;
+        }
+    }
+
+    &.no{
+        border: 1px solid $no-color;
+        background-color: $no-color;
+        
+        mat-icon{
+            color: #FFF;
+        }
+    }
+
+}
+
+.edit-mode{
+    cursor: pointer;
+
+    &.maybe{
+        background-color: #FFF;
+        
+        mat-icon{
+            color: $maybe-color;
+        }
+    }
+
+    &.yes{
+        background-color: #FFF;
+        
+        mat-icon{
+            color: $yes-color;
+        }
+    }
+
+    &.no{
+        background-color: #FFF;
+        
+        mat-icon{
+            color: $no-color;
+        }
+    }
+}
+   

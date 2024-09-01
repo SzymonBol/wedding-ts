@@ -1,23 +1,22 @@
 [
 	{
 		"id": "bolowie_rodzice",
-		"values" : [
+		"guests" : [
 			{
 				"name": "Alicja",
 				"surname": "Ból",
-				"isGoing": null,
-				"isInInvitation" : false,
+				"isGoing": "yes",
 				"isVege" : false
 			},
 			{
 				"name": "Stanisław",
 				"surname": "Ból",
-				"isGoing": false,
-				"isInInvitation" : false,
+				"isGoing": "yes",
 				"isVege" : false
 			}
 		],
-		"comment" : null
+		"comment" : null,
+		"confirmed" : false
 	},
 	{
 		"id" : "bol_brat_marek",
@@ -25,18 +24,17 @@
 		{
 				"name": "Marek",
 				"surname": "Ból",
-				"isGoing": null,
-				"isInInvitation" : false,
+				"isGoing": "yes",
 				"isVege" : false
 			},
 			{
-				"name": null,
-				"surname": null,
-				"isGoing": null,
-				"isInInvitation" : false,
+				"name": "Osoba",
+				"surname": "Towarzysząca",
+				"isGoing": "yes",
 				"isVege" : false
 			}
 		],
-		"comment" : null
+		"comment" : null,
+		"confirmed" : false
 	}
 ]

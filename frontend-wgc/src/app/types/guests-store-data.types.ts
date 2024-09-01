@@ -4,7 +4,6 @@ export type GuestData = {
     name: string;
     surname: string;
     isGoing: IsGoingType;
-    isInInvitation: boolean;
     isVege: boolean
 }
 
@@ -16,5 +15,6 @@ export type Invitation ={
 export type GuestStoreData = {
     invitationId?: string;
     isLoading: boolean;
-    guestsData?: GuestData[]
+    guestsData?: GuestData[];
+    isConfirmed: boolean;
 }

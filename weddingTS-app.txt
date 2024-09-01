@@ -1,5 +1,5 @@
 [done] Stwórz bazę danych - nosql, na szybko 
-[done] Dodaj jakiś rekord do bazy danych: id, name, surname, isGoing (yes/no/maybe/null), isInInvitation, comment, isVege
+[done] Dodaj jakiś rekord do bazy danych: id, guest: [{name, surname, isGoing (yes/no/maybe/null), comment, isVege}], isConfirmed
 [done] Stwórz projekt
 [done] Stwórz apkę backendową
 [done] Dodaj zapytanie API pobierające kolekcję o danym id (test postmanem)
@@ -10,11 +10,12 @@
 [done] Dodaj style - w kolorach wesela (zielono - biały) // lepiej wyglądał beżowy
 [done] Dodaj połączenie z backendem (przycisk testowy który odbije się od backedu)
 [done] Przycisk switch vege/normalny
+[] Kontrolka statusu potwierdzenia (np. jakieś łóżko z badge)
 [] Kontrolka noclegu (np. jakieś łóżko z badge)
-[] Na podstawie odpowiedzi z backendu stwórz formularz (imie, nazwisko - zablokowane, ilość potomych dla każdego pole imie nazwisko)
+[] Na podstawie odpowiedzi z backendu stwórz formularz (imie, nazwisko, nocleg, vege status potwierdzenia)
 [] Dodaj przcisk 'potwierdź przybycie' oraz 'odmów' 
 [] Na podstawie odpowiedzi z backendu jeśli jakikolwiek osoba z zaproszenia ma staus, że będzie to zielony przcisk powinen się pokazać jako zaznaczony. 
-[] Stwórz na backendzie request typu patch, który zaupdatuje imie i nazwisko osoby (zmiana jest jedynie możliwa dla osób nie wyszczegónionych w zaproszeniu - flaga isInInvitation)
+
 [] Zakładki "Potwierdzenie zaproszenia" oraz "Lista osób"
 [] Na podstawie odpowiedzi z backedu stwórz listę osób
 [] Na liście osób dodaj komponent kółeczka ze statusem yes/maybe/no
@@ -54,6 +55,9 @@
 [] Dodaj przycisk "Pobierz dane" do excela (na początek) + mechanizm który będzie w stanie przerobić dane i zapisać w excel
 [] Po prawej stronie nad tabelą będzie przycisk "Edytuj dane" -> dla każdej osoby będzie można zmienić status, dopisać kaszojada, zazanczyć czy jest ktoś vege
 [] Dodaj request który masowo zmieni dane -> dostanie całą tabice i na podstawie id zmieni dane w środku lub utworzy obiekt 
+
+
+[deleted] Stwórz na backendzie request typu patch, który zaupdatuje imie i nazwisko osoby (zmiana jest jedynie możliwa dla osób nie wyszczegónionych w zaproszeniu - flaga isInInvitation)
 
 
 1. przypadek testowy 

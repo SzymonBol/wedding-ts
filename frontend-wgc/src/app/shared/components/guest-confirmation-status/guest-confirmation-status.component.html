@@ -1,0 +1,13 @@
+<span class="guest-confirmation-status-container" [class]="goingStatus()!" [ngClass]="{'edit-mode' : editMode()}" (click)="toggleStatus()">
+    @switch (goingStatus()) {
+        @case ('yes') {
+            <mat-icon fontIcon="check" ></mat-icon>
+        }
+        @case ('maybe') {
+            <mat-icon fontIcon="question_mark"></mat-icon>
+        }
+        @case ('no') {
+            <mat-icon fontIcon="close"></mat-icon>
+        }
+    }
+</span>
