@@ -1,13 +1,24 @@
-<span class="guest-confirmation-status-container" [class]="goingStatus()!" [ngClass]="{'edit-mode' : editMode()}" (click)="toggleStatus()">
-    @switch (goingStatus()) {
-        @case ('yes') {
-            <mat-icon fontIcon="check" ></mat-icon>
-        }
-        @case ('maybe') {
-            <mat-icon fontIcon="question_mark"></mat-icon>
-        }
-        @case ('no') {
+@if(editMode()){
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" (valueChange)="valueChanged($event)" hideSingleSelectionIndicator="true">
+        <mat-button-toggle value='no' [checked]="status()==='no'" class="no edit-mode-button" >
+            <span class="change-status-option">
+                <!-- @if (status() === 'no') {<mat-icon fontIcon="close"></mat-icon>} -->
+                Nie będę
+            </span>
+        </mat-button-toggle>
+        <mat-button-toggle value='yes' [checked]="status()==='yes'" class="yes edit-mode-button">
+            <span class="change-status-option">
+                <!-- @if (status() === 'yes') {<mat-icon fontIcon="check"></mat-icon>} -->
+                Będę
+            </span>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+} @else {
+    <span class="guest-confirmation-status-container" [ngClass]="goingStatus() ? 'yes': 'no' ">
+        @if (goingStatus()) {
+            <mat-icon fontIcon="check"></mat-icon>
+        } @else {
             <mat-icon fontIcon="close"></mat-icon>
         }
-    }
-</span>
+    </span>
+}

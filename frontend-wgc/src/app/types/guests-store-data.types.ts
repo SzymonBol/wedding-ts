@@ -1,15 +1,13 @@
-export type IsGoingType = 'yes' | 'no' | 'maybe' | null; 
-
 export type GuestData = {
     name: string;
     surname: string;
-    isGoing: IsGoingType;
+    isGoing: boolean;
     isVege: boolean
 }
 
 export type Invitation ={
     id: string;
-    guests: GuestData[]
+    guests: GuestData[];
 }
 
 export type GuestStoreData = {

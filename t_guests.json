@@ -5,13 +5,13 @@
 			{
 				"name": "Alicja",
 				"surname": "Ból",
-				"isGoing": "yes",
+				"isGoing": true,
 				"isVege" : false
 			},
 			{
 				"name": "Stanisław",
 				"surname": "Ból",
-				"isGoing": "yes",
+				"isGoing": true,
 				"isVege" : false
 			}
 		],
@@ -24,13 +24,13 @@
 		{
 				"name": "Marek",
 				"surname": "Ból",
-				"isGoing": "yes",
+				"isGoing": true,
 				"isVege" : false
 			},
 			{
 				"name": "Osoba",
 				"surname": "Towarzysząca",
-				"isGoing": "yes",
+				"isGoing": true,
 				"isVege" : false
 			}
 		],

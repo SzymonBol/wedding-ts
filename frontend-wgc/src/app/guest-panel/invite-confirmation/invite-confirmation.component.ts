@@ -21,7 +21,7 @@ export class InviteConfirmationComponent {
   private activateRoute = inject(ActivatedRoute);
   editModeSig = signal<boolean>(!this.store.isConfirmed());
   guestsSig = this.store.guestsData!;
-  displayedColumns: string[] = ['isGoing', 'nameAndSurname', 'diet'];
+  displayedColumns: string[] = ['nameAndSurname','isGoing',  'diet'];
 
   form = new FormGroup(
     {
