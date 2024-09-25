@@ -1,3 +1,31 @@
+.diet-container{
+    display: flex;
+    align-items: center;
+}
+
+.option-label{
+    color:#cccccc;
+    transition: 0.4s;
+
+    &.vege{
+        margin-right: 4px;
+
+        &.selected{
+            color:#097921;
+            font-weight: 500;
+        }
+    }
+
+    &.meat{
+        margin-left: 4px;
+
+        &.selected{
+            font-weight: 500;
+            color:#aa4f04;
+        }
+    }
+}
+
 .switch-container{
     display: flex;
     width: 48px;
@@ -56,5 +84,16 @@
 
     &.selected{
         right: 3px;
+    }
+}
+
+.disbaled-icon{
+    &.vege{
+        color: #097921;
+    }
+    
+    &.meat{
+        color: #4b2201;
+        margin-left: 4px;
     }
 }

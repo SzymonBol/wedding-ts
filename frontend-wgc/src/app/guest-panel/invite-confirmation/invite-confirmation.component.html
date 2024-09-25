@@ -9,28 +9,26 @@
             Poniżej znajdziecie panel w którym macie możliwość potwierdzić swoje przybycie.
             Bardzo prosimy o zaznaczenie diety oraz informacje czy potrzebujecie noclegu. 
         </span>
-        <table mat-table [dataSource]="guestsSig()!" class="mat-elevation-z8">
-          
-          <ng-container matColumnDef="nameAndSurname">
-            <th mat-header-cell *matHeaderCellDef> Imie i nazwisko </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} {{element.surname}} </td>
-          </ng-container>
-            
-            <ng-container matColumnDef="isGoing">
-              <th mat-header-cell *matHeaderCellDef> Status </th>
-              <td mat-cell *matCellDef="let element"> 
-                <app-guest-confirmation-status [editMode]="editModeSig()" [(ngModel)]="element.isGoing"></app-guest-confirmation-status>  
-              </td>
-            </ng-container>
-
-              <ng-container matColumnDef="diet">
-                <th mat-header-cell *matHeaderCellDef> Dieta </th>
-                <td mat-cell *matCellDef="let element"> <app-diet-switch [(ngModel)]="element.isVege"></app-diet-switch> </td>
-              </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
+        @for(guest of guestsSig(); track $index){
+          <div class="guest-row">
+            <span class="header">{{guest.name}} {{guest.surname}}</span>
+            <div class="guest-options">
+              <span>
+                <app-guest-confirmation-status [editMode]="editModeSig()" [(ngModel)]="guest.isGoing"></app-guest-confirmation-status>
+              </span>
+              @if (!(isConfirmedSig() && guest.isGoing === false) || editModeSig()) {
+              <span class="diet-option">
+                <span class="diet-option-label">Opcja jedzeniowa: </span>
+                <app-diet-switch [(ngModel)]="guest.isVege" [editMode]="editModeSig()"></app-diet-switch>
+              </span>
+            }
+            </div>
+          </div>
+        }
+        <div class="invitation-comments">
+          <label for="comments-id">Dodatkowe uwagi: </label>
+          <textarea id="comments-id" placeholder="Brak" [(ngModel)]="comment"></textarea>
+        </div>
           <button mat-button (click)="updateData()"> pokaz co tam sie stalo</button>
           <button (click)="changeEditMode()">Edit Mode</button>
     </div>

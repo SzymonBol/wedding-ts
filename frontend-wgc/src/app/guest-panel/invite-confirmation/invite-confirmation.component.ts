@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { GuestDataStore } from '../../shared/store/guest-panel.store';
 import { JsonPipe } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
@@ -19,20 +19,25 @@ import { GuestConfirmationStatusComponent } from "../../shared/components/guest-
 export class InviteConfirmationComponent {
   store = inject(GuestDataStore);
   private activateRoute = inject(ActivatedRoute);
-  editModeSig = signal<boolean>(!this.store.isConfirmed());
+  isConfirmedSig = this.store.confirmed;
+  comment = this.store.comment();
   guestsSig = this.store.guestsData!;
-  displayedColumns: string[] = ['nameAndSurname','isGoing',  'diet'];
-
-  form = new FormGroup(
-    {
-      isVege: new FormControl(false, [Validators.required, Validators.requiredTrue])
-    }
-  )
+  editModeSig = signal<boolean>(false);
 
   constructor() {
     const id = this.activateRoute.snapshot.queryParamMap.get('id');
+    //TODO to przenieść do guarda
     if (id)
       this.store.fetchInvitationDataById(id);
+
+    effect(()=>{
+      this.comment = this.store.comment();
+    })
+
+    effect(()=>{
+      console.log(!this.isConfirmedSig());
+      this.editModeSig.set(!this.isConfirmedSig());
+    }, {allowSignalWrites: true})
   }
 
   changeEditMode(){
@@ -40,6 +45,8 @@ export class InviteConfirmationComponent {
   }
 
   updateData() {
-    console.log(this.guestsSig());
+    this.store.updateConfirmation(true);
+    console.log(this.store.confirmed());
+    console.log(this.editModeSig());
   }
 }

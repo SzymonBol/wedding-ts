@@ -31,6 +31,24 @@ $no-color: #a80710;
     }
 }
 
+.confirmed-is-going{
+    display: flex;
+    align-items: center;
+
+    .going-status-text {
+        font-weight: 500;
+        margin-left: 8px;
+
+        &.yes{
+            color: #097921;
+        }
+
+        &.no{
+            color: #a80710
+        }
+    }
+}
+
 
 .guest-confirmation-status-container{
     width: 30px;

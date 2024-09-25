@@ -1,3 +1,51 @@
 .mat-column-isGoing{
     width: 10%;
 }
+
+.guest-row{
+    border-bottom: 1px solid black;
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+
+    .header{
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .guest-options{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 8px;
+        align-items: center;
+    }
+
+    .diet-option{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .diet-option-label{
+            margin-bottom: 4px;
+        }
+    }
+
+}
+
+.invitation-comments{
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+
+    label{
+        margin-bottom: 4px;
+    }
+
+    textarea{
+        width: calc(100% - 4px);
+        min-height: 100px;
+        resize: none;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+}

@@ -1,4 +1,4 @@
-import { Component, forwardRef, model, signal } from '@angular/core';
+import { Component, forwardRef, input, model, signal } from '@angular/core';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import { NgClass } from '@angular/common';
@@ -19,8 +19,8 @@ const NG_DIET_COMPONENT_VALUE_ACCESSOR = {
   providers : [NG_DIET_COMPONENT_VALUE_ACCESSOR]
 })
 export class DietSwitchComponent implements ControlValueAccessor{
-  
   isVege = signal<boolean>(false);
+  editMode = input<boolean>(true);
 
   onChange: any = () => {}
   onTouch: any = () => {}

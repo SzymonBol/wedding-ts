@@ -1,6 +1,36 @@
-<span class="switch-container" [ngClass]="isVege() ? 'vege': 'meat'" (click)="changeValue()">
-    <span class="switch-slider" [ngClass]="isVege() ? 'vege': 'meat'" ></span>
-    <mat-icon fontIcon="eco" class="switch-icon" [ngClass]="{'selected': isVege()}"/>
-    <mat-icon fontIcon="lunch_dining" class="switch-icon right-icon" [ngClass]="{'selected': !isVege()}"/>
-</span>
+<div class="diet-container">
+    @if(editMode()){
+        <span class="option-label vege" [ngClass]="{'selected': isVege()}">
+            Vege
+        </span>
+        <span class="switch-container" [ngClass]="isVege() ? 'vege': 'meat'" (click)="changeValue()">
+            <span class="switch-slider" [ngClass]="isVege() ? 'vege': 'meat'" ></span>
+            <mat-icon fontIcon="eco" class="switch-icon" [ngClass]="{'selected': isVege()}"/>
+            <mat-icon fontIcon="lunch_dining" class="switch-icon right-icon" [ngClass]="{'selected': !isVege()}"/>
+        </span>
+        <span class="option-label meat" [ngClass]="{'selected': !isVege()}">
+            Mięsna
+        </span>
+    } @else {
+        @if(isVege()){
+            <span class="option-label selected vege">
+                Vege
+            </span>
+            <span class="disbaled-icon vege">
+                <mat-icon fontIcon="eco"/>
+            </span>
+        } @else {
+            <span class="option-label selected meat">
+                Mięsna
+            </span>
+            <span class="disbaled-icon meat">
+                <mat-icon fontIcon="lunch_dining"/>
+            </span>
+        }
+
+
+    }
+
+</div>
+
 

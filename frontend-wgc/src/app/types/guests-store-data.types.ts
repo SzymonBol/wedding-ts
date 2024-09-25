@@ -8,11 +8,14 @@ export type GuestData = {
 export type Invitation ={
     id: string;
     guests: GuestData[];
+    confirmed: boolean;
+    comment: string | null;
 }
 
 export type GuestStoreData = {
     invitationId?: string;
     isLoading: boolean;
     guestsData?: GuestData[];
-    isConfirmed: boolean;
+    confirmed: boolean;
+    comment: string | null;
 }
