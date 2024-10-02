@@ -1,10 +1,10 @@
 @if(guestsSig()){
 
-    <div>
+    <div class="guest-confirmation-container">
         <h1>
-            Witajcie drodzy goście
+            Witajcie drodzy goście!
         </h1>
-        <span>
+        <span class="welcome-text">
             Z radaością chcielibyśmy Was zaprosić na nasze wesele! 
             Poniżej znajdziecie panel w którym macie możliwość potwierdzić swoje przybycie.
             Bardzo prosimy o zaznaczenie diety oraz informacje czy potrzebujecie noclegu. 
@@ -27,9 +27,19 @@
         }
         <div class="invitation-comments">
           <label for="comments-id">Dodatkowe uwagi: </label>
-          <textarea id="comments-id" placeholder="Brak" [(ngModel)]="comment"></textarea>
+          <textarea id="comments-id" placeholder="Brak" [(ngModel)]="comment" [disabled]="!editModeSig()"></textarea>
         </div>
-          <button mat-button (click)="updateData()"> pokaz co tam sie stalo</button>
-          <button (click)="changeEditMode()">Edit Mode</button>
+        <div class="end-info">
+          @if(editModeSig()){
+            <button mat-flat-button (click)="updateData()"> Potwierdź odpowiedź </button>
+          } @else {
+            <h4>Twoja odpowiedź została zapisana! <br/> Dziękujemy! ❤️</h4>
+
+            <span>
+              Jakaś pomyłka? Nic nie szkodzi! Kliknij w <a href="" (click)="activeEditMode($event)"> tutaj </a> aby wprowadzić zmiany!
+            </span>
+          }
+        </div>
+          
     </div>
 }

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { BASE_ROUTES } from './shared/routes.enum';
+import { getInvitationDataResolver } from './resolver/get-invitation-data.resolver';
 
 export const routes: Routes = [
     {
@@ -15,7 +16,8 @@ export const routes: Routes = [
             {
                 path: `${BASE_ROUTES.INVITE_CONFIRMATION}`,
                 loadComponent: () => import('./guest-panel/invite-confirmation/invite-confirmation.component')
-                .then( c => c.InviteConfirmationComponent)
+                .then( c => c.InviteConfirmationComponent),
+                resolve: [getInvitationDataResolver]
             },
             {
                 path: `${BASE_ROUTES.ADDITIONAL_INFO}`,

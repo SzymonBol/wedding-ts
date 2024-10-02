@@ -1,5 +1,5 @@
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
-import { GuestStoreData } from "../../types/guests-store-data.types";
+import { GuestStoreData, Invitation } from "../../types/guests-store-data.types";
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
 import { inject } from "@angular/core";
@@ -27,6 +27,9 @@ export const GuestDataStore = signalStore(
             },
             updateConfirmation(confirmation: boolean): void {
               patchState(store, { confirmed: confirmation});
+            },
+            updateValues(invitation: Invitation): void {
+              patchState(store, { invitationId: invitation.id, guestsData: invitation.guests, comment: invitation.comment, confirmed: invitation.confirmed});
             },
             fetchInvitationDataById: rxMethod<string>(
                 pipe(

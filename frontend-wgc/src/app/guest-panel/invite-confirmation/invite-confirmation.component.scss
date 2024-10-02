@@ -1,5 +1,10 @@
-.mat-column-isGoing{
-    width: 10%;
+.guest-confirmation-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-text{
+    margin-bottom: 24px;
 }
 
 .guest-row{
@@ -47,5 +52,18 @@
         min-height: 100px;
         resize: none;
         font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+}
+
+.end-info{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    flex-direction: column;
+
+    > * {
+        width: 100%;
+        text-align: center;
     }
 }

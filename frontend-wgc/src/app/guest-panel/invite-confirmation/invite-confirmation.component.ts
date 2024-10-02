@@ -18,35 +18,19 @@ import { GuestConfirmationStatusComponent } from "../../shared/components/guest-
 })
 export class InviteConfirmationComponent {
   store = inject(GuestDataStore);
-  private activateRoute = inject(ActivatedRoute);
   isConfirmedSig = this.store.confirmed;
   comment = this.store.comment();
   guestsSig = this.store.guestsData!;
-  editModeSig = signal<boolean>(false);
+  editModeSig = signal<boolean>(this.isConfirmedSig());
 
-  constructor() {
-    const id = this.activateRoute.snapshot.queryParamMap.get('id');
-    //TODO to przenieść do guarda
-    if (id)
-      this.store.fetchInvitationDataById(id);
-
-    effect(()=>{
-      this.comment = this.store.comment();
-    })
-
-    effect(()=>{
-      console.log(!this.isConfirmedSig());
-      this.editModeSig.set(!this.isConfirmedSig());
-    }, {allowSignalWrites: true})
-  }
-
-  changeEditMode(){
-    this.editModeSig.update(e => !e)
+  activeEditMode($event: Event){
+    $event.preventDefault();
+    setTimeout(() => window.scroll(0,0), 100);
+    this.editModeSig.set(true);
   }
 
   updateData() {
+    this.editModeSig.set(false);
     this.store.updateConfirmation(true);
-    console.log(this.store.confirmed());
-    console.log(this.editModeSig());
   }
 }

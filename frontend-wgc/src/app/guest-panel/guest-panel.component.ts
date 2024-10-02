@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, NgZone } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -22,12 +22,29 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   templateUrl: './guest-panel.component.html',
   styleUrl: './guest-panel.component.scss'
 })
-export class GuestPanelComponent {
+export class GuestPanelComponent implements AfterViewInit {
   protected store = inject(GuestDataStore);
-  isLoadingSig = this.store.isLoading;
+  protected isLoadingSig = this.store.isLoading;
+  private zone =inject(NgZone);
 
-toggleDrawer(drawer : MatDrawer) {
-  drawer.toggle();
-}
+  ngAfterViewInit(): void {
+    const appContentRef = document.getElementById('application-content');
+    const applicationHeader = document.getElementById('application-header');
 
+    const observer = new ResizeObserver(entries => {
+      this.zone.run(() => {
+        if(appContentRef){
+          appContentRef.style.marginTop = `${entries[0].contentRect.height +24}px`
+        }
+      });
+    });
+   
+    if(applicationHeader){
+      observer.observe(applicationHeader);
+    }
+  }
+
+  toggleDrawer(drawer : MatDrawer) {
+    drawer.toggle();
+  }
 }

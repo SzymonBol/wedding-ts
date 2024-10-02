@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, inject, output, signal } from '@angular/core';
+import { AfterViewInit, Component, computed, effect, inject, output, signal } from '@angular/core';
 import { ROUTE } from '../../shared/routes.enum';
 import { MenuItem } from './types/menu.interface';
-import { Router } from '@angular/router';
-import {MatButtonModule} from '@angular/material/button';
+import { NavigationEnd, Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { NgClass } from '@angular/common'
+import { toSignal } from '@angular/core/rxjs-interop'
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +16,21 @@ import { NgClass } from '@angular/common'
 export class MenuComponent implements AfterViewInit {
 
   private router = inject(Router);
+  routerChange = toSignal(this.router.events);
   protected currentUrl = signal<string>('');
+  protected selectedItem = computed(() => {
+    const change =this.routerChange();
+    if(change instanceof NavigationEnd){
+      if(change.url.includes(ROUTE.HOME)){
+        return ROUTE.HOME;
+      } else if(change.url.includes(ROUTE.ADDITIONAL_INFO)){
+        return ROUTE.ADDITIONAL_INFO;
+      } else if(change.url.includes(ROUTE.INVITE_CONFIRMATION)){
+        return ROUTE.INVITE_CONFIRMATION;
+      }
+    } 
+    return '';
+  })
   itemClicked = output<void>();
 
   protected menuRoutes = [
