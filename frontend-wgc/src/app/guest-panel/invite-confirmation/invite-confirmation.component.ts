@@ -8,6 +8,9 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } 
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { GuestConfirmationStatusComponent } from "../../shared/components/guest-confirmation-status/guest-confirmation-status.component";
+import { InvitationService } from '../../services/invitation-service.service';
+import { firstValueFrom } from 'rxjs';
+import { Invitation } from '../../types/guests-store-data.types';
 
 @Component({
   selector: 'app-invite-confirmation',
@@ -21,16 +24,27 @@ export class InviteConfirmationComponent {
   isConfirmedSig = this.store.confirmed;
   comment = this.store.comment();
   guestsSig = this.store.guestsData!;
-  editModeSig = signal<boolean>(this.isConfirmedSig());
+  editModeSig = signal<boolean>(!this.isConfirmedSig());
+  InvitationService = inject(InvitationService);
 
   activeEditMode($event: Event){
     $event.preventDefault();
-    setTimeout(() => window.scroll(0,0), 100);
     this.editModeSig.set(true);
   }
 
-  updateData() {
+  async updateData() {
     this.editModeSig.set(false);
-    this.store.updateConfirmation(true);
+    const invitationId = this.store.invitationId ? this.store.invitationId() : null;
+    if(invitationId){
+      const invitation : Invitation = {
+        id: invitationId,
+        guests: this.guestsSig()!,
+        comment: this.comment,
+        confirmed: true
+      }
+
+      await firstValueFrom(this.InvitationService.updateInvitationData(invitation));
+      this.store.updateConfirmation(true);
+    }
   }
 }

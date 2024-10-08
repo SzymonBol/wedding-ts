@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { getMongodbClient } from './connection.js';
 import express from 'express';
-import { createInvitation, findInvitationById, updateIsGoing } from './wedding-crud.js'
+import { createInvitation, findInvitationById, updateIsGoing, updateInvitationById } from './wedding-crud.js'
 import cors from 'cors';
 
 config();
@@ -43,6 +43,12 @@ app.post('/create-invitation', async (req, res) => {
 app.patch('/update-is-going', async (req, res) => {
   const {id, name, isGoing}= req.body;  
   const reulst = await updateIsGoing(guestCollection, id, name, isGoing);
+  res.send(reulst);
+})
+
+app.patch('/update-invitation', async (req, res) => {
+  const {id, guests, confirmed, comment}= req.body;  
+  const reulst = await updateInvitationById(guestCollection, id, guests, confirmed, comment );
   res.send(reulst);
 })
 

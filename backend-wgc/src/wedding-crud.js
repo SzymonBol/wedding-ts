@@ -13,3 +13,10 @@ export async function findInvitationById(collection, id) {
         { arrayFilters: [ { "elem.name": guestName } ]}
     );
  }
+
+ export async function updateInvitationById(collection, id, guestObject, confirmed, comment) {
+   await collection.updateOne(
+       { id : id},
+       { $set: {guests : guestObject, confirmed, comment}}
+   );
+}
