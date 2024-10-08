@@ -10,11 +10,10 @@
 [done] Dodaj style - w kolorach wesela (zielono - biały) // lepiej wyglądał beżowy
 [done] Dodaj połączenie z backendem (przycisk testowy który odbije się od backedu)
 [done] Przycisk switch vege/normalny
-[] Kontrolka statusu potwierdzenia (np. jakieś łóżko z badge)
-[] Kontrolka noclegu (np. jakieś łóżko z badge)
-[] Na podstawie odpowiedzi z backendu stwórz formularz (imie, nazwisko, nocleg, vege status potwierdzenia)
-[] Dodaj przcisk 'potwierdź przybycie' oraz 'odmów' 
-[] Na podstawie odpowiedzi z backendu jeśli jakikolwiek osoba z zaproszenia ma staus, że będzie to zielony przcisk powinen się pokazać jako zaznaczony. 
+[done] Kontrolka statusu potwierdzenia (np. jakieś łóżko z badge)
+[done] Na podstawie odpowiedzi z backendu stwórz formularz (imie, nazwisko, vege status potwierdzenia)
+[done] Dodaj przcisk 'potwierdź odpowiedź"
+[done] Na podstawie odpowiedzi z backendu jeśli jakikolwiek osoba z zaproszenia ma staus, że będzie to zielony przcisk powinen się pokazać jako zaznaczony. 
 
 [] Zakładki "Potwierdzenie zaproszenia" oraz "Lista osób"
 [] Na podstawie odpowiedzi z backedu stwórz listę osób
