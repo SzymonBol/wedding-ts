@@ -1,3 +1,6 @@
+@use 'breakpoints';
+@use 'colors';
+
 .main-container{
     width: 100%;
     height: 100vh;
@@ -35,7 +38,7 @@ mat-drawer-content {
         padding: 12px;
         position: fixed;
         top: 0;
-        background: #fffbff;
+        background: colors.$background;
 
         .header-logo-text{
             display: flex;
@@ -47,9 +50,7 @@ mat-drawer-content {
             }
 
             .header-text{
-                font-family: "Great Vibes";
                 font-weight: 500;
-                font-style: normal;
                 margin-left: 8px;
                 padding-top: 8px;
                 font-size: 30px;
@@ -63,6 +64,50 @@ mat-drawer-content {
         overflow: auto;
         width: calc(100% - 32px);
         padding: 16px;
+
+        .footer{
+            background-color: colors.$background;
+            margin: 130px -16px -16px -16px;
+            display: grid;
+            grid-template-columns: auto;
+            color: colors.$smoked-text;
+            border-radius: 30% 30% 0 0;
+            border-top: 2px solid colors.$primary;
+            
+            .grid-item{
+                padding: 12px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .contact-owner{
+                    margin-bottom: 6px;
+                }
+            }
+
+            .contact-footer{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .contact-icon{
+                    margin-right: 4px;
+                    height: 16px;
+                    width: 16px;
+                    font-size: 16px;
+                }
+
+                .footer-email{
+                    color: colors.$smoked-text;
+    
+                    &:visited{
+                        color: colors.$smoked-text;
+                    }
+                }
+            }            
+        }
     }
 }
 
@@ -77,4 +122,20 @@ mat-drawer-content {
     z-index: 1000;
     width: 100%;
     height: 100%;
+}
+
+@include breakpoints.bigger-than-mobile{
+    mat-drawer-content {
+        .content{
+            .footer{
+                grid-template-columns: auto auto auto;
+
+                .grid-item{
+                    padding: 24px 12px 12px 12px;
+                }
+            }
+        }
+    }
+
+
 }

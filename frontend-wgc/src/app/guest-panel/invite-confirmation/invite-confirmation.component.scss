@@ -1,3 +1,6 @@
+@use 'breakpoints';
+@use 'colors';
+
 :host{
     display: flex;
     justify-content: center;
@@ -6,10 +9,16 @@
 .guest-confirmation-container{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .welcome-text{
     margin-bottom: 24px;
+}
+
+
+.form-container{
+    width: 100%;
 }
 
 .guest-row{
@@ -73,9 +82,46 @@
     }
 }
 
-@media screen and (min-width: 966px) {
+@include  breakpoints.bigger-than-mobile{
+    .guest-row{
+        padding: 8px 32px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .guest-options{
+        width: 60%;
+    }
+}
+
+@include  breakpoints.bigger-than-tablet{
     .guest-row{
         align-self: center;
-        width: 600px;
+        width: 700px;
+    }
+
+    .invitation-comments{
+        align-self: center;
+        width: 700px;
+    }
+
+    .form-container{
+        width: 800px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 1.5px 1.5px 5px -2px colors.$primary;
+        padding: 24px;
+        border-radius: 5px;
+    }
+
+    .end-info{
+        width: 848px;
+
+        > button {
+            margin-top: 16px;
+            width: 250px;
+            align-self: center;
+        }
     }
 }

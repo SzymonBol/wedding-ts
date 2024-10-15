@@ -1,0 +1,38 @@
+@use 'colors';
+
+.info-main-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.info-header{
+    font-weight: 600;
+    font-size: 54px;
+    margin-bottom: 12px;
+}
+
+.contents{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid colors.$primary;
+    padding: 0 0 10px;
+    width: 50%;
+
+    > h4{
+        margin-bottom: 8px;
+    }
+
+    > button{
+        background: none;
+        border: none;
+        color: colors.$primary;
+        margin: 3px 0;
+        font-weight: 600;
+    }
+
+    > button:active{
+        text-decoration: underline;
+    }
+}

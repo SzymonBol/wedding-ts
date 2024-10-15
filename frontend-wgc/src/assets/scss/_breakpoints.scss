@@ -1,0 +1,28 @@
+$mobile : 600px;
+$tablet : 992px;
+$laptop : 1200px;
+$desktop : 1920px;
+
+@mixin bigger-than-mobile{
+    @media (min-width: $mobile){
+        @content;
+    }
+}
+
+@mixin bigger-than-tablet{
+    @media (min-width: $tablet){
+        @content;
+    }
+}
+
+@mixin bigger-than-laptop{
+    @media (min-width: $laptop){
+        @content;
+    }
+}
+
+@mixin bigger-than-desktop{
+    @media (min-width: $desktop){
+        @content;
+    }
+}

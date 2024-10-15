@@ -1,4 +1,5 @@
-$maybe-color: #e0872b;
+@use 'colors';
+
 $yes-color: #5bc980;
 $no-color: #a80710;
 
@@ -13,7 +14,7 @@ $no-color: #a80710;
     &.no{
         &.mat-button-toggle-appearance-standard.mat-button-toggle-checked{
             color: $no-color;
-            background-color: #fad8da;
+            background-color: colors.$third;
         }
     }
 

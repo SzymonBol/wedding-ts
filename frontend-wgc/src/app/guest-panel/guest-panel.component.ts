@@ -3,9 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { MenuComponent } from "./menu/menu.component";
+import { NavMenuComponent } from "./menu/nav-menu.component";
 import { GuestDataStore } from '../shared/store/guest-panel.store';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -16,7 +17,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    MenuComponent,
+    NavMenuComponent,
     MatProgressSpinnerModule
 ],
   templateUrl: './guest-panel.component.html',
@@ -26,6 +27,7 @@ export class GuestPanelComponent implements AfterViewInit {
   protected store = inject(GuestDataStore);
   protected isLoadingSig = this.store.isLoading;
   private zone =inject(NgZone);
+  protected envitoment = environment;
 
   ngAfterViewInit(): void {
     const appContentRef = document.getElementById('application-content');

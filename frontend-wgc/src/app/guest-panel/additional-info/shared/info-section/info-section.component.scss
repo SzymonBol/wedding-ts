@@ -1,0 +1,14 @@
+@use 'colors';
+
+:host{
+    width: 100%;
+}
+
+.info-section{
+    hr{
+        background-color: colors.$primary;
+        height: 1px; 
+        border: 0; 
+        width: 50%;
+    }
+}

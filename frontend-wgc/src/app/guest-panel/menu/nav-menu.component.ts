@@ -10,10 +10,10 @@ import { toSignal } from '@angular/core/rxjs-interop'
   selector: 'app-menu',
   standalone: true,
   imports: [MatButtonModule, NgClass],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss'
+  templateUrl: './nav-menu.component.html',
+  styleUrl: './nav-menu.component.scss'
 })
-export class MenuComponent implements AfterViewInit {
+export class NavMenuComponent implements AfterViewInit {
 
   private router = inject(Router);
   routerChange = toSignal(this.router.events);

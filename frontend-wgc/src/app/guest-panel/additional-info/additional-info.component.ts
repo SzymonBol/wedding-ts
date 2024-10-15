@@ -1,19 +1,33 @@
 import { Component } from '@angular/core';
-import { GoogleMapsModule, MapMarker } from "@angular/google-maps";
+import { InfoMapComponent } from "./info-map/info-map.component";
+import { InfoSectionComponent } from "./shared/info-section/info-section.component";
 
 @Component({
   selector: 'app-additional-info',
   standalone: true,
-  imports: [GoogleMapsModule],
   templateUrl: './additional-info.component.html',
-  styleUrl: './additional-info.component.scss'
+  styleUrl: './additional-info.component.scss',
+  imports: [InfoMapComponent, InfoSectionComponent]
 })
 export class AdditionalInfoComponent {
-  options: google.maps.MapOptions = {
-    mapId: "DEMO_MAP_ID",
-    center: { lat: 49.55224231685368, lng: 20.37067956832379 },
-    zoom: 12,
-  };
+  sections = [
+    { 
+      id: 'rozklad-stolow-id',
+      name: 'Rozkład stołów'
+    },
+    { 
+      id: 'harmonogram-id',
+      name: 'Harmonogram'
+    },
+    { 
+      id: 'dojazd-id',
+      name: 'Dojazd'
+    },
+  ]
 
-  marker = { lat: 49.55224231685368, lng: 20.37067956832379 }
+  moveToSection(id: string){
+    const elem = document.getElementById(id);
+    if(elem)
+      elem?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

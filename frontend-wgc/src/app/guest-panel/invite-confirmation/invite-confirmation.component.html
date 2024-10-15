@@ -9,25 +9,27 @@
             Poniżej znajdziecie panel w którym macie możliwość potwierdzić swoje przybycie.
             Bardzo prosimy o zaznaczenie diety oraz informacje czy potrzebujecie noclegu. 
         </span>
-        @for(guest of guestsSig(); track $index){
-          <div class="guest-row">
-            <span class="header">{{guest.name}} {{guest.surname}}</span>
-            <div class="guest-options">
-              <span>
-                <app-guest-confirmation-status [editMode]="editModeSig()" [(ngModel)]="guest.isGoing"></app-guest-confirmation-status>
-              </span>
-              @if (!(isConfirmedSig() && guest.isGoing === false) || editModeSig()) {
-              <span class="diet-option">
-                <span class="diet-option-label">Opcja jedzeniowa: </span>
-                <app-diet-switch [(ngModel)]="guest.isVege" [editMode]="editModeSig()"></app-diet-switch>
-              </span>
-            }
+        <div class="form-container">
+          @for(guest of guestsSig(); track $index){
+            <div class="guest-row">
+              <span class="header">{{guest.name}} {{guest.surname}}</span>
+              <div class="guest-options">
+                <span>
+                  <app-guest-confirmation-status [editMode]="editModeSig()" [(ngModel)]="guest.isGoing"></app-guest-confirmation-status>
+                </span>
+                @if (!(isConfirmedSig() && guest.isGoing === false) || editModeSig()) {
+                <span class="diet-option">
+                  <span class="diet-option-label">Opcja jedzeniowa: </span>
+                  <app-diet-switch [(ngModel)]="guest.isVege" [editMode]="editModeSig()"></app-diet-switch>
+                </span>
+              }
+              </div>
             </div>
+          }
+          <div class="invitation-comments">
+            <label for="comments-id">Dodatkowe uwagi: </label>
+            <textarea id="comments-id" placeholder="Brak" [(ngModel)]="comment" [disabled]="!editModeSig()"></textarea>
           </div>
-        }
-        <div class="invitation-comments">
-          <label for="comments-id">Dodatkowe uwagi: </label>
-          <textarea id="comments-id" placeholder="Brak" [(ngModel)]="comment" [disabled]="!editModeSig()"></textarea>
         </div>
         <div class="end-info">
           @if(editModeSig()){

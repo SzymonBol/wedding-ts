@@ -1,0 +1,52 @@
+@use 'colors';
+@use 'breakpoints';
+
+.map-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: colors.$background;
+    padding: 16px;
+    border-radius: 8px;
+
+    margin: 16px 0;
+    box-shadow: 1.5px 1.5px 5px -2px colors.$primary;
+}
+
+.map-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .map-icon{
+        background-color: colors.$secondary;
+        padding: 16px;
+        border-radius: 50%;
+    }
+    
+    .map-name{
+        font-weight: 600;
+        margin: 16px 0 8px;
+    }
+    
+}
+
+.google-map-container{
+    margin-top: 16px;
+    width: 100%;
+}
+
+@include breakpoints.bigger-than-laptop{
+    :host{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .map-container{
+        width: 100%;
+        max-width: 1200px;
+        margin-top: unset;
+    }
+}
