@@ -10,6 +10,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .header{
+        font-weight: 600;
+        font-size: 54px;
+    }
 }
 
 .welcome-text{
@@ -96,6 +101,11 @@
 }
 
 @include  breakpoints.bigger-than-tablet{
+
+    .welcome-text{
+        padding: 0 5%;
+    }
+
     .guest-row{
         align-self: center;
         width: 700px;
