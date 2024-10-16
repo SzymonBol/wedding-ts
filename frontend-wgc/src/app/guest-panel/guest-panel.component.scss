@@ -23,6 +23,12 @@
     }
 }
 
+.admin-panel-button{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
 mat-drawer-content {
     display: flex;
     flex-direction: column;

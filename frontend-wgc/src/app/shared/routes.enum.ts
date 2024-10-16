@@ -3,7 +3,7 @@ export enum BASE_ROUTES {
     HOME = 'strona-glowna',
     INVITE_CONFIRMATION = 'potwierdz-zaproszenie',
     ADDITIONAL_INFO = 'informacje-dodatkowe',
-    ADMIN = 'aministrator',
+    ADMIN = 'admin',
     LOGIN = 'logowanie',
     MANAGE_INVITATIONS = 'zarzadzaj-zaproszeniami',
 }

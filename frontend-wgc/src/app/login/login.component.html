@@ -1,0 +1,21 @@
+<div class="login-container">
+    <img src="ts_wedding_logo.png" class="logo">
+
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="login-form-input">
+            <mat-label>Login</mat-label>
+            <input matInput formControlName="login">
+        </mat-form-field>
+
+        <mat-form-field class="login-form-input">
+            <mat-label>Hasło</mat-label>
+            <input matInput formControlName="password" type="password">
+        </mat-form-field>
+        
+        <div class="buttons-container">
+            <button mat-flat-button type="submit" class="login-button"> Zaloguj </button>
+            <button mat-button class="cancel-button" type="button" (click)="redirectToHome()"> Anuluj </button>
+        </div>
+        
+    </form>
+</div>

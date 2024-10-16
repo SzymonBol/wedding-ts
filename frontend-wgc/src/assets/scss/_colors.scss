@@ -4,3 +4,8 @@ $third: #fad8da;
 $background: #fffbff;
 
 $smoked-text : #1a1a1a;
+
+@mixin container-shadow{
+    box-shadow: 1.5px 1.5px 5px -2px $primary;
+    border-radius: 5px;
+}

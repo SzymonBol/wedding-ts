@@ -26,7 +26,11 @@ export const routes: Routes = [
             },
         ]
     },
-
+    {
+        path: `${BASE_ROUTES.ADMIN}/${BASE_ROUTES.LOGIN}`, 
+        loadComponent: () => import('./login/login.component').then(c => c.LoginComponent)
+    },
+    {path: `${BASE_ROUTES.ADMIN}`, redirectTo: `${BASE_ROUTES.ADMIN}/${BASE_ROUTES.LOGIN}`, pathMatch: 'full'},
     {path: '', redirectTo: `${BASE_ROUTES.GUEST_PANEL}/${BASE_ROUTES.HOME}`, pathMatch: 'full'},
     {path: '**', redirectTo: `${BASE_ROUTES.GUEST_PANEL}/${BASE_ROUTES.HOME}`},
 ];

@@ -7,6 +7,9 @@
             <img src="ts_wedding_logo.png" height="100" width="100" class="menu-logo-img">
             <app-menu (itemClicked)="toggleDrawer(drawer)" />
         </div>
+        <button mat-icon-button class="admin-panel-button" (click)="navigateToAdminPanel()">
+            <mat-icon>settings</mat-icon>
+        </button>
     </mat-drawer>
     <mat-drawer-content>
         <div class="header" id="application-header">

@@ -1,0 +1,74 @@
+@use 'colors';
+@use 'breakpoints';
+
+.login-container{
+    background-color: colors.$background;
+    width: calc(100% - 48px);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 24px;
+}
+
+.logo{
+    max-width: 200px;
+    margin-bottom: 32px;
+    margin-top: 100px;
+}
+
+.login-form{
+    width: 100%;
+    max-width: calc(breakpoints.$mobile - 64px);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.login-form-input{
+    width: 100%;
+}
+
+.buttons-container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 54px;
+
+    .cancel-button{
+        width: 100%;   
+        margin-top: 12px;
+    }
+    
+    .login-button{
+        width: 100%;   
+    }
+}
+
+
+
+@include breakpoints.bigger-than-mobile{
+    .login-form{
+        @include colors.container-shadow()
+    }
+}
+
+@include breakpoints.bigger-than-tablet{
+    .buttons-container{
+        display: flex;
+        width: 100%;
+        flex-direction: row-reverse;
+        margin-top: 32px;
+        justify-content: space-between;
+    
+        .cancel-button{
+            width: 20%;   
+            margin-top: unset
+        }
+        
+        .login-button{
+            width: 40%;   
+        }
+    }
+}
