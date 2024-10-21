@@ -1,6 +1,10 @@
 <div class="login-container">
     <img src="ts_wedding_logo.png" class="logo">
 
+    @if(error()){
+        <span>error jakis kurde {{this.error()}}</span>
+    }
+
     <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="login-form-input">
             <mat-label>Login</mat-label>
