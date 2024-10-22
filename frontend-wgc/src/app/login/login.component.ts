@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { ROUTE } from '../shared/routes.enum';
-import { AuthService } from '../services/auth.service';
+import { HttpAuthService } from '../services/auth.service';
 import { AuthCredentials } from '../types/auth.types';
 import { tap } from 'rxjs';
 
@@ -23,7 +23,7 @@ export class LoginComponent {
   });
 
   private router = inject(Router);
-  private authService = inject(AuthService);
+  private authService = inject(HttpAuthService);
   error = signal<string | undefined>(undefined);
 
 

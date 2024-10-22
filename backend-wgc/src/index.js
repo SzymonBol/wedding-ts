@@ -4,6 +4,8 @@ import express from 'express';
 import { createInvitation, findInvitationById, updateInvitationById } from './wedding-crud.js'
 import cors from 'cors';
 import { authenticateToken, createUser, validateLoginCredentials} from './login.js'
+import dayjs from "dayjs";
+import cookieParser from "cookie-parser";
 
 config();
 
@@ -17,7 +19,11 @@ const usersCollection = db.collection(process.env.COLLECTION_NAME_USERS);
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:4200", 
+  credentials: true
+}));
+app.use(cookieParser());
 //app.use(authenticateToken)
 
 //without-verification
@@ -48,12 +54,12 @@ app.patch('/update-invitation', async (req, res) => {
 app.post('/login-user', async (req, res) => {
   const credentials = req.body;
   const result = await validateLoginCredentials(usersCollection, credentials);
-  if(result.length === 1){
-    res.send();
-  } else {
-    res.status(400);
-    res.send('Error: Cannot login with given credentials');
+  if(result.token !== null){
+    res.cookie("authToken", result.token, {httpOnly: true});
   }
+
+  res.status(result.status);
+  res.send(result);
 })
 
 
@@ -68,6 +74,11 @@ app.post('/create-invitation', async (req, res) => {
 app.post('/create-user', async (req, res) => {
   const userData = req.body;
   const reulst = await createUser(usersCollection, userData);
+  res.send('jest git');
+})
+
+app.get('/test-user', async (req, res) => {
+  console.log(req.headers);
   res.send('jest git');
 })
 
