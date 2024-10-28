@@ -1,20 +1,28 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import e from 'express';
+
+const whiteList = [
+  '/invitation/',
+  '/update-invitation',
+  '/login-user'
+];
 
 export function generateAccessToken(username) {
-    return jwt.sign( {name : username} , process.env.TOKEN_SECRET, { expiresIn: '1800s' });
+    return jwt.sign( {name : username} , process.env.TOKEN_SECRET, { expiresIn: '18000s' });
   }
 
 export function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
+    if(whiteList.some(val => req.path.includes(val))){
+      next();
+      return;
+    }
+
+    const authHeader = req.headers['cookie']
+    const token = authHeader && authHeader.split('=')[1]
   
     if (token == null) return res.sendStatus(401)
   
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-      console.log(err)
-  
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {  
       if (err) return res.sendStatus(403)
   
       req.user = user
@@ -55,6 +63,4 @@ export function authenticateToken(req, res, next) {
         login: userData.login, 
         password: hash
     });
-  }
-
-  
+  }  

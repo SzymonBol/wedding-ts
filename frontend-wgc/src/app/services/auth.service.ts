@@ -12,7 +12,7 @@ export class HttpAuthService{
     public login(credentials: AuthCredentials) : Observable<HttpResponse<void>>{
         return this.http.post<void>('/login-user', credentials, { observe: 'response', withCredentials: true });
     }
-    public test() : Observable<void>{
-        return this.http.get<void>('/test-user', {withCredentials: true});
+    public checkSession() : Observable<void>{
+        return this.http.get<void>('/check-session');
     }
 }

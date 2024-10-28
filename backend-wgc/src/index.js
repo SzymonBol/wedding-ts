@@ -4,7 +4,6 @@ import express from 'express';
 import { createInvitation, findInvitationById, updateInvitationById } from './wedding-crud.js'
 import cors from 'cors';
 import { authenticateToken, createUser, validateLoginCredentials} from './login.js'
-import dayjs from "dayjs";
 import cookieParser from "cookie-parser";
 
 config();
@@ -24,7 +23,7 @@ app.use(cors({
   credentials: true
 }));
 app.use(cookieParser());
-//app.use(authenticateToken)
+app.use(authenticateToken)
 
 //without-verification
 
@@ -74,12 +73,12 @@ app.post('/create-invitation', async (req, res) => {
 app.post('/create-user', async (req, res) => {
   const userData = req.body;
   const reulst = await createUser(usersCollection, userData);
-  res.send('jest git');
+  res.send({actionResult: 'jest git'});
 })
 
-app.get('/test-user', async (req, res) => {
-  console.log(req.headers);
-  res.send('jest git');
+app.get('/check-session', async (req, res) => {
+  const result = {actionResult: 'jest git'};
+  res.send(result);
 })
 
 app.listen(port, () => {
