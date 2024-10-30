@@ -1,0 +1,40 @@
+.home-conainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.main-timer{
+    position: relative;
+    margin: -16px -16px 0 -16px;
+    width: calc(100% + 32px);
+    min-height: 700px;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    h1{
+        position: relative;
+        color: #FFF;
+        font-size: 50px;
+        margin-top: 270px;
+    }
+
+    &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.3), 
+            rgba(0, 0, 0, 0.3)
+          ), url('../../../assets/home_background.jpg');
+        background-size: cover;
+        background-position: center;
+
+    }
+}
