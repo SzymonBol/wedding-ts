@@ -8,6 +8,9 @@ import { GuestDataStore } from '../shared/store/guest-panel.store';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { environment } from '../../environments/environment';
 import { ROUTE } from '../shared/routes.enum';
+import { AuthDataStore } from '../shared/store/auth.store';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutDialogComponent } from '../admin-panel/logout-dialog/logout-dialog.component';
 
 
 @Component({
@@ -26,6 +29,8 @@ import { ROUTE } from '../shared/routes.enum';
 })
 export class GuestPanelComponent implements AfterViewInit {
   protected store = inject(GuestDataStore);
+  protected user = inject(AuthDataStore).loggedUser;
+  readonly logoutDialog = inject(MatDialog);
   protected isLoadingSig = this.store.isLoading;
   private zone =inject(NgZone);
   private router = inject(Router);
@@ -54,5 +59,9 @@ export class GuestPanelComponent implements AfterViewInit {
 
   navigateToAdminPanel(){
     this.router.navigateByUrl(ROUTE.ADMIN_LOGIN);
+  }
+
+  logout(){
+    this.logoutDialog.open(LogoutDialogComponent);
   }
 }

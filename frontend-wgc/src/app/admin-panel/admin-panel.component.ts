@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { HttpAuthService } from '../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
 
 @Component({
   selector: 'app-admin-panel',
@@ -9,9 +10,9 @@ import { HttpAuthService } from '../services/auth.service';
   styleUrl: './admin-panel.component.scss'
 })
 export class AdminPanelComponent {
-  private authService = inject(HttpAuthService);
+  readonly logoutDialog = inject(MatDialog);
 
-  addUser(){
-    this.authService.checkSession().subscribe();
+  logout(){
+    this.logoutDialog.open(LogoutDialogComponent);
   }
 }

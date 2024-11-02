@@ -7,9 +7,20 @@
             <img src="ts_wedding_logo.png" height="100" width="100" class="menu-logo-img">
             <app-menu (itemClicked)="toggleDrawer(drawer)" />
         </div>
-        <button mat-icon-button class="admin-panel-button" (click)="navigateToAdminPanel()">
-            <mat-icon>settings</mat-icon>
-        </button>
+        <div class="admin-panel-button">
+            <button mat-icon-button  (click)="navigateToAdminPanel()">
+                <mat-icon>settings</mat-icon>
+            </button>
+            @if(user()){
+                <div class="user-panel">
+                    <span>Zalogowano jako {{user()}}</span> 
+                    <button mat-icon-button  (click)="logout()">
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                </div>
+            }
+        </div>
+        
     </mat-drawer>
     <mat-drawer-content>
         <div class="header" id="application-header">

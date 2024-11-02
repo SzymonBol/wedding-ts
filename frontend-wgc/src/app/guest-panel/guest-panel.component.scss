@@ -27,6 +27,15 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+
+    .user-panel{
+        display: flex;
+        align-items: center;
+    }
 }
 
 mat-drawer-content {

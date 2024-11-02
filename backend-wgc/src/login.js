@@ -8,7 +8,7 @@ const whiteList = [
 ];
 
 export function generateAccessToken(username) {
-    return jwt.sign( {name : username} , process.env.TOKEN_SECRET, { expiresIn: '18000s' });
+    return jwt.sign( {name : username} , process.env.TOKEN_SECRET, { expiresIn: '1800s' });
   }
 
 export function authenticateToken(req, res, next) {
@@ -25,7 +25,7 @@ export function authenticateToken(req, res, next) {
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {  
       if (err) return res.sendStatus(403)
   
-      req.user = user
+      req.user = user.name
   
       next()
     })
@@ -41,14 +41,16 @@ export function authenticateToken(req, res, next) {
     if(user.length !== 1){
       return {
         token : null, 
+        user: null,
         status: 400,
-        message : 'Niepopawne login lub hasło' 
+        isFine : false
       };
     } else {
       return {
-        token : generateAccessToken(user.login), 
+        token : generateAccessToken(user[0].login), 
+        user: user[0].login,
         status: 200,
-        message : 'Zalogowano' 
+        isFine : true 
       };
     }
   }

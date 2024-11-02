@@ -58,7 +58,7 @@ app.post('/login-user', async (req, res) => {
   }
 
   res.status(result.status);
-  res.send(result);
+  res.send({isFine: result.isFine, user: result.user});
 })
 
 
@@ -77,8 +77,13 @@ app.post('/create-user', async (req, res) => {
 })
 
 app.get('/check-session', async (req, res) => {
-  const result = {actionResult: 'jest git'};
+  const result = {isFine: true, user: req.user};
   res.send(result);
+})
+
+app.get('/logout', async (req, res) => {
+  res.cookie("authToken", 'logged_out', {httpOnly: true});
+  res.send();
 })
 
 app.listen(port, () => {

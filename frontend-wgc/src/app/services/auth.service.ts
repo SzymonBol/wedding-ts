@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { AuthCredentials } from "../types/auth.types";
+import { AuthCredentials, LoginResponse } from "../types/auth.types";
 import { Observable } from "rxjs";
 
 @Injectable(
@@ -9,10 +9,15 @@ import { Observable } from "rxjs";
 export class HttpAuthService{
     private http = inject(HttpClient);
 
-    public login(credentials: AuthCredentials) : Observable<HttpResponse<void>>{
-        return this.http.post<void>('/login-user', credentials, { observe: 'response', withCredentials: true });
+    public login(credentials: AuthCredentials) : Observable<HttpResponse<LoginResponse>>{
+        return this.http.post<LoginResponse>('/login-user', credentials, { observe: 'response', withCredentials: true });
     }
-    public checkSession() : Observable<void>{
-        return this.http.get<void>('/check-session');
+
+    public checkSession() : Observable<LoginResponse>{
+        return this.http.get<LoginResponse>('/check-session');
+    }
+
+    public logout() : Observable<void>{
+        return this.http.get<void>('/logout');
     }
 }

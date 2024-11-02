@@ -6,8 +6,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { ROUTE } from '../shared/routes.enum';
 import { HttpAuthService } from '../services/auth.service';
-import { AuthCredentials } from '../types/auth.types';
-import { tap } from 'rxjs';
+import { AuthCredentials, LoginResponse } from '../types/auth.types';
+import { firstValueFrom, tap } from 'rxjs';
+import { AuthDataStore } from '../shared/store/auth.store';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent {
   });
 
   private router = inject(Router);
+  private authStore = inject(AuthDataStore);
   private authService = inject(HttpAuthService);
   error = signal<string | undefined>(undefined);
 
@@ -41,9 +43,17 @@ export class LoginComponent {
       password
     }
 
-    const response = this.authService.login(credentials).subscribe( resp => {
+    try{
+      const result = await firstValueFrom(this.authService.login(credentials));
+      if(!result.body) {
+        throw new Error('Something wrong with response');
+      }
+      this.authStore.updateLoginStatus(result.body);
       this.router.navigateByUrl(ROUTE.ADMIN_MANAGE_INVITATIONS);
-    });
+    } catch(error){
+      this.authStore.updateLoginStatus({isFine: false, user: null});
+      console.error(error);
+    }
   }
 
   redirectToHome(){
