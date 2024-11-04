@@ -14,6 +14,17 @@
 [done] Na podstawie odpowiedzi z backendu stwórz formularz (imie, nazwisko, vege status potwierdzenia)
 [done] Dodaj przcisk 'potwierdź odpowiedź"
 [done] Na podstawie odpowiedzi z backendu jeśli jakikolwiek osoba z zaproszenia ma staus, że będzie to zielony przcisk powinen się pokazać jako zaznaczony. 
+[done] Dodaj nocleg na listę zaproszeń 
+[done] Rozszerz zaproszenia oraz nocleg
+[] Przerób uuid na 8-10 znakowy kod
+[] Utwórz widok który umożliwi wpisanie kodu z zaproszenia
+[] Dodaj zapytanie api które wyciągnie zaproszenie na podstawie kodu
+[] Dodaj dane zaproszenia do session storage
+[] Dodaj na stronie głównej panel z zaproszeniem
+[] Dodaj przykładowy plan wesela 
+[] Dodaj przykładowy rozkład stolików 
+[] Dodaj na stronie głównej odnośniki do pozostałych podstron
+
 
 [] Zakładki "Potwierdzenie zaproszenia" oraz "Lista osób"
 [] Na podstawie odpowiedzi z backedu stwórz listę osób
@@ -32,17 +43,17 @@
 
 
 
-[] Dodaj sól dla haseł w pliku .env
-[] Dodaj algorytm hashujcym z solą 
-[] Stwórz request w API który zapisze użytkownika z hashem: username, password
-[] Dodaj użytkownika do bazy 'users'
-[] Stwórz request w API który sprawdzi czy użytkownik o podanym loginie i haśle już istnieje + zapisze jakiś hash jako token
-[] Stwórz route /admin do komponentu Admin-Management
-[] Dodaj komponent logowania
+[done] Dodaj sól dla haseł w pliku .env
+[done] Dodaj algorytm hashujcym z solą 
+[done] Stwórz request w API który zapisze użytkownika z hashem: username, password
+[done] Dodaj użytkownika do bazy 'users'
+[done] Stwórz request w API który sprawdzi czy użytkownik o podanym loginie i haśle już istnieje + zapisze jakiś hash jako token
+[done] Stwórz route /admin do komponentu Admin-Management
+[done] Dodaj komponent logowania
 [] Dodaj komponent zarządzania
-[] Dodaj interceptor który będzie dokładał token do wysyłanych zapytań
-[] Obsługa tokenu po stronie bazy -> 
-[] Zaloguj na użytkownika
+[done] Dodaj interceptor który będzie dokładał token do wysyłanych zapytań
+[done] Obsługa tokenu po stronie bazy -> 
+[done] Zaloguj na użytkownika
 [] Podczas wejścia pobierana jest lista wszystkich kolekcji z bazy i wyświetlana w formie tabeli :
 	| QR code dla zaprzoszenia 
 	| Imiona i nazwiska na zaproszeniu - jedno pod drugim 

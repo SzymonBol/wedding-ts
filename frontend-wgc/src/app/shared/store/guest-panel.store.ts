@@ -11,7 +11,8 @@ const initialState: GuestStoreData = {
     isLoading: false,
     guestsData: undefined,
     confirmed: false,
-    comment: null
+    comment: null,
+    needAccommodation: false
 }
 
 export const GuestDataStore = signalStore(
@@ -29,7 +30,7 @@ export const GuestDataStore = signalStore(
               patchState(store, { confirmed: confirmation});
             },
             updateValues(invitation: Invitation): void {
-              patchState(store, { invitationId: invitation.id, guestsData: invitation.guests, comment: invitation.comment, confirmed: invitation.confirmed});
+              patchState(store, { invitationId: invitation.id, guestsData: invitation.guests, comment: invitation.comment, confirmed: invitation.confirmed, needAccommodation: invitation.needAccommodation});
             },
             fetchInvitationDataById: rxMethod<string>(
                 pipe(
@@ -39,7 +40,7 @@ export const GuestDataStore = signalStore(
                     return invitationService.fetchInvitationData(id).pipe(
                       tapResponse({
                         next: (invitation) => patchState(store, { guestsData : invitation.guests, invitationId: invitation.id, comment: invitation.comment,
-                          confirmed: invitation.confirmed, isLoading: false }),
+                          confirmed: invitation.confirmed, needAccommodation: invitation.needAccommodation, isLoading: false }),
                         error: (err) => {
                           patchState(store, { isLoading: false });
                           console.error(err);

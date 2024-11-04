@@ -1,9 +1,11 @@
+<div class="guest-confirmation-container">
+  <h1 class="fancy-font header">
+      Potwierdź zaproszenie
+  </h1>
+
 @if(guestsSig()){
 
-    <div class="guest-confirmation-container">
-        <h1 class="fancy-font header">
-            Potwierdź zaproszenie
-        </h1>
+
         <span class="welcome-text">
             Z radaością chcielibyśmy Was zaprosić na nasze wesele! 
             Poniżej znajdziecie panel w którym macie możliwość potwierdzić swoje przybycie.
@@ -27,6 +29,17 @@
             </div>
           }
           <div class="invitation-comments">
+            <label class="accomodation-header"> 
+              <mat-icon>hotel</mat-icon> 
+              <span class="accomodation-text">Nocleg</span>
+            </label>
+            <mat-radio-group aria-label="Zakwaterowanie" [(ngModel)]="needAccommodation" [disabled]="!editModeSig()">
+              <mat-radio-button [value]="false">We własnym zakresie</mat-radio-button>
+              <mat-radio-button [value]="true">Będziemy potrzebować noclegu</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          
+          <div class="invitation-comments">
             <label for="comments-id">Dodatkowe uwagi: </label>
             <textarea id="comments-id" placeholder="Brak" [(ngModel)]="comment" [disabled]="!editModeSig()"></textarea>
           </div>
@@ -43,5 +56,9 @@
           }
         </div>
           
-    </div>
+
+} @else {
+  <app-enter-code></app-enter-code>
 }
+
+</div>

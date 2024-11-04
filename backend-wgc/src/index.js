@@ -45,8 +45,8 @@ app.get('/invitation/:id', async (req, res) => {
 })
 
 app.patch('/update-invitation', async (req, res) => {
-  const {id, guests, confirmed, comment}= req.body;  
-  const result = await updateInvitationById(guestCollection, id, guests, confirmed, comment );
+  const {id, guests, confirmed, comment, needAccommodation}= req.body;  
+  const result = await updateInvitationById(guestCollection, id, guests, confirmed, comment, needAccommodation );
   res.send(result);
 })
 

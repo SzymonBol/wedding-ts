@@ -10,6 +10,7 @@ export type Invitation ={
     guests: GuestData[];
     confirmed: boolean;
     comment: string | null;
+    needAccommodation: boolean;
 }
 
 export type GuestStoreData = {
@@ -18,4 +19,5 @@ export type GuestStoreData = {
     guestsData?: GuestData[];
     confirmed: boolean;
     comment: string | null;
+    needAccommodation: boolean;
 }

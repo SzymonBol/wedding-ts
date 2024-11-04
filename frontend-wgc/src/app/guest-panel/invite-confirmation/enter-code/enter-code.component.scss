@@ -1,0 +1,28 @@
+.invitation-code{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 48px;
+
+    .code-label{
+        font-size: 24px;
+    }
+
+    .invitation-text{
+        text-align: center;
+    }
+}
+
+.scan-invitation{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 48px;
+
+    .scan-label{
+        font-size: 24px;
+    }
+
+}

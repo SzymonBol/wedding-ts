@@ -15,12 +15,13 @@
 				"isVege" : false
 			}
 		],
+		"needAccommodation" : false,
 		"comment" : null,
 		"confirmed" : false
 	},
 	{
 		"id" : "bol_brat_marek",
-		"values" : [
+		"guests" : [
 		{
 				"name": "Marek",
 				"surname": "Ból",
@@ -34,6 +35,7 @@
 				"isVege" : false
 			}
 		],
+		"needAccommodation" : false,
 		"comment" : null,
 		"confirmed" : false
 	}

@@ -14,9 +14,9 @@ export async function findInvitationById(collection, id) {
     );
  }
 
- export async function updateInvitationById(collection, id, guestObject, confirmed, comment) {
+ export async function updateInvitationById(collection, id, guestObject, confirmed, comment, needAccommodation) {
    await collection.updateOne(
        { id : id},
-       { $set: {guests : guestObject, confirmed, comment}}
+       { $set: {guests : guestObject, confirmed, comment, needAccommodation}}
    );
 }

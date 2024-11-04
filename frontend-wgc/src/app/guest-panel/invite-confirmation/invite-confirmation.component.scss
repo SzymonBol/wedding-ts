@@ -57,6 +57,16 @@
 
 }
 
+.accomodation-header{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    .accomodation-text{
+        margin-left: 12px;
+    }
+}
+
 .invitation-comments{
     margin-top: 16px;
     display: flex;
