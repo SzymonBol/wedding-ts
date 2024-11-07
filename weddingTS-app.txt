@@ -17,8 +17,8 @@
 [done] Dodaj nocleg na listę zaproszeń 
 [done] Rozszerz zaproszenia oraz nocleg
 [] Przerób uuid na 8-10 znakowy kod
-[] Utwórz widok który umożliwi wpisanie kodu z zaproszenia
-[] Dodaj zapytanie api które wyciągnie zaproszenie na podstawie kodu
+[done] Utwórz widok który umożliwi wpisanie kodu z zaproszenia
+[done] Dodaj zapytanie api które wyciągnie zaproszenie na podstawie kodu
 [] Dodaj dane zaproszenia do session storage
 [] Dodaj na stronie głównej panel z zaproszeniem
 [] Dodaj przykładowy plan wesela 

@@ -1,1 +1,14 @@
-<p>party-schedule works!</p>
+@if(schedule().length > 0){
+  @for(scheduleItem of schedule(); track scheduleItem.time){
+    <div class="schedule-item" [ngClass]="scheduleItem.position ==='left' ? 'left-description' : 'right-description'">
+    <span class="schedule-icon">
+      <mat-icon [fontIcon]="scheduleItem.icon"></mat-icon>
+  </span>
+      <span class="schedule-description-text">{{scheduleItem.time}}</span>
+      <span class="schedule-description-text">{{scheduleItem.description}}</span>
+    </div>
+  }
+  <span class="schedule-line"></span>
+} @else {
+  <span>Grafik w krótce się pojawi 👀</span>
+}
