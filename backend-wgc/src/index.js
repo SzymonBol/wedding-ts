@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { getMongodbClient } from './connection.js';
 import express from 'express';
-import { createInvitation, findInvitationById, updateInvitationById } from './wedding-crud.js'
+import { createInvitation, findInvitationById, getAllUsers, updateInvitationById } from './wedding-crud.js'
 import cors from 'cors';
 import { authenticateToken, createUser, validateLoginCredentials} from './login.js'
 import cookieParser from "cookie-parser";
@@ -84,6 +84,11 @@ app.get('/check-session', async (req, res) => {
 app.get('/logout', async (req, res) => {
   res.cookie("authToken", 'logged_out', {httpOnly: true});
   res.send();
+})
+
+app.get('/guests', async (req, res) => {
+  const result = await getAllUsers(guestCollection);
+  res.send(result);
 })
 
 app.listen(port, () => {

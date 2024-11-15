@@ -1,0 +1,16 @@
+@use 'colors';
+
+:host{
+    display: flex;
+}
+
+.no-guests-going{
+    color: colors.$errorRed;
+    font-weight: bold;
+}
+
+.all-guests-going{
+    color: colors.$successGreen;
+    font-weight: bold;
+    font-size: 20px;
+}

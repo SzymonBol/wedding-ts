@@ -3,7 +3,15 @@ $secondary: #ffdcbd;
 $third: #fad8da;
 $background: #fffbff;
 
+$successGreen: #0c8a27;
+$errorRed: #ca2f2f;
+$warningOrange: #e7ab29;
 $smoked-text : #1a1a1a;
+
+$meatText: #aa4f04;
+$vegeText: #097921;
+$meatBackground: #e9b082;
+$vegeBackground: #56685a;
 
 @mixin container-shadow{
     box-shadow: 1.5px 1.5px 5px -2px $primary;

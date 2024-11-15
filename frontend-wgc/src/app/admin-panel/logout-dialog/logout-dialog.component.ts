@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatDialogActions,
-  MatDialogClose,
   MatDialogContent,
   MatDialogRef,
   MatDialogTitle,
@@ -21,7 +20,6 @@ import { AuthDataStore } from '../../shared/store/auth.store';
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose
   ],
   templateUrl: './logout-dialog.component.html',
   styleUrl: './logout-dialog.component.scss'

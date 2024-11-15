@@ -1,18 +1,15 @@
-import { Component, inject } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LogoutDialogComponent } from './logout-dialog/logout-dialog.component';
+import { Component } from '@angular/core';
+import { TopSectionComponent } from "./top-section/top-section.component";
+import { AdminTableComponent } from "./admin-table/admin-table.component";
+
 
 @Component({
   selector: 'app-admin-panel',
   standalone: true,
-  imports: [],
+  imports: [TopSectionComponent, AdminTableComponent],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.scss'
 })
-export class AdminPanelComponent {
-  readonly logoutDialog = inject(MatDialog);
+export class AdminPanelComponent{
 
-  logout(){
-    this.logoutDialog.open(LogoutDialogComponent);
-  }
 }

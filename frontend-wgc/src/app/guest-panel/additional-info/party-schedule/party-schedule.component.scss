@@ -17,7 +17,7 @@
 .schedule-item{
   display: flex;
   width: 100%;
-  margin: 32px 0;
+  margin: 48px 0;
 
   &.left-description{
     flex-direction: row-reverse;
@@ -50,5 +50,5 @@
 
 .schedule-description-text{
   margin: 16px 4px 0;
-  max-width: 35%;
+  max-width: 27%;
 }

@@ -41,7 +41,7 @@
           
           <div class="invitation-comments">
             <label for="comments-id">Dodatkowe uwagi: </label>
-            <textarea id="comments-id" placeholder="Brak" [(ngModel)]="comment" [disabled]="!editModeSig()"></textarea>
+            <textarea id="comments-id" placeholder="Brak" [(ngModel)]="comment" [disabled]="!editModeSig()" maxlength="1024"></textarea>
           </div>
         </div>
         <div class="end-info">

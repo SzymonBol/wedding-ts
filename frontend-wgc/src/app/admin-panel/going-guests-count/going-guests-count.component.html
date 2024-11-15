@@ -1,0 +1,12 @@
+@if(goingGuestsCount() === allGuestsCount() || goingGuestsCount() === 0){
+    <span [ngClass]="goingGuestsCount() === 0 ? 'no-guests-going' : 'all-guests-going'">
+        {{goingGuestsCount()}}
+    </span>
+} @else {
+    <span class="all-guests-going">
+        {{goingGuestsCount()}}
+    </span>
+    <span>
+        / {{allGuestsCount()}}
+    </span>
+}

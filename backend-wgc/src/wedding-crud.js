@@ -20,3 +20,7 @@ export async function findInvitationById(collection, id) {
        { $set: {guests : guestObject, confirmed, comment, needAccommodation}}
    );
 }
+
+export async function getAllUsers(collection){
+   return collection.find().toArray();
+}

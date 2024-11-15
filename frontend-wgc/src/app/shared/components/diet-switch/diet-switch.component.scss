@@ -1,3 +1,5 @@
+@use 'colors';
+
 .diet-container{
     display: flex;
     align-items: center;
@@ -11,7 +13,7 @@
         margin-right: 4px;
 
         &.selected{
-            color:#097921;
+            color: colors.$vegeText;
             font-weight: 500;
         }
     }
@@ -21,7 +23,7 @@
 
         &.selected{
             font-weight: 500;
-            color:#aa4f04;
+            color: colors.$meatText;
         }
     }
 }
@@ -57,12 +59,12 @@
     transition: 0.4s;
 
     &.vege{
-        background: #56685a;
+        background: colors.$vegeBackground;
         left: 2px;
     }
 
     &.meat{
-        background: #e9b082;
+        background: colors.$meatBackground;;
         left: 22px;
     }
 }

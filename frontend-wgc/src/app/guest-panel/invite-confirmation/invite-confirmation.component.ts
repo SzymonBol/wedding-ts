@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { GuestDataStore } from '../../shared/store/guest-panel.store';
-import { JsonPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { DietSwitchComponent } from "../../shared/components/diet-switch/diet-switch.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -16,7 +15,7 @@ import { EnterCodeComponent } from "./enter-code/enter-code.component";
 @Component({
   selector: 'app-invite-confirmation',
   standalone: true,
-  imports: [JsonPipe, MatIconModule, DietSwitchComponent, MatButtonModule, ReactiveFormsModule, FormsModule, MatTableModule, GuestConfirmationStatusComponent, MatRadioModule, EnterCodeComponent],
+  imports: [MatIconModule, DietSwitchComponent, MatButtonModule, ReactiveFormsModule, FormsModule, MatTableModule, GuestConfirmationStatusComponent, MatRadioModule, EnterCodeComponent],
   templateUrl: './invite-confirmation.component.html',
   styleUrl: './invite-confirmation.component.scss'
 })
@@ -31,7 +30,6 @@ export class InviteConfirmationComponent {
 
   newDataEffect = effect(() => {
     if(this.guestsSig()){
-      this.editModeSig.set(!this.isConfirmedSig);
       this.comment = this.store.comment();
       this.needAccommodation = this.store.needAccommodation();
     }

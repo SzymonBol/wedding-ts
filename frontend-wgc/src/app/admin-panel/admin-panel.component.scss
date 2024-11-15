@@ -1,0 +1,10 @@
+@use 'colors';
+
+.admin-panel-container{
+    background-color: colors.$background;
+    height: 100vh;
+}
+
+.table-container{
+    padding: 8px
+}

@@ -1,0 +1,32 @@
+@if(vegeCount() === 0){
+    <div class="same-values">
+        <span class="single-icon all-meat">
+            <mat-icon fontIcon="lunch_dining"/>
+        </span>
+        <span class="icon-text meat">
+            Mięsna
+        </span>
+    </div>
+} @else if(meatCount() === 0){
+    <div class="same-values">
+        <span class="single-icon all-vege">
+            <mat-icon fontIcon="eco"/>
+        </span>
+        <span class="icon-text vege">
+            Vege
+        </span>
+    </div>
+} @else {
+    <div class="mixed-diets">
+        <span class="single-icon all-vege">
+            <mat-icon fontIcon="eco"/>
+        </span>
+        <span class="mixed-text">{{vegeCount()}}</span>
+        /
+        <span class="mixed-text">{{meatCount()}}</span>
+        <span class="single-icon all-meat">
+            <mat-icon fontIcon="lunch_dining"/>
+        </span>
+    </div>
+}
+

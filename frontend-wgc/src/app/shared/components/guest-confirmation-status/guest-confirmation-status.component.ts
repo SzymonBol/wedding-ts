@@ -1,6 +1,5 @@
 import { Component, computed, effect, forwardRef, input, model, signal } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
-import { NgClass } from '@angular/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
@@ -13,7 +12,7 @@ const NG_GUEST_GOING_STATUS_VALUE_ACCESSOR = {
 @Component({
   selector: 'app-guest-confirmation-status',
   standalone: true,
-  imports: [MatIconModule, NgClass, MatButtonToggleModule, FormsModule],
+  imports: [MatIconModule, MatButtonToggleModule, FormsModule],
   templateUrl: './guest-confirmation-status.component.html',
   styleUrl: './guest-confirmation-status.component.scss',
   providers : [NG_GUEST_GOING_STATUS_VALUE_ACCESSOR]
