@@ -10,7 +10,7 @@ html {
   @include mat.all-component-themes(m3-theme.$light-theme);
 }
 
-html, body { height: 100%; overflow: hidden}
+html, body { height: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .fancy-font{

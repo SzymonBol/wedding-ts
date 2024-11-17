@@ -1,6 +1,22 @@
 <div class="admin-panel-container">
     <app-top-section/>
-    <div class="table-container">
-        <app-admin-table/>
+    <div class="admin-panel-tabs">
+        <mat-tab-group>
+            <mat-tab label="Ogólny">
+                <div class="table-container">
+                    <app-admin-table/>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Goście"> 
+                <app-going-guests-table />
+            </mat-tab>
+    
+            <mat-tab label="Dieta"> 
+                <app-diet-table />
+            </mat-tab>
+
+ 
+        </mat-tab-group>
     </div>
 </div>

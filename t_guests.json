@@ -38,5 +38,97 @@
 		"needAccommodation" : false,
 		"comment" : null,
 		"confirmed" : false
+	},
+	{
+		"id": "bartBed1",
+		"guests" : [
+			{
+				"name": "Bartosz",
+				"surname": "Bednarczyk",
+				"isGoing": true,
+				"isVege" : false
+			},
+			{
+				"name": "Osoba",
+				"surname": "Towarzysząca",
+				"isGoing": true,
+				"isVege" : false
+			}
+		],
+		"needAccommodation" : false,
+		"comment" : null,
+		"confirmed" : false
+	},
+	{
+		"id": "filipiak",
+		"guests" : [
+			{
+				"name": "Dawid",
+				"surname": "Filipiak",
+				"isGoing": true,
+				"isVege" : false
+			},
+			{
+				"name": "Joanna",
+				"surname": "Filipiak",
+				"isGoing": true,
+				"isVege" : false
+			},
+			{
+				"name": "Olga",
+				"surname": "Filipiak",
+				"isGoing": true,
+				"isVege" : false
+			},
+			{
+				"name": "Helena",
+				"surname": "Filipiak",
+				"isGoing": true,
+				"isVege" : false
+			}
+		],
+		"needAccommodation" : false,
+		"comment" : null,
+		"confirmed" : false
+	},
+	{
+		"id": "wercia_sis",
+		"guests" : [
+			{
+				"name": "Wercia",
+				"surname": "Jawor",
+				"isGoing": true,
+				"isVege" : false
+			},
+			{
+				"name": "Jej",
+				"surname": "Chłop",
+				"isGoing": true,
+				"isVege" : false
+			}
+		],
+		"needAccommodation" : false,
+		"comment" : null,
+		"confirmed" : false
+	},
+	{
+		"id": "maria_sis",
+		"guests" : [
+			{
+				"name": "Maria",
+				"surname": "Zasadni",
+				"isGoing": true,
+				"isVege" : false
+			},
+			{
+				"name": "Krzysztof",
+				"surname": "Zasadni",
+				"isGoing": true,
+				"isVege" : false
+			}
+		],
+		"needAccommodation" : false,
+		"comment" : null,
+		"confirmed" : false
 	}
 ]
