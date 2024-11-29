@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { getMongodbClient } from './connection.js';
 import express from 'express';
-import { createInvitation, findInvitationById, getAllUsers, updateInvitationById } from './wedding-crud.js'
+import { createInvitation, deleteInvitation, findInvitationById, getAllInvitations, updateInvitationById } from './wedding-crud.js'
 import cors from 'cors';
 import { authenticateToken, createUser, validateLoginCredentials} from './login.js'
 import cookieParser from "cookie-parser";
@@ -87,7 +87,13 @@ app.get('/logout', async (req, res) => {
 })
 
 app.get('/guests', async (req, res) => {
-  const result = await getAllUsers(guestCollection);
+  const result = await getAllInvitations(guestCollection);
+  res.send(result);
+})
+
+app.delete('/delete-invitation/:id', async (req, res) => {
+  const id = req.params.id;
+  const result = await deleteInvitation(guestCollection, id);
   res.send(result);
 })
 

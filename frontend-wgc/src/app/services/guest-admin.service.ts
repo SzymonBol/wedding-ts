@@ -4,11 +4,16 @@ import { Observable } from "rxjs";
 import { Invitation } from "../types/guests-store-data.types";
 
 @Injectable({providedIn: 'root'})
-export class GuestService{
+export class GuestAdminService{
     private http = inject(HttpClient);
 
     public getGuests(): Observable<Invitation[]>{
         const url = '/guests';
         return this.http.get<Invitation[]>(url);
+    }
+
+    public deleteInvitation(id: string){
+        const url = `/delete-invitation/${id}`;
+        return this.http.delete<void>(url);
     }
 }

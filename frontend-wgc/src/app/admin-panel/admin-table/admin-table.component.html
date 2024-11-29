@@ -91,10 +91,10 @@
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element" > 
           <div class="manage-buttons-container">
-            <button mat-icon-button (click)="editInvitation(element.id)" class="manage-button">
+            <button mat-icon-button (click)="editInvitation(element.code)" class="manage-button">
               <mat-icon fontIcon="edit"></mat-icon>
             </button>
-            <button mat-icon-button (click)="editInvitation(element.id)" class="manage-button">
+            <button mat-icon-button (click)="openDeleteDialog(element.code, element.guests)" class="manage-button">
               <mat-icon fontIcon="delete"></mat-icon>
             </button>
           </div>

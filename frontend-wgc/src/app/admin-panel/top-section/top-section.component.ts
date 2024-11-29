@@ -3,8 +3,7 @@ import { MatIcon } from "@angular/material/icon";
 import { Router } from '@angular/router';
 import { ROUTE } from '../../shared/routes.enum';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
-import { LogoutDialogComponent } from '../logout-dialog/logout-dialog.component';
+import { ConfirmationDialogService } from '../confirmation-dialog/service/confirmation-dialog.service';
 
 @Component({
   selector: 'app-top-section',
@@ -15,13 +14,14 @@ import { LogoutDialogComponent } from '../logout-dialog/logout-dialog.component'
 })
 export class TopSectionComponent {
   private router = inject(Router);
-  readonly logoutDialog = inject(MatDialog);
+  readonly confirmationDialogService = inject(ConfirmationDialogService);
 
   backToHome(){
     this.router.navigateByUrl(ROUTE.HOME);
   }
 
   logout(){
-    this.logoutDialog.open(LogoutDialogComponent);
+    this.confirmationDialogService.logout();
   }
+
 }

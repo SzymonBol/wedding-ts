@@ -9,8 +9,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { environment } from '../../environments/environment';
 import { ROUTE } from '../shared/routes.enum';
 import { AuthDataStore } from '../shared/store/auth.store';
-import { MatDialog } from '@angular/material/dialog';
-import { LogoutDialogComponent } from '../admin-panel/logout-dialog/logout-dialog.component';
+import { ConfirmationDialogService } from '../admin-panel/confirmation-dialog/service/confirmation-dialog.service';
 
 
 @Component({
@@ -30,7 +29,7 @@ import { LogoutDialogComponent } from '../admin-panel/logout-dialog/logout-dialo
 export class GuestPanelComponent implements AfterViewInit {
   protected store = inject(GuestDataStore);
   protected user = inject(AuthDataStore).loggedUser;
-  readonly logoutDialog = inject(MatDialog);
+  readonly confirmationDialogService = inject(ConfirmationDialogService);
   protected isLoadingSig = this.store.isLoading;
   private zone =inject(NgZone);
   private router = inject(Router);
@@ -62,6 +61,6 @@ export class GuestPanelComponent implements AfterViewInit {
   }
 
   logout(){
-    this.logoutDialog.open(LogoutDialogComponent);
+    this.confirmationDialogService.logout();
   }
 }

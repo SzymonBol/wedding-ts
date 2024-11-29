@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, untracked, viewChild, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, untracked, viewChild } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { GuestService } from '../../services/guest-admin.service';
-import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
-import { GuestData, Invitation } from '../../types/guests-store-data.types';
+import { GuestData } from '../../types/guests-store-data.types';
 import { ROUTE } from '../../shared/routes.enum';
 import { MatIconModule } from '@angular/material/icon';
 import { QRCodeModule } from 'angularx-qrcode';
@@ -11,8 +9,13 @@ import { GoingGuestsCountComponent } from "../going-guests-count/going-guests-co
 import { VegeMeatCountComponent } from "../vege-meat-count/vege-meat-count.component";
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
-
+import { MatSort, MatSortModule} from '@angular/material/sort';
+import { AdminStore } from '../../shared/store/admin.store';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { GuestAdminService } from '../../services/guest-admin.service';
+import { firstValueFrom } from 'rxjs';
+import { ConfirmationDialogService } from '../confirmation-dialog/service/confirmation-dialog.service';
+import { ConfrimationDialogData } from '../../types/confirmation-dialog-data.types';
 
 @Component({
   selector: 'app-admin-table',
@@ -23,11 +26,9 @@ import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminTableComponent {
-  guestsService = inject(GuestService);
-  guests = signal<Invitation[]>([]);
-  displayedColumns: string[] = ['qrCodeUrl', 'guests', 'goingGuests', 'dietCount', 'accommodation', 'comment', 'confirmed', 'options'];
-  paginator = viewChild(MatPaginator);
-  sort = viewChild(MatSort);
+  guestAdminService = inject(GuestAdminService);
+  adminStore = inject(AdminStore);
+  guests = this.adminStore.entities;
   guestsTableData = computed<GuestsTableData[]>(() => { 
     return this.guests().map(invitation => {
       return {
@@ -43,6 +44,12 @@ export class AdminTableComponent {
     })
   });
 
+  private _snackBar = inject(MatSnackBar);
+  private confirmationDialogService = inject(ConfirmationDialogService);
+
+  displayedColumns: string[] = ['qrCodeUrl', 'guests', 'goingGuests', 'dietCount', 'accommodation', 'comment', 'confirmed', 'options'];
+  paginator = viewChild(MatPaginator);
+  sort = viewChild(MatSort);
   dataSource = new MatTableDataSource<GuestsTableData>([]);
 
   dataSourceEff = effect(() => {
@@ -58,12 +65,35 @@ export class AdminTableComponent {
     });
   })
 
-  async ngOnInit(){
-    this.guests.set(await firstValueFrom(this.guestsService.getGuests()));
+  editInvitation(id: string){
+    console.log(id);
   }
 
-  editInvitation(id: string){
+  openDeleteDialog(id: string, guests: GuestData[]){
+    const guestsNames = this.getGuestsNamesToString(guests);
 
+    const config : ConfrimationDialogData= {
+      header: 'Czy na pewno chcesz usunąć zaproszenie?',
+      text: `Zaproszenie dla ${guestsNames} zostanie usunięte. Tej operacji nie można odwrócić.`,
+      confirmFn: () => this.deleteInvitation(id),
+      rejectFn: () => {}
+    }
+    this.confirmationDialogService.open(config);
+  }
+
+  async deleteInvitation(id: string){
+    try{
+      const result = await firstValueFrom(this.guestAdminService.deleteInvitation(id));
+      this.adminStore.removeInvitation(id);
+      this._snackBar.open('Noi usnięte...', 'OK');
+    } catch(e){
+      this._snackBar.open('Błąd', 'Nie OK');
+      console.error(e);
+    }
+  }
+
+  private getGuestsNamesToString(guests: GuestData[]){
+    return guests.map(g => `${g.name} ${g.surname}`).join(', ');
   }
 
   private buildQrCodeUrl(id: string){

@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>{{data.header}}</h2>
+<mat-dialog-content>
+    <p>{{data.text}}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="rejectClick()">Nie</button>
+    <button mat-flat-button (click)="confirmLogout()">Tak</button>
+</mat-dialog-actions>

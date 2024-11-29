@@ -21,6 +21,10 @@ export async function findInvitationById(collection, id) {
    );
 }
 
-export async function getAllUsers(collection){
+export async function getAllInvitations(collection){
    return collection.find().toArray();
+}
+
+export async function deleteInvitation(collection, id){
+   return collection.deleteOne({id})
 }
