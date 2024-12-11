@@ -20,3 +20,13 @@ export interface GuestsTableData{
     comment: string | null;
     confirmed: boolean;
 }
+
+export interface GuestBasicData{
+    name: string,
+    surname: string
+}
+
+export interface InvitationRequest{
+    guests: GuestBasicData[],
+    additionalPerson: boolean
+}

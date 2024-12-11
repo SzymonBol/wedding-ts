@@ -8,12 +8,13 @@ import { GuestSummaryComponent } from "./guest-summary/guest-summary.component";
 import { firstValueFrom } from 'rxjs';
 import { GuestAdminService } from '../services/guest-admin.service';
 import { AdminStore } from '../shared/store/admin.store';
+import { CreateInvitationComponent } from "./create-invitation/create-invitation.component";
 
 
 @Component({
   selector: 'app-admin-panel',
   standalone: true,
-  imports: [TopSectionComponent, AdminTableComponent, MatTabsModule, DietTableComponent, GoingGuestsTableComponent, GuestSummaryComponent],
+  imports: [TopSectionComponent, AdminTableComponent, MatTabsModule, DietTableComponent, GoingGuestsTableComponent, GuestSummaryComponent, CreateInvitationComponent],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

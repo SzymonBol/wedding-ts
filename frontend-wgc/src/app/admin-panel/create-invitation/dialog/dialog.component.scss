@@ -1,0 +1,12 @@
+.additional-person{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.guest-row{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}

@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Utwórz zaproszenie</h2>
+
+<mat-dialog-content style="overflow-y: hidden;">
+    <p>Dodaj imiona zaproszonych gości, a następnie zatwierdź zaproszenie</p>
+    <form [formGroup]="form">
+        <ng-container formArrayName="guests">
+            @for(guestFrom of guests.controls; track $index){
+
+                <div [formGroupName]="$index" class="guest-row">
+                    <span>
+                        {{$index+1}}.
+                    </span>
+                    <mat-form-field>
+                        <mat-label>Imię</mat-label>
+                        <input matInput formControlName="name">
+                      </mat-form-field>
+
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Nazwisko</mat-label>
+                        <input matInput formControlName="surname">
+                      </mat-form-field>
+
+                      <button mat-icon-button (click)="deleteGuest($index)" type="button">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+
+            }
+        </ng-container>
+        <div class="additional-person">
+            <button mat-icon-button (click)="addGuest()" type="button">
+                <mat-icon>add</mat-icon>
+            </button>
+            @if(guests.controls.length ===1){
+                <mat-slide-toggle formControlName="additionalPerson" color="" labelPosition="before">Osoba towarzysząca</mat-slide-toggle>
+            } 
+        </div>
+
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close type="button">
+        Anuluj
+    </button>
+    <button mat-flat-button (click)="submit()" type="submit">
+        Potwierdź
+    </button>
+</mat-dialog-actions>

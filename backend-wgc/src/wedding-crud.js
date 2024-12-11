@@ -1,9 +1,49 @@
+function makeId(length) {
+   let result = '';
+   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   const charactersLength = characters.length;
+   let counter = 0;
+   while (counter < length) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+     counter += 1;
+   }
+   return result;
+}
+
 export async function findInvitationById(collection, id) {
     return collection.find({ id }).toArray();
  }
 
  export async function createInvitation(collection, invitationObj) {
-    await collection.insertOne(invitationObj);
+   let guestsArray = [];
+
+   for(let guest of invitationObj.guests){
+      guestsArray.push({
+         name: guest.name,
+         surname: guest.surname,
+         isGoing: true,
+         isVege: false
+      })
+   }
+
+   if(invitationObj.additionalPerson && invitationObj.guests.length === 1){
+      guestsArray.push({
+         name: 'Osoba',
+         surname: 'Towarzysząca',
+         isGoing: true,
+         isVege: false
+      })
+   }
+
+   let invitation = {
+      id : makeId(8),
+      guests: guestsArray,
+      needAccommodation: false,
+      comment: '',
+      confirmed: false
+   };
+
+    await collection.insertOne(invitation);
  }
 
  export async function updateIsGoing(collection, idVal, guestName, isGoing) {
