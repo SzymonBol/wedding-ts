@@ -1,1 +1,75 @@
-<p>guest-summary works!</p>
+<h1 class="main-header fancy-font">Podsumowanie</h1>
+<div class="summary-container">
+    <div class="confirm-count main-data">
+        <span>
+            Potwierdzono          
+        </span>
+        <div class="count-number">
+            <span>
+                {{summaryData().goingGuest}}
+            </span>
+            <span class="summary-data-icon going-color">
+                <mat-icon>check</mat-icon>
+            </span>
+        </div>
+    </div>
+    <div class="refuse-count main-data">
+        <span>
+            Odrzucono          
+        </span>
+        <div class="count-number">
+            <span>
+                {{summaryData().refusedGuest}}
+            </span>
+            <span class="summary-data-icon refuse-color">
+                <mat-icon>close</mat-icon>
+            </span>
+        </div>
+    </div>
+    <div class="not-confirmed-count main-data">
+        <span>
+            Oczekujące          
+        </span>
+        <div class="count-number">
+            <span>
+                {{summaryData().notConfirmedGuestsCount}}
+            </span>
+            <span class="summary-data-icon not-confirmed-color">
+                <mat-icon>question_mark</mat-icon>
+            </span>
+        </div>
+     </div>
+    <div class="all-guests-count main-data"> 
+        <span>
+            Wszyscy goście          
+        </span>
+        <span>
+            {{summaryData().allGuestsCount}}
+        </span>
+     </div>
+
+    <div class="meat-count secondary-data"> 
+        <span>
+            {{summaryData().meatCount}}
+        </span>
+        <span class="meat-icon">
+            <mat-icon fontIcon="lunch_dining"/>
+        </span>
+    </div>
+    <div class="vege-count secondary-data"> 
+        <span>
+            {{summaryData().vegeCount}}
+        </span>
+        <span class="vege-icon">
+            <mat-icon fontIcon="eco"/>
+        </span>
+    </div>
+    <div class="accommodation-count secondary-data"> 
+        <span>
+            {{summaryData().needAccommodationCount}}
+        </span>
+        <span class="bed-icon">
+            <mat-icon>hotel</mat-icon> 
+        </span>    
+    </div>
+</div>
