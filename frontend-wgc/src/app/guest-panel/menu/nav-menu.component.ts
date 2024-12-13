@@ -5,6 +5,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { NgClass } from '@angular/common'
 import { toSignal } from '@angular/core/rxjs-interop'
+import { menuItemsData } from './menu-items.const';
 
 @Component({
   selector: 'app-menu',
@@ -18,6 +19,7 @@ export class NavMenuComponent implements AfterViewInit {
   private router = inject(Router);
   routerChange = toSignal(this.router.events);
   protected currentUrl = signal<string>('');
+  
   protected selectedItem = computed(() => {
     const change =this.routerChange();
     if(change instanceof NavigationEnd){
@@ -33,29 +35,7 @@ export class NavMenuComponent implements AfterViewInit {
   })
   itemClicked = output<void>();
 
-  protected menuRoutes = [
-    ROUTE.HOME,
-    ROUTE.ADDITIONAL_INFO,
-    ROUTE.INVITE_CONFIRMATION
-  ]
-
-  menuItems : MenuItem[] = [ 
-    {
-      targetRoute: ROUTE.HOME,
-      label: 'Strona główna',
-      isActive: false,
-    },
-    {
-      targetRoute: ROUTE.ADDITIONAL_INFO,
-      label: 'Informacje',
-      isActive: false,
-    },
-    {
-      targetRoute: ROUTE.INVITE_CONFIRMATION,
-      label: 'Potwierdź zaproszenie',
-      isActive: false,
-    }
-  ];
+  menuItems : MenuItem[] = menuItemsData;
 
   ngAfterViewInit(): void {
     this.currentUrl.set(this.router.url);

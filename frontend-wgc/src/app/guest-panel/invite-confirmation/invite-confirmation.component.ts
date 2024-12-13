@@ -11,6 +11,11 @@ import { firstValueFrom } from 'rxjs';
 import { Invitation } from '../../types/guests-store-data.types';
 import {MatRadioModule} from '@angular/material/radio';
 import { EnterCodeComponent } from "./enter-code/enter-code.component";
+import { environment } from '../../../environments/environment';
+import { AuthDataStore } from '../../shared/store/auth.store';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { ROUTE } from '../../shared/routes.enum';
 
 @Component({
   selector: 'app-invite-confirmation',
@@ -24,9 +29,14 @@ export class InviteConfirmationComponent {
   isConfirmedSig = this.store.confirmed;
   comment = this.store.comment();
   guestsSig = this.store.guestsData!;
+  canEditBasedOnDate = this.getCanEditByDate();
   editModeSig = signal<boolean>(!this.isConfirmedSig());
   InvitationService = inject(InvitationService);
   needAccommodation = this.store.needAccommodation();
+  isUserLoggedIn = inject(AuthDataStore).isUserLoggedIn;
+  enviroment = environment;
+  private _snackBar = inject(MatSnackBar);
+  router = inject(Router);
 
   newDataEffect = effect(() => {
     if(this.guestsSig()){
@@ -41,19 +51,35 @@ export class InviteConfirmationComponent {
   }
 
   async updateData() {
-    this.editModeSig.set(false);
-    const invitationId = this.store.invitationId ? this.store.invitationId() : null;
-    if(invitationId){
-      const invitation : Invitation = {
-        id: invitationId,
-        guests: this.guestsSig()!,
-        comment: this.comment,
-        confirmed: true,
-        needAccommodation: this.needAccommodation
+    try{
+      this.store.loadingData();
+      this.editModeSig.set(false);
+      const invitationId = this.store.invitationId ? this.store.invitationId() : null;
+      if(invitationId){
+        const invitation : Invitation = {
+          id: invitationId,
+          guests: this.guestsSig()!,
+          comment: this.comment,
+          confirmed: true,
+          needAccommodation: this.needAccommodation
+        }
+        
+        await firstValueFrom(this.InvitationService.updateInvitationData(invitation));
+        this.store.updateConfirmation(true);
+        this.store.finishLoading();
       }
-
-      await firstValueFrom(this.InvitationService.updateInvitationData(invitation));
-      this.store.updateConfirmation(true);
     }
+    catch (e){
+      this.store.finishLoading();
+      this._snackBar.open('Bład zapisu', 'OK');
+      this.editModeSig.set(true);
+    }
+  }
+
+  getCanEditByDate(): boolean{
+    const confirmationDate = new Date(environment.lastConfirmationDate);
+    const currentDate = new Date();
+
+    return confirmationDate.getTime() - currentDate.getTime()> 0;
   }
 }

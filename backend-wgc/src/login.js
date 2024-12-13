@@ -12,7 +12,10 @@ export function generateAccessToken(username) {
   }
 
 export function authenticateToken(req, res, next) {
-    if(whiteList.some(val => req.path.includes(val))){
+    const confirmationDate = new Date(process.env.CONFIRATION_DATE).getTime();
+    const currentDate = new Date().getTime();
+
+    if(whiteList.some(val => req.path.includes(val)) && !(req.path.includes('/update-invitation') && confirmationDate - currentDate < 0)){
       next();
       return;
     }

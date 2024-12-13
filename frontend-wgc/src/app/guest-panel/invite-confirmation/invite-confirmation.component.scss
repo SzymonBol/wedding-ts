@@ -97,6 +97,32 @@
     }
 }
 
+.invitation-expired{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include colors.container-shadow;
+    padding: 24px;
+
+    .warning-icon{
+        color: colors.$warningOrange;
+        font-size: 50px;
+    }
+}
+
+.contacts{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .contact{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+}
+
+
 @include  breakpoints.bigger-than-mobile{
     .guest-row{
         padding: 8px 32px;
@@ -107,6 +133,13 @@
 
     .guest-options{
         width: 60%;
+    }
+
+    .invitation-expired{
+        flex-direction: row;
+        padding: 24px 25vw;
+        gap: 16px;
+        align-items: flex-start;
     }
 }
 

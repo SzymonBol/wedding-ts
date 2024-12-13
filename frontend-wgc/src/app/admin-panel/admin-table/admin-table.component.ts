@@ -16,6 +16,7 @@ import { GuestAdminService } from '../../services/guest-admin.service';
 import { firstValueFrom } from 'rxjs';
 import { ConfirmationDialogService } from '../confirmation-dialog/service/confirmation-dialog.service';
 import { ConfrimationDialogData } from '../../types/confirmation-dialog-data.types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-table',
@@ -26,6 +27,7 @@ import { ConfrimationDialogData } from '../../types/confirmation-dialog-data.typ
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminTableComponent {
+  router = inject(Router);
   guestAdminService = inject(GuestAdminService);
   adminStore = inject(AdminStore);
   guests = this.adminStore.entities;
@@ -66,7 +68,7 @@ export class AdminTableComponent {
   })
 
   editInvitation(id: string){
-    console.log(id);
+    this.router.navigate([ROUTE.INVITE_CONFIRMATION], {queryParams : {id}});
   }
 
   openDeleteDialog(id: string, guests: GuestData[]){

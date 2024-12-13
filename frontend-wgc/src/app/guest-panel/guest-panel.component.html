@@ -28,9 +28,12 @@
                 <img src="ts_wedding_logo.png"  class="header-logo-img">
                 <span class="header-text fancy-font">Wesele Tereski i Szymona</span> 
             </span>
-            <button mat-mini-fab (click)="toggleDrawer(drawer)" color="">
+            <button mat-icon-button (click)="toggleDrawer(drawer)" class="mobile-view">
                 <mat-icon>menu</mat-icon>
             </button>
+            <div class="desktop-view">
+                <app-desktop-menu></app-desktop-menu>
+            </div>
         </div>
         <div class="content" id="application-content">
             <router-outlet />
@@ -46,7 +49,7 @@
                     </div>
                     <div class="contact-footer">
                         <mat-icon class="contact-icon">email</mat-icon>
-                        <a class="footer-email" [href]="envitoment.mrEmail">{{envitoment.mrEmail}}</a>
+                        <a class="footer-email" [href]="'mailto:'+envitoment.mrEmail">{{envitoment.mrEmail}}</a>
                     </div>
                 </div>
                 <div class="grid-item">
@@ -57,7 +60,7 @@
                     </div>
                     <div class="contact-footer">
                         <mat-icon class="contact-icon">email</mat-icon>
-                        <a class="footer-email" [href]="envitoment.missEmail">{{envitoment.missEmail}}</a>
+                        <a class="footer-email" [href]="'mailto:'+envitoment.missEmail">{{envitoment.missEmail}}</a>
                     </div>
                 </div>
             </div>

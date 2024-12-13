@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 import { ROUTE } from '../shared/routes.enum';
 import { AuthDataStore } from '../shared/store/auth.store';
 import { ConfirmationDialogService } from '../admin-panel/confirmation-dialog/service/confirmation-dialog.service';
+import { DesktopMenuComponent } from "./menu/desktop-menu/desktop-menu.component";
 
 
 @Component({
@@ -21,7 +22,8 @@ import { ConfirmationDialogService } from '../admin-panel/confirmation-dialog/se
     MatButtonModule,
     MatIconModule,
     NavMenuComponent,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    DesktopMenuComponent
 ],
   templateUrl: './guest-panel.component.html',
   styleUrl: './guest-panel.component.scss'
@@ -34,6 +36,7 @@ export class GuestPanelComponent implements AfterViewInit {
   private zone =inject(NgZone);
   private router = inject(Router);
   protected envitoment = environment;
+  
 
   ngAfterViewInit(): void {
     const appContentRef = document.getElementById('application-content');

@@ -126,6 +126,14 @@ mat-drawer-content {
     }
 }
 
+.mobile-view{
+    display: block;
+}
+
+.desktop-view{
+    display: none;
+}
+
 .spinner{
     display: flex;
     align-items: center;
@@ -150,6 +158,14 @@ mat-drawer-content {
                 }
             }
         }
+    }
+
+    .mobile-view{
+        display: none;
+    }
+    
+    .desktop-view{
+        display: block;
     }
 
 

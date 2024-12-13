@@ -5,12 +5,12 @@
 
 @if(guestsSig()){
 
-
         <span class="welcome-text">
             Z radaością chcielibyśmy Was zaprosić na nasze wesele! 
             Poniżej znajdziecie panel w którym macie możliwość potwierdzić swoje przybycie.
             Bardzo prosimy o zaznaczenie diety oraz informacje czy potrzebujecie noclegu. 
         </span>
+        @if(canEditBasedOnDate || isConfirmedSig() || isUserLoggedIn()){
         <div class="form-container">
           @for(guest of guestsSig(); track $index){
             <div class="guest-row">
@@ -45,16 +45,46 @@
           </div>
         </div>
         <div class="end-info">
-          @if(editModeSig()){
+          @if(editModeSig() && (canEditBasedOnDate || isUserLoggedIn())){
             <button mat-flat-button (click)="updateData()"> Potwierdź odpowiedź </button>
           } @else {
             <h4>Twoja odpowiedź została zapisana! <br/> Dziękujemy! ❤️</h4>
 
-            <span>
-              Jakaś pomyłka? Nic nie szkodzi! Kliknij w <a href="" (click)="activeEditMode($event)"> tutaj </a> aby wprowadzić zmiany!
-            </span>
+            @if((canEditBasedOnDate || isUserLoggedIn())){
+              <span>
+                Jakaś pomyłka? Nic nie szkodzi! Kliknij w <a href="" (click)="activeEditMode($event)"> tutaj </a> aby wprowadzić zmiany!
+              </span>
+            }
           }
         </div>
+      } @else {
+        <div class="invitation-expired">
+          <div>
+            <mat-icon class="warning-icon" [inline]="true">warning</mat-icon>
+          </div>
+         
+          <div>
+            <p style="font-weight: 600;"> Potwierdzanie zaproszeń zostało zakończone!</p>
+            <p>Nie otrzymaliśmy od Was odpowiedzi.</p>
+            <p>Jeśli coś poszło nie tak, zaproszenie zostało już potwierdzone lub chcesz je teraz potwierdzić, 
+              prosimy o kontakt telefoniczny, abyśmy mogli wprowadzić odpowiednie zmiany 😊.</p>
+              <div class="contacts">
+                <p class="contact">
+                  <mat-icon>phone</mat-icon>
+                  {{enviroment.miss}}:
+                  <a [href]="'tel:'+enviroment.missPhone">{{enviroment.missPhone}}</a>
+                </p>
+              <p class="contact">
+                <mat-icon>phone</mat-icon>
+                {{enviroment.mr}}:
+                <a [href]="'tel:'+enviroment.mrPhone">{{enviroment.mrPhone}}</a>
+              </p>
+              </div>
+
+          </div>
+ </div>
+
+      }
           
 
 } @else {

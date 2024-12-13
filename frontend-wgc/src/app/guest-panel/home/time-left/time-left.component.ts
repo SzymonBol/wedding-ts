@@ -1,5 +1,7 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TimerDate } from './types/timer-date.type';
+import { environment } from '../../../../environments/environment';
+import { GuestDataStore } from '../../../shared/store/guest-panel.store';
 
 @Component({
   selector: 'app-time-left',
@@ -9,13 +11,10 @@ import { TimerDate } from './types/timer-date.type';
   styleUrl: './time-left.component.scss'
 })
 export class TimeLeftComponent implements OnInit{
-    weddingDate = new Date('2025-07-26T15:00:00+0200').getTime();
-    timeLeft = signal<TimerDate>({
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    })
+    weddingDate = new Date(environment.weddingDate).getTime();
+    store = inject(GuestDataStore);
+
+    timeLeft = signal<TimerDate>(this.seperateIntoSections(this.weddingDate - new Date().getTime()))
 
 
     ngOnInit(): void {
