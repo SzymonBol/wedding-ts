@@ -1,111 +1,136 @@
-<table mat-table [dataSource]="dataSource" matSort matSortActive="confirmed" matSortDirection="desc">
+<table
+  mat-table
+  [dataSource]="dataSource"
+  matSort
+  matSortActive="confirmed"
+  matSortDirection="desc"
+>
+  <!-- QR -->
+  <ng-container matColumnDef="qrCodeUrl">
+    <th mat-header-cell *matHeaderCellDef>Kod QR</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="qr-code">
+        <qrcode
+          [qrdata]="element.qrCodeUrl"
+          [width]="128"
+          [errorCorrectionLevel]="'M'"
+          [colorLight]="'#ffffff00'"
+        ></qrcode>
+        <span class="text-code">{{ element.code }}</span>
+      </div>
+    </td>
+  </ng-container>
 
-    <!-- QR -->
-    <ng-container matColumnDef="qrCodeUrl">
-      <th mat-header-cell *matHeaderCellDef> Kod QR </th>
-      <td mat-cell *matCellDef="let element"> 
-        <div class="qr-code">
-          <qrcode [qrdata]="element.qrCodeUrl" [width]="128" [errorCorrectionLevel]="'M'"></qrcode>
-          <span class="text-code">{{element.code}}</span>
-        </div>
-      </td>
-    </ng-container>
-
-    <!-- GUESTS -->
-    <ng-container matColumnDef="guests">
-        <th mat-header-cell *matHeaderCellDef> Zaproszeni </th>
-        <td mat-cell *matCellDef="let element"> 
-            <div class="invieted-guests">
-                @for(guest of element.guests; track $index){
-                    <span>{{guest.name}} {{guest.surname}}</span>    
-                }
-            </div>
-
-        </td>
-      </ng-container>
-
-    <!-- GOING GUESTS COUNT -->
-    <ng-container matColumnDef="goingGuests">
-        <th mat-header-cell *matHeaderCellDef> Ilość osób </th>
-        <td mat-cell *matCellDef="let element"> 
-          @if(!element.confirmed){
-            <span> - </span>
-          }@else{
-            <app-going-guests-count [allGuestsCount]="element.goingGuests.allGuests" [goingGuestsCount]="element.goingGuests.goingGuests" />
-          }
-        </td>
-      </ng-container>
-
-    <!-- VEGE GUESTS COUNT -->
-    <ng-container matColumnDef="dietCount">
-        <th mat-header-cell *matHeaderCellDef> Opcje żywieniowe </th>
-        <td mat-cell *matCellDef="let element">
-          @if(!element.confirmed || element.goingGuests.goingGuests === 0){
-            <span> - </span>
-          }@else{ 
-            <app-vege-meat-count [meatCount]="element.dietCount.meatGuests" [vegeCount]="element.dietCount.vegeGuests"/>
-          }    
-        </td>
-      </ng-container>
-
-    <!-- ACCOMMODATION -->
-    <ng-container matColumnDef="accommodation">
-        <th mat-header-cell *matHeaderCellDef> Nocleg </th>
-        <td mat-cell *matCellDef="let element"> 
-          @if(!element.confirmed || element.goingGuests.goingGuests === 0){
-            <span> - </span>
-          }@else{ 
-            <span>{{element.accommodation}}</span>
-          }
-        </td>
-      </ng-container>
-
-    <!-- COMMENT -->
-    <ng-container matColumnDef="comment">
-      <th mat-header-cell *matHeaderCellDef> Komentarze </th>
-      <td mat-cell *matCellDef="let element"> 
-        @if(!element.confirmed || element.goingGuests.goingGuests === 0){
-          <span> - </span>
-        }@else{ 
-          <span>{{element.comment}}</span>
+  <!-- GUESTS -->
+  <ng-container matColumnDef="guests">
+    <th mat-header-cell *matHeaderCellDef>Zaproszeni</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="invieted-guests">
+        @for(guest of element.guests; track $index){
+        <span>{{ guest.name }} {{ guest.surname }}</span>
         }
-      </td>
-    </ng-container>
+      </div>
+    </td>
+  </ng-container>
 
-      <!-- CONFIRMED -->
-      <ng-container matColumnDef="confirmed">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Potwierdzenie </th>
-        <td mat-cell *matCellDef="let element" > 
-            <div class="invitation-confirmed-icon">
-                @if(element.confirmed){
-                    <mat-icon fontIcon="check" class="yes"></mat-icon>
-                } @else {
-                    <mat-icon fontIcon="question_mark" class="no"></mat-icon>
-                }
-            </div>
-        </td>
-      </ng-container>
+  <!-- GOING GUESTS COUNT -->
+  <ng-container matColumnDef="goingGuests">
+    <th mat-header-cell *matHeaderCellDef>Ilość osób</th>
+    <td mat-cell *matCellDef="let element">
+      @if(!element.confirmed){
+      <span> - </span>
+      }@else{
+      <app-going-guests-count
+        [allGuestsCount]="element.goingGuests.allGuests"
+        [goingGuestsCount]="element.goingGuests.goingGuests"
+      />
+      }
+    </td>
+  </ng-container>
 
-      <!-- OPTIONS -->
-      <ng-container matColumnDef="options">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" > 
-          <div class="manage-buttons-container">
-            <button mat-icon-button (click)="editInvitation(element.code)" class="manage-button">
-              <mat-icon fontIcon="edit"></mat-icon>
-            </button>
-            <button mat-icon-button (click)="openDeleteDialog(element.code, element.guests)" class="manage-button">
-              <mat-icon fontIcon="delete"></mat-icon>
-            </button>
-          </div>
-        </td>
-      </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  <!-- VEGE GUESTS COUNT -->
+  <ng-container matColumnDef="dietCount">
+    <th mat-header-cell *matHeaderCellDef>Opcje żywieniowe</th>
+    <td mat-cell *matCellDef="let element">
+      @if(!element.confirmed || element.goingGuests.goingGuests === 0){
+      <span> - </span>
+      }@else{
+      <app-vege-meat-count
+        [meatCount]="element.dietCount.meatGuests"
+        [vegeCount]="element.dietCount.vegeGuests"
+      />
+      }
+    </td>
+  </ng-container>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-    aria-label="Select page of periodic elements">
- </mat-paginator>
+  <!-- ACCOMMODATION -->
+  <ng-container matColumnDef="accommodation">
+    <th mat-header-cell *matHeaderCellDef>Nocleg</th>
+    <td mat-cell *matCellDef="let element">
+      @if(!element.confirmed || element.goingGuests.goingGuests === 0){
+      <span> - </span>
+      }@else{
+      <span>{{ element.accommodation }}</span>
+      }
+    </td>
+  </ng-container>
+
+  <!-- COMMENT -->
+  <ng-container matColumnDef="comment">
+    <th mat-header-cell *matHeaderCellDef>Komentarze</th>
+    <td mat-cell *matCellDef="let element">
+      @if(!element.confirmed || element.goingGuests.goingGuests === 0){
+      <span> - </span>
+      }@else{
+      <span>{{ element.comment }}</span>
+      }
+    </td>
+  </ng-container>
+
+  <!-- CONFIRMED -->
+  <ng-container matColumnDef="confirmed">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Potwierdzenie</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="invitation-confirmed-icon">
+        @if(element.confirmed){
+        <mat-icon fontIcon="check" class="yes"></mat-icon>
+        } @else {
+        <mat-icon fontIcon="question_mark" class="no"></mat-icon>
+        }
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- OPTIONS -->
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <div class="manage-buttons-container">
+        <button
+          mat-icon-button
+          (click)="editInvitation(element.code)"
+          class="manage-button"
+        >
+          <mat-icon fontIcon="edit"></mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="openDeleteDialog(element.code, element.guests)"
+          class="manage-button"
+        >
+          <mat-icon fontIcon="delete"></mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements"
+>
+</mat-paginator>
