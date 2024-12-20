@@ -8,11 +8,10 @@ import { toSignal } from '@angular/core/rxjs-interop'
 import { menuItemsData } from './menu-items.const';
 
 @Component({
-  selector: 'app-menu',
-  standalone: true,
-  imports: [MatButtonModule, NgClass],
-  templateUrl: './nav-menu.component.html',
-  styleUrl: './nav-menu.component.scss'
+    selector: 'app-menu',
+    imports: [MatButtonModule, NgClass],
+    templateUrl: './nav-menu.component.html',
+    styleUrl: './nav-menu.component.scss'
 })
 export class NavMenuComponent implements AfterViewInit {
 

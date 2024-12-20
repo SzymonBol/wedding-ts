@@ -19,12 +19,11 @@ import { ConfrimationDialogData } from '../../types/confirmation-dialog-data.typ
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-table',
-  standalone: true,
-  imports: [MatTableModule, MatIconModule, QRCodeModule, GoingGuestsCountComponent, VegeMeatCountComponent, MatButtonModule, MatPaginatorModule, MatSortModule],
-  templateUrl: './admin-table.component.html',
-  styleUrl: './admin-table.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-admin-table',
+    imports: [MatTableModule, MatIconModule, QRCodeModule, GoingGuestsCountComponent, VegeMeatCountComponent, MatButtonModule, MatPaginatorModule, MatSortModule],
+    templateUrl: './admin-table.component.html',
+    styleUrl: './admin-table.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminTableComponent {
   router = inject(Router);

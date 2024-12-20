@@ -11,12 +11,11 @@ const NG_DIET_COMPONENT_VALUE_ACCESSOR = {
 } 
 
 @Component({
-  selector: 'app-diet-switch',
-  standalone: true,
-  imports: [MatSlideToggleModule, MatIconModule, NgClass],
-  templateUrl: './diet-switch.component.html',
-  styleUrl: './diet-switch.component.scss',
-  providers : [NG_DIET_COMPONENT_VALUE_ACCESSOR]
+    selector: 'app-diet-switch',
+    imports: [MatSlideToggleModule, MatIconModule, NgClass],
+    templateUrl: './diet-switch.component.html',
+    styleUrl: './diet-switch.component.scss',
+    providers: [NG_DIET_COMPONENT_VALUE_ACCESSOR]
 })
 export class DietSwitchComponent implements ControlValueAccessor{
   isVege = signal<boolean>(false);

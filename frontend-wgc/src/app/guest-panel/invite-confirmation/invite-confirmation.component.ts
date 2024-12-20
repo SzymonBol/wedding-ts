@@ -18,11 +18,10 @@ import { Router } from '@angular/router';
 import { ROUTE } from '../../shared/routes.enum';
 
 @Component({
-  selector: 'app-invite-confirmation',
-  standalone: true,
-  imports: [MatIconModule, DietSwitchComponent, MatButtonModule, ReactiveFormsModule, FormsModule, MatTableModule, GuestConfirmationStatusComponent, MatRadioModule, EnterCodeComponent],
-  templateUrl: './invite-confirmation.component.html',
-  styleUrl: './invite-confirmation.component.scss'
+    selector: 'app-invite-confirmation',
+    imports: [MatIconModule, DietSwitchComponent, MatButtonModule, ReactiveFormsModule, FormsModule, MatTableModule, GuestConfirmationStatusComponent, MatRadioModule, EnterCodeComponent],
+    templateUrl: './invite-confirmation.component.html',
+    styleUrl: './invite-confirmation.component.scss'
 })
 export class InviteConfirmationComponent {
   store = inject(GuestDataStore);

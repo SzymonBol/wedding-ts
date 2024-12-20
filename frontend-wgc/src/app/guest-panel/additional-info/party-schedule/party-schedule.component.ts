@@ -36,14 +36,13 @@ const MOCK_SCHEDULE: PartyScheduleItem[] = [
 ]
 
 @Component({
-  selector: 'app-party-schedule',
-  standalone: true,
-  imports: [
-    MatIcon,
-    NgClass
-  ],
-  templateUrl: './party-schedule.component.html',
-  styleUrl: './party-schedule.component.scss'
+    selector: 'app-party-schedule',
+    imports: [
+        MatIcon,
+        NgClass
+    ],
+    templateUrl: './party-schedule.component.html',
+    styleUrl: './party-schedule.component.scss'
 })
 export class PartyScheduleComponent implements OnInit{
   private _schedule = signal<PartyScheduleItem[]>([]);

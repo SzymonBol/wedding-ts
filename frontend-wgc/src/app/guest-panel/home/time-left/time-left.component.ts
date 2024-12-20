@@ -4,11 +4,10 @@ import { environment } from '../../../../environments/environment';
 import { GuestDataStore } from '../../../shared/store/guest-panel.store';
 
 @Component({
-  selector: 'app-time-left',
-  standalone: true,
-  imports: [],
-  templateUrl: './time-left.component.html',
-  styleUrl: './time-left.component.scss'
+    selector: 'app-time-left',
+    imports: [],
+    templateUrl: './time-left.component.html',
+    styleUrl: './time-left.component.scss'
 })
 export class TimeLeftComponent implements OnInit{
     weddingDate = new Date(environment.weddingDate).getTime();

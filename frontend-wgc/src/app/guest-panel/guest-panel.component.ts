@@ -14,19 +14,18 @@ import { DesktopMenuComponent } from "./menu/desktop-menu/desktop-menu.component
 
 
 @Component({
-  selector: 'app-guest-panel',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    MatSidenavModule,
-    MatButtonModule,
-    MatIconModule,
-    NavMenuComponent,
-    MatProgressSpinnerModule,
-    DesktopMenuComponent
-],
-  templateUrl: './guest-panel.component.html',
-  styleUrl: './guest-panel.component.scss'
+    selector: 'app-guest-panel',
+    imports: [
+        RouterOutlet,
+        MatSidenavModule,
+        MatButtonModule,
+        MatIconModule,
+        NavMenuComponent,
+        MatProgressSpinnerModule,
+        DesktopMenuComponent
+    ],
+    templateUrl: './guest-panel.component.html',
+    styleUrl: './guest-panel.component.scss'
 })
 export class GuestPanelComponent implements AfterViewInit {
   protected store = inject(GuestDataStore);

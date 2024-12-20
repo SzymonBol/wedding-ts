@@ -3,11 +3,10 @@ import { AdminStore } from '../../shared/store/admin.store';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-guest-summary',
-  standalone: true,
-  imports: [MatIcon],
-  templateUrl: './guest-summary.component.html',
-  styleUrl: './guest-summary.component.scss'
+    selector: 'app-guest-summary',
+    imports: [MatIcon],
+    templateUrl: './guest-summary.component.html',
+    styleUrl: './guest-summary.component.scss'
 })
 export class GuestSummaryComponent {
   private invitations = inject(AdminStore).entities;

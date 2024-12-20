@@ -13,21 +13,20 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminStore } from '../../../shared/store/admin.store';
 
 @Component({
-  selector: 'app-create-invitation-dialog',
-  standalone: true,
-  imports: [MatIconModule, MatButtonModule,    
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-    MatDialogClose,
-    ReactiveFormsModule,
-    FormsModule, 
-    MatFormFieldModule, 
-    MatInputModule,
-    MatSlideToggleModule
-  ],
-  templateUrl: './dialog.component.html',
-  styleUrl: './dialog.component.scss'
+    selector: 'app-create-invitation-dialog',
+    imports: [MatIconModule, MatButtonModule,
+        MatDialogTitle,
+        MatDialogContent,
+        MatDialogActions,
+        MatDialogClose,
+        ReactiveFormsModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSlideToggleModule
+    ],
+    templateUrl: './dialog.component.html',
+    styleUrl: './dialog.component.scss'
 })
 export class CreateInvitationDialogComponent implements AfterViewInit{
   readonly dialogRef = inject(MatDialogRef<CreateInvitationDialogComponent>);
