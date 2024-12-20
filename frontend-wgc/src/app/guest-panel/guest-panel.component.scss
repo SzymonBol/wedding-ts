@@ -159,7 +159,9 @@ mat-drawer-content {
             }
         }
     }
+}
 
+@include breakpoints.bigger-than-tablet{
     .mobile-view{
         display: none;
     }
@@ -167,6 +169,4 @@ mat-drawer-content {
     .desktop-view{
         display: block;
     }
-
-
 }
