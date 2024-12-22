@@ -1,0 +1,8 @@
+@use 'colors';
+
+.invitation-text{
+    @include colors.container-shadow;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
