@@ -8,5 +8,5 @@ export const environment = {
     mr: 'Szymon Ból',
     miss: 'Teresa Jawor',
     lastConfirmationDate: '2025-06-26T00:00:00+0200',
-    weddingDate: '2025-07-26T15:00:00+0200'
+    weddingDate: '2025-07-26T14:00:00+0200'
   };

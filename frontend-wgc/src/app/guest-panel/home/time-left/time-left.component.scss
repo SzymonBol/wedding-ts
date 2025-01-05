@@ -9,7 +9,7 @@
 
 .time-left-container{
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto;
     width: 100%;
     max-width: breakpoints.$tablet;
 }
@@ -22,4 +22,11 @@
     align-items: center;
     font-size: 32px;
     padding: 16px 0;
+    font-weight: 600;
+}
+
+@include breakpoints.bigger-than-mobile{
+    .time-left-container{
+        grid-template-columns: auto auto auto auto;
+    }
 }

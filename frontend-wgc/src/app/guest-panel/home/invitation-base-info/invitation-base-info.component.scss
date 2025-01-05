@@ -1,8 +1,66 @@
 @use 'colors';
+@use 'breakpoints';
+
+:host{
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+    align-items: center
+}
 
 .invitation-text{
-    @include colors.container-shadow;
     padding: 16px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    max-width: 700px;
+    box-shadow: 0 0 14px -3px #835720;
+    border-radius: 5px;
+    
+    > *{
+        text-align: center;
+    }
+}
+
+.bold{
+    font-weight: 500;
+}
+
+.be-with-us{
+    margin:12px;
+    font-size: 40px;
+}
+
+.invitation-info{
+    font-weight: 600;
+    margin: 3px 0;
+
+    span{
+        font-weight: 300;
+    }
+}
+
+.confirmation{
+    margin-bottom: 0;
+}
+
+.sign{
+    font-size: 24px;
+    margin-top: 12px;
+}
+
+.img-decoration{
+    display: none;
+}
+
+@include breakpoints.bigger-than-tablet{
+    .img-decoration{
+        display: block;
+        aspect-ratio: 9 / 16;
+        height: 700px;
+        min-width: 455px;
+        box-shadow: 0 0 14px -3px black;
+        border-radius: 5px;
+    }
+    
 }

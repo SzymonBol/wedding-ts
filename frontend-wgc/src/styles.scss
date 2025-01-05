@@ -11,8 +11,18 @@ html {
 }
 
 html, body { height: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Inter Tight", sans-serif; letter-spacing: .1rem;}
 
 .fancy-font{
-  font-family: "Great Vibes";
+  font-family: "Poiret One";
+}
+
+.alice-font{
+  font-family: "Alice";
+}
+
+.mdc-button__label{
+  font-family: "Poiret One";
+  font-weight: 900;
+  font-size: 1.1em;
 }

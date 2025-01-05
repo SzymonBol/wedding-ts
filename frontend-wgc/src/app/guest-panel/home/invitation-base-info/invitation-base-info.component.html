@@ -1,9 +1,36 @@
 <div class="invitation-text">
-    <p> Tutaj wstawimy dokładny tekst z zaposzenia </p>
+    <img src="ts_wedding_logo.png" height="200" width="100">
+    <p class="be-with-us fancy-font"> Bądźcie z nami!</p>
     <p> 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id nulla nec orci varius scelerisque. Suspendisse convallis dolor a scelerisque finibus. Nam vehicula sagittis metus, nec porta dui egestas convallis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed eu ultricies justo. Fusce eget blandit nibh. Integer ullamcorper, erat id tincidunt porttitor, lectus justo tempor justo, a tempus dolor erat eget diam. Praesent faucibus hendrerit felis, condimentum convallis odio aliquet eget. Vestibulum vel dignissim nulla. Suspendisse finibus vel arcu quis fringilla. Donec vel diam id erat malesuada ullamcorper. 
+        Z radością zapraszamy na naszą uroczystość!
     </p>
-    <p>Tereska & Szymon</p>
-</div>
+    <span class="invitation-info">
+        Data: <span>{{envitoment.weddingDate | date:'dd.MM.yyyy'}}</span> 
+    </span>
 
-<button mat-button> Odpowiedz na zaproszenie </button>
+    <span class="invitation-info">
+        Godzina: <span>{{envitoment.weddingDate | date:'HH:mm'}}</span> 
+    </span>
+
+    <span class="invitation-info">
+        Miejsce: <span>Kościół Przemienienia Pańskiego</span> 
+    </span>
+    
+    <p>
+        Będziemy wdzięczni za włączenie się do wspólnej modlitwy i przyjęcie Komunii Świętej w intencji naszego małżeństwa
+    </p>
+    <span>
+        Prosimy o potwierdzenie przybycia do <span class="bold">{{envitoment.lastConfirmationDate | date:'dd.MM.yyyy' }}</span>.
+    </span>
+    <span>
+        Z góry dziękujemy i z niecierpliwością czekamy na wspólne świętowanie!
+    </span>
+
+    <p class="confirmation">
+        Możesz potwierdzić swoją obecność na tej stronie internetowej wprowadzając kod z zaproszenia oraz uzupełniając formularz.
+    </p>
+    <button mat-button> Odpowiedz na zaproszenie </button>
+
+    <p class="alice-font sign">Tereska & Szymon</p>
+</div>
+<img src="invitation.jpg" class="img-decoration" >
