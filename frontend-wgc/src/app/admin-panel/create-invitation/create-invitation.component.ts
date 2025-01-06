@@ -6,10 +6,11 @@ import { CreateInvitationDialogComponent } from './dialog/dialog.component';
 
 
 @Component({
-    selector: 'app-create-invitation',
-    imports: [MatIconModule, MatButtonModule],
-    templateUrl: './create-invitation.component.html',
-    styleUrl: './create-invitation.component.scss'
+  selector: 'app-create-invitation',
+  standalone: true,
+  imports: [MatIconModule, MatButtonModule ],
+  templateUrl: './create-invitation.component.html',
+  styleUrl: './create-invitation.component.scss'
 })
 export class CreateInvitationComponent {
   readonly dialogServ = inject(MatDialog);

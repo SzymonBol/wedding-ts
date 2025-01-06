@@ -6,10 +6,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { ConfirmationDialogService } from '../confirmation-dialog/service/confirmation-dialog.service';
 
 @Component({
-    selector: 'app-top-section',
-    imports: [MatIcon, MatButtonModule],
-    templateUrl: './top-section.component.html',
-    styleUrl: './top-section.component.scss'
+  selector: 'app-top-section',
+  standalone: true,
+  imports: [MatIcon, MatButtonModule],
+  templateUrl: './top-section.component.html',
+  styleUrl: './top-section.component.scss'
 })
 export class TopSectionComponent {
   private router = inject(Router);

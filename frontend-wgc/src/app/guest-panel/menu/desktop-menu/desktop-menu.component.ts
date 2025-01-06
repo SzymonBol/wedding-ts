@@ -10,10 +10,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'app-desktop-menu',
-    imports: [MatIcon, MatButtonModule, NgClass],
-    templateUrl: './desktop-menu.component.html',
-    styleUrl: './desktop-menu.component.scss'
+  selector: 'app-desktop-menu',
+  standalone: true,
+  imports: [MatIcon, MatButtonModule, NgClass],
+  templateUrl: './desktop-menu.component.html',
+  styleUrl: './desktop-menu.component.scss'
 })
 export class DesktopMenuComponent {
   menuItems : MenuItem[] = menuItemsData;

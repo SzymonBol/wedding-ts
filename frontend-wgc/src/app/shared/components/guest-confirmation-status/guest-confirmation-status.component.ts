@@ -10,11 +10,12 @@ const NG_GUEST_GOING_STATUS_VALUE_ACCESSOR = {
 } 
 
 @Component({
-    selector: 'app-guest-confirmation-status',
-    imports: [MatIconModule, MatButtonToggleModule, FormsModule],
-    templateUrl: './guest-confirmation-status.component.html',
-    styleUrl: './guest-confirmation-status.component.scss',
-    providers: [NG_GUEST_GOING_STATUS_VALUE_ACCESSOR]
+  selector: 'app-guest-confirmation-status',
+  standalone: true,
+  imports: [MatIconModule, MatButtonToggleModule, FormsModule],
+  templateUrl: './guest-confirmation-status.component.html',
+  styleUrl: './guest-confirmation-status.component.scss',
+  providers : [NG_GUEST_GOING_STATUS_VALUE_ACCESSOR]
 })
 export class GuestConfirmationStatusComponent implements ControlValueAccessor{
   editMode = input<boolean>(true);

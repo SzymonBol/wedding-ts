@@ -11,10 +11,11 @@ import { firstValueFrom, tap } from 'rxjs';
 import { AuthDataStore } from '../shared/store/auth.store';
 
 @Component({
-    selector: 'app-login',
-    imports: [MatInputModule, ReactiveFormsModule, MatFormFieldModule, MatButtonModule],
-    templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+  selector: 'app-login',
+  standalone: true,
+  imports: [MatInputModule, ReactiveFormsModule, MatFormFieldModule, MatButtonModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   loginForm = new FormGroup({

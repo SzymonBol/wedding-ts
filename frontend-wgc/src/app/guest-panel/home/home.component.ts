@@ -6,6 +6,7 @@ import { PartyScheduleComponent } from "../../shared/components/party-schedule/p
 
 @Component({
     selector: 'app-home',
+    standalone: true,
     imports: [TimeLeftComponent, InvitationBaseInfoComponent, PlacesComponent, PartyScheduleComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'

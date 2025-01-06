@@ -12,11 +12,12 @@ import { CreateInvitationComponent } from "./create-invitation/create-invitation
 
 
 @Component({
-    selector: 'app-admin-panel',
-    imports: [TopSectionComponent, AdminTableComponent, MatTabsModule, DietTableComponent, GoingGuestsTableComponent, GuestSummaryComponent, CreateInvitationComponent],
-    templateUrl: './admin-panel.component.html',
-    styleUrl: './admin-panel.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-admin-panel',
+  standalone: true,
+  imports: [TopSectionComponent, AdminTableComponent, MatTabsModule, DietTableComponent, GoingGuestsTableComponent, GuestSummaryComponent, CreateInvitationComponent],
+  templateUrl: './admin-panel.component.html',
+  styleUrl: './admin-panel.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminPanelComponent implements OnInit{
   private guestsService = inject(GuestAdminService);

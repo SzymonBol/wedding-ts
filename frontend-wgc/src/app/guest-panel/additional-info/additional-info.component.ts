@@ -4,14 +4,14 @@ import { InfoSectionComponent } from "./shared/info-section/info-section.compone
 import { PartyScheduleComponent } from "./party-schedule/party-schedule.component";
 
 @Component({
-    selector: 'app-additional-info',
-    templateUrl: './additional-info.component.html',
-    styleUrl: './additional-info.component.scss',
-    imports: [
-        InfoMapComponent,
-        InfoSectionComponent,
-        PartyScheduleComponent
-    ]
+  selector: 'app-additional-info',
+  standalone: true,
+  templateUrl: './additional-info.component.html',
+  styleUrl: './additional-info.component.scss',
+  imports: [
+    InfoMapComponent,
+    InfoSectionComponent,
+    PartyScheduleComponent ]
 })
 export class AdditionalInfoComponent {
   sections = [

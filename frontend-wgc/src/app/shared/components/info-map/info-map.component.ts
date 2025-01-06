@@ -4,10 +4,11 @@ import { DomSanitizer } from "@angular/platform-browser";
 
 
 @Component({
-    selector: 'app-info-map',
-    imports: [MatIconModule],
-    templateUrl: './info-map.component.html',
-    styleUrl: './info-map.component.scss'
+  selector: 'app-info-map',
+  standalone: true,
+  imports: [MatIconModule],
+  templateUrl: './info-map.component.html',
+  styleUrl: './info-map.component.scss'
 })
 export class InfoMapComponent{
   public place = input<string>('');
