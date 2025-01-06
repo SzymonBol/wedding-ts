@@ -23,6 +23,7 @@
     "@ngrx/operators": "^18.0.2",
     "@ngrx/signals": "^18.0.2",
     "angularx-qrcode": "^18.0.2",
+    "lightgallery": "^2.8.2",
     "ngx-cookie-service": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
