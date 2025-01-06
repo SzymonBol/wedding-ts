@@ -13,7 +13,8 @@ export class TimeLeftComponent implements OnInit{
     weddingDate = new Date(environment.weddingDate).getTime();
     store = inject(GuestDataStore);
 
-    timeLeft = signal<TimerDate>(this.seperateIntoSections(this.weddingDate - new Date().getTime()))
+    timeLeft = signal<TimerDate>(this.seperateIntoSections(this.weddingDate - new Date().getTime()));
+    justMarried = false;
 
 
     ngOnInit(): void {
@@ -44,6 +45,7 @@ export class TimeLeftComponent implements OnInit{
 
     private setTimeDiffrence(){
       const currentDate = new Date().getTime();
+      if(currentDate - this.weddingDate > 0 ) this.justMarried = true;
       const diffrence = Math.abs(currentDate - this.weddingDate);
       this.timeLeft.set(this.seperateIntoSections(diffrence));
     }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InfoMapComponent } from "./info-map/info-map.component";
+import { InfoMapComponent } from "../../shared/components/info-map/info-map.component";
 import { InfoSectionComponent } from "./shared/info-section/info-section.component";
 import { PartyScheduleComponent } from "./party-schedule/party-schedule.component";
 

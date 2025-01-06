@@ -1,0 +1,24 @@
+@use 'breakpoints';
+
+:host{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    > *{
+        max-width: 732px;
+        width: 100%;
+    }
+}
+
+
+@include breakpoints.bigger-than-tablet{
+    :host{
+        padding: 0 36px;
+        flex-direction: row;
+        justify-content: center;
+        gap: 24px; 
+    }
+}

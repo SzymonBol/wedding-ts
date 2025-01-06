@@ -147,7 +147,7 @@ mat-drawer-content {
     height: 100%;
 }
 
-@include breakpoints.bigger-than-mobile{
+@include breakpoints.bigger-than-tablet{
     mat-drawer-content {
         .content{
             .footer{
@@ -159,9 +159,7 @@ mat-drawer-content {
             }
         }
     }
-}
 
-@include breakpoints.bigger-than-tablet{
     .mobile-view{
         display: none;
     }

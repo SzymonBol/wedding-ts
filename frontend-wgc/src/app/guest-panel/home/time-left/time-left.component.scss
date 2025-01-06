@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .time-left-container{
@@ -23,6 +24,12 @@
     font-size: 32px;
     padding: 16px 0;
     font-weight: 600;
+}
+
+.just-married{
+    color: #fff;
+    font-size: 40px;
+    z-index: 1;
 }
 
 @include breakpoints.bigger-than-mobile{
