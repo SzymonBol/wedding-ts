@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-invitation-base-info',
+  standalone: true,
   imports: [MatButtonModule, DatePipe],
   templateUrl: './invitation-base-info.component.html',
   styleUrl: './invitation-base-info.component.scss'

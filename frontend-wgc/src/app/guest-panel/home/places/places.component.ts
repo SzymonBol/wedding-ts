@@ -3,6 +3,7 @@ import { InfoMapComponent } from "../../../shared/components/info-map/info-map.c
 
 @Component({
   selector: 'app-places',
+  standalone: true,
   imports: [InfoMapComponent],
   templateUrl: './places.component.html',
   styleUrl: './places.component.scss'

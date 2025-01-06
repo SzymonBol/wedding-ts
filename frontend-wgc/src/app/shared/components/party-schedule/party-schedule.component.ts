@@ -37,6 +37,7 @@ const MOCK_SCHEDULE: PartyScheduleItem[] = [
 
 @Component({
     selector: 'app-party-schedule',
+    standalone: true,
     imports: [
         MatIcon,
         NgClass
