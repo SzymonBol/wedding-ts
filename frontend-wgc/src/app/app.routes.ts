@@ -26,11 +26,6 @@ export const routes: Routes = [
                 .then( c => c.InviteConfirmationComponent),
                 resolve: [getInvitationDataResolver]
             },
-            {
-                path: `${BASE_ROUTES.ADDITIONAL_INFO}`,
-                loadComponent: () => import('./guest-panel/additional-info/additional-info.component')
-                .then( c => c.AdditionalInfoComponent)
-            },
         ],
         resolve: [getSessionResolver]
     },

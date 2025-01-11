@@ -6,7 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { apiAddressInterceptor } from './interceptor/api-address.interceptor';
 import { withCredentialsInterceptor } from './interceptor/credentials.interceptor';
-import { handleErrorInterceptor } from './interceptor/error-handle.interceptor';
+import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +15,13 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(
       withInterceptors([apiAddressInterceptor, withCredentialsInterceptor])
-    )
+    ),
+    {
+      provide: GALLERY_CONFIG,
+      useValue: {
+        autoHeight: true,
+        imageSize: 'cover'
+      } as GalleryConfig
+    }
   ]
 };

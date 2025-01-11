@@ -1,0 +1,48 @@
+@use 'breakpoints';
+
+:host{
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 2450px;
+}
+
+.item-container{
+    height: fit-content;
+}
+
+.gallery-img{
+    width: 150px;
+}
+
+@include breakpoints.bigger-than-mobile{
+    :host{
+        height: 2100px;
+    }
+
+    .gallery-img{
+        width: 200px;
+    }
+}
+
+@include breakpoints.bigger-than-tablet{
+    :host{
+        height: 1900px;
+    }
+
+    .gallery-img{
+        width: 230px;
+    }
+}
+
+
+@include breakpoints.bigger-than-laptop{
+    :host{
+        height: 1500px;
+    }
+
+    .gallery-img{
+        width: 250px;
+    }
+}

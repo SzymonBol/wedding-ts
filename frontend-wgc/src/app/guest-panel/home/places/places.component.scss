@@ -16,7 +16,6 @@
 
 @include breakpoints.bigger-than-tablet{
     :host{
-        padding: 0 36px;
         flex-direction: row;
         justify-content: center;
         gap: 24px; 

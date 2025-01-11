@@ -8,11 +8,6 @@ export const menuItemsData : MenuItem[] = [
       isActive: false,
     },
     {
-      targetRoute: ROUTE.ADDITIONAL_INFO,
-      label: 'Informacje',
-      isActive: false,
-    },
-    {
       targetRoute: ROUTE.INVITE_CONFIRMATION,
       label: 'Potwierdź zaproszenie',
       isActive: false,

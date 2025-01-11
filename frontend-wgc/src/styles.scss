@@ -26,3 +26,12 @@ body { margin: 0; font-family: "Inter Tight", sans-serif; letter-spacing: .1rem;
   font-weight: 900;
   font-size: 1.1em;
 }
+
+gallery-item > gallery-image{
+  display: flex !important;
+  justify-content: center;
+
+  img{
+    width: 75% !important;
+  }
+}

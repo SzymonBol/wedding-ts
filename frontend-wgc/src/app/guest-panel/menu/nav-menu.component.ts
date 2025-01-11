@@ -25,8 +25,6 @@ export class NavMenuComponent implements AfterViewInit {
     if(change instanceof NavigationEnd){
       if(change.url.includes(ROUTE.HOME)){
         return ROUTE.HOME;
-      } else if(change.url.includes(ROUTE.ADDITIONAL_INFO)){
-        return ROUTE.ADDITIONAL_INFO;
       } else if(change.url.includes(ROUTE.INVITE_CONFIRMATION)){
         return ROUTE.INVITE_CONFIRMATION;
       }
