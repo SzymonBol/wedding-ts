@@ -1,21 +1,5 @@
-<!-- <gallery id="myGallery"></gallery> -->
- 
-   @for(item of images; track $index){
+@for(item of images; track $index){
       <div class="item-container" [lightbox]="$index">
           <img [src]="item.data?.thumb" class="gallery-img"/>
       </div>
 }
- <!-- @for(item of images; track $index){
-<div class="item-container" [lightbox]="$index">
-    <img [src]="item.data?.thumb" class="gallery-img"/>
-</div>
- } -->
-
-
-
-
-<!-- <div class="grid-item"
-     *ngFor="let item of items; let i = index"
-     [lightbox]="i">
-  <img [src]="item.data.thumbnail"/>
-</div> -->

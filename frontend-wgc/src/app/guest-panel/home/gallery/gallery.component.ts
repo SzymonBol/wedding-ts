@@ -1,12 +1,11 @@
-import { NgFor } from '@angular/common';
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { GalleryModule, GalleryComponent, ImageItem, GalleryItem, Gallery } from 'ng-gallery';
-import { Lightbox, LightboxModule } from 'ng-gallery/lightbox';
+import { Component, inject, OnInit } from '@angular/core';
+import { GalleryModule, ImageItem, GalleryItem, Gallery } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [GalleryModule, LightboxModule, NgFor],
+  imports: [GalleryModule, LightboxModule],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss'
 })
