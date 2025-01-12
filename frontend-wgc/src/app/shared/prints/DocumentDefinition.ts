@@ -37,7 +37,7 @@ export class DocumentDefinition implements TDocumentDefinitions {
 
     this.defaultStyle = {
       fontSize: 8,
-      font: 'Roboto',
+      // font: 'Roboto',
     };
 
     this._setCustomStyles();

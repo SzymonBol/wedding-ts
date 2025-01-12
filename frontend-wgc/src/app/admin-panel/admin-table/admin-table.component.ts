@@ -116,6 +116,25 @@ export class AdminTableComponent {
     this.confirmationDialogService.open(config);
   }
 
+  printQrCodes(): void {
+    const mockData: GuestsTableData = {
+      qrCodeUrl: 'dupa',
+      code: '1234',
+      guests: [
+        { name: 'Imie', surname: 'Nazwisko', isGoing: false, isVege: false },
+      ],
+      goingGuests: { allGuests: 4, goingGuests: 2 },
+      dietCount: { meatGuests: 2, vegeGuests: 0 },
+      accommodation: 'Nie',
+      comment: 'dupa',
+      confirmed: false,
+    };
+
+    const mockDataArray = Array.from({ length: 15 }).map(() => mockData);
+
+    this.printService.print('qrcode', mockDataArray);
+  }
+
   async deleteInvitation(id: string) {
     try {
       const result = await firstValueFrom(
