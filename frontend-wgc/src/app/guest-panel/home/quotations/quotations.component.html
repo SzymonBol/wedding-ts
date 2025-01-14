@@ -1,0 +1,20 @@
+<div class="carusel-cantainer">
+    <button mat-icon-button (click)="prevQuote()">
+        <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <div class="quote" >
+        <span class="quote-text" [ngClass]="duringChange ? 'fade-out': 'fade-in'">
+            "{{quote().text}}"
+        </span>
+
+        <span class="quote-author" [ngClass]="duringChange ? 'fade-out': 'fade-in'">
+            {{quote().author}} @if(quote().from){~ {{quote().from}}}
+        </span>
+
+    </div>
+
+    <button mat-icon-button (click)="nextQuote()">
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+</div>

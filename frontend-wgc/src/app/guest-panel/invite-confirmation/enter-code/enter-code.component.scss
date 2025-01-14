@@ -1,6 +1,7 @@
+@use 'breakpoints';
+
 .invitation-code{
     display: flex;
-    width: 100%;
     align-items: center;
     flex-direction: column;
     margin-top: 48px;
@@ -25,4 +26,29 @@
         font-size: 24px;
     }
 
+}
+
+.instruction{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 36px;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+}
+
+.instruction-img{
+    border-radius: 10px;
+    box-shadow: 2px 4px 21px -6px #000;
+}
+
+@include breakpoints.bigger-than-tablet{
+    .instruction{
+        display: flex;
+        flex-direction: row;
+        margin-top: 36px;
+        align-items: center;
+        justify-content: center;
+        gap: 64px;
+    }
 }

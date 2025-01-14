@@ -1,18 +1,15 @@
 <span>
     Aby odblokować możliwość potwierdzenia zaproszenia online zeskanuj kod QR który otrzymałeś na zaproszeniu lub wprowadź kod umieszczony poniżej niego. 
 </span>
-<div class="invitation-code">
-    <span class="code-label"> Kod zaproszenia:</span>
-    <mat-form-field>
-        <input matInput class="invitation-text" [(ngModel)]="code">
-    </mat-form-field>
-    <button mat-raised-button (click)="checkInvitationCode()"> Zatwierdź </button>
-</div>
-
-<hr>
-
-<div class="scan-invitation">
-    <span class="scan-label"> Skanowanie kodu QR zaproszenia</span>
+<div class="instruction">
+    <img src="invitation_template.png" class="instruction-img">
+    <div class="invitation-code">
+        <span class="code-label"> Kod zaproszenia:</span>
+        <mat-form-field>
+            <input matInput class="invitation-text" [(ngModel)]="code">
+        </mat-form-field>
+        <button mat-raised-button (click)="checkInvitationCode()"> Zatwierdź </button>
+    </div>
 </div>
 
 

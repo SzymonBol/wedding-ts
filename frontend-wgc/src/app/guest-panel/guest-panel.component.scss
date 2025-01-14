@@ -54,6 +54,7 @@ mat-drawer-content {
         position: fixed;
         top: 0;
         background: colors.$background;
+        z-index: 5;
 
         .header-logo-text{
             display: flex;

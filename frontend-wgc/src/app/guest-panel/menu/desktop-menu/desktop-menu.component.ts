@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { menuItemsData } from '../menu-items.const';
 import { MenuItem } from '../types/menu.interface';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, NavigationSkipped, Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { AuthDataStore } from '../../../shared/store/auth.store';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,7 +26,7 @@ export class DesktopMenuComponent {
 
   protected selectedItem = computed(() => {
     const change =this.routerChange();
-    if(change instanceof NavigationEnd){
+    if(change instanceof NavigationEnd || change instanceof NavigationSkipped){
       if(change.url.includes(ROUTE.HOME)){
         return ROUTE.HOME;
       } else if(change.url.includes(ROUTE.INVITE_CONFIRMATION)){

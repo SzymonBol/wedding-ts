@@ -1,0 +1,56 @@
+@use 'colors';
+
+@keyframes fade-in-fade-out {
+    0%   {opacity: 1}
+    50%  {opacity: 0;}
+    100%  {opacity: 1;}
+  }
+
+:host{
+    margin-top: 12px;
+    width: 100%;
+}
+
+.carusel-cantainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+}
+
+.quote{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    min-height: 150px;
+    background: #fff5ec;
+    border: 1px solid colors.$primary;
+    border-radius: 5px;
+
+    .quote-text{
+        text-align: center;
+        padding: 12px;
+        font-style: italic;
+    }
+
+    .quote-author{
+        padding: 12px;
+        text-align: center;
+    }
+
+    .fade-out{
+        opacity: 0;
+        transition: .7s;
+    }
+
+    .fade-in{
+        opacity: 1;
+        transition: .7s;
+    }
+}
+
