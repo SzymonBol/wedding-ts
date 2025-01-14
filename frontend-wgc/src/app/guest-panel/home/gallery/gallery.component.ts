@@ -16,7 +16,7 @@ export class TSGalleryComponent implements OnInit {
 
 
   ngOnInit() {
-    for(let i=0; i<22;i++){
+    for(let i=0; i<28;i++){
       const fileName = `gallery/gallery-img-${i}.jpg`;
 
       this.imagesUrls.push(fileName);

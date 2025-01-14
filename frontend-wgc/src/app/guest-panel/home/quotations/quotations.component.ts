@@ -79,6 +79,22 @@ export class QuotationsComponent implements OnInit, OnDestroy{
     });
   }
 
+  manualNextQuote(){
+    this.intervalSubscription.unsubscribe();
+    this.nextQuote();
+    this.intervalSubscription = interval(10000).subscribe(() => {
+      this.nextQuote();
+    });
+  }
+
+  manualPrevQuote(){
+    this.intervalSubscription.unsubscribe();
+    this.prevQuote();
+    this.intervalSubscription = interval(10000).subscribe(() => {
+      this.nextQuote();
+    });
+  }
+
   nextQuote(){
     this.duringChange = true;
     setTimeout(() => {
