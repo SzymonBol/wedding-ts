@@ -16,6 +16,11 @@
     width: 170px;
 }
 
+img {
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
 @include breakpoints.bigger-than-mobile{
     :host{
         height: 3300px;

@@ -35,3 +35,7 @@ gallery-item > gallery-image{
     width: 75% !important;
   }
 }
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: #f3dfce59 !important;
+}

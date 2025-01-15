@@ -27,7 +27,7 @@ export class DesktopMenuComponent {
   protected selectedItem = computed(() => {
     const change =this.routerChange();
     if(change instanceof NavigationEnd || change instanceof NavigationSkipped){
-      if(change.url.includes(ROUTE.HOME)){
+      if(change.url.includes(ROUTE.HOME) || change.url === '/'){
         return ROUTE.HOME;
       } else if(change.url.includes(ROUTE.INVITE_CONFIRMATION)){
         return ROUTE.INVITE_CONFIRMATION;

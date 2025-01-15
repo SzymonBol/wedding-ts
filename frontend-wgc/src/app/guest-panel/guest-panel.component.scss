@@ -80,15 +80,14 @@ mat-drawer-content {
         overflow: auto;
         width: calc(100% - 32px);
         padding: 16px;
-
+        
         .footer{
             background-color: colors.$background;
             margin: 130px -16px -16px -16px;
             display: grid;
             grid-template-columns: auto;
             color: colors.$smoked-text;
-            border-radius: 30% 30% 0 0;
-            border-top: 2px solid colors.$primary;
+            box-shadow: 0 2px 7px 0 #000;
             
             .grid-item{
                 padding: 12px;
