@@ -1,6 +1,7 @@
 export interface PartyScheduleItem{
+  _id: string;
   time: string;
-  description: string;
-  position: 'right' | 'left';
+  title: string;
+  description?: string;
   icon: string;
 }

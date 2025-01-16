@@ -5,6 +5,8 @@ import { createInvitation, deleteInvitation, findInvitationById, getAllInvitatio
 import cors from 'cors';
 import { authenticateToken, createUser, validateLoginCredentials} from './login.js'
 import cookieParser from "cookie-parser";
+import { createSchedulePoint, getSchedule, deleteSchedulePoint } from './schedule-crud.js';
+import { ObjectId } from 'mongodb';
 
 config();
 
@@ -15,6 +17,7 @@ const mongoClient = await getMongodbClient().connect();
 const db = mongoClient.db(dbName);
 const guestCollection = db.collection(process.env.COLLECTION_NAME_GUESTS);
 const usersCollection = db.collection(process.env.COLLECTION_NAME_USERS);
+const scheduleCollection = db.collection(process.env.COLLECTION_NAME_SCHEDULE);
 
 const app = express();
 app.use(express.json());
@@ -61,6 +64,11 @@ app.post('/login-user', async (req, res) => {
   res.send({isFine: result.isFine, user: result.user});
 })
 
+app.get('/schedule', async (req, res) => { 
+  const result = await getSchedule(scheduleCollection);
+  res.send(result);
+})
+
 
 //with verification
 
@@ -72,7 +80,7 @@ app.post('/create-invitation', async (req, res) => {
 
 app.post('/create-user', async (req, res) => {
   const userData = req.body;
-  const reulst = await createUser(usersCollection, userData);
+  await createUser(usersCollection, userData);
   res.send({actionResult: 'jest git'});
 })
 
@@ -94,6 +102,18 @@ app.get('/guests', async (req, res) => {
 app.delete('/delete-invitation/:id', async (req, res) => {
   const id = req.params.id;
   const result = await deleteInvitation(guestCollection, id);
+  res.send(result);
+})
+
+app.post('/create-schedule-point', async (req, res) => { 
+  const schedulePoint = req.body;  
+  const result = await createSchedulePoint(scheduleCollection, schedulePoint);
+  res.send(result);
+})
+
+app.delete('/delete-schedule-point/:id', async (req, res) => { 
+  const id = req.params.id;
+  const result = await deleteSchedulePoint(scheduleCollection, new ObjectId(id));
   res.send(result);
 })
 

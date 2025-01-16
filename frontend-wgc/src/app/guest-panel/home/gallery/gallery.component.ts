@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { GalleryModule, ImageItem, GalleryItem, Gallery } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
@@ -6,7 +5,7 @@ import { LightboxModule } from 'ng-gallery/lightbox';
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [GalleryModule, LightboxModule, NgOptimizedImage],
+  imports: [GalleryModule, LightboxModule],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss'
 })

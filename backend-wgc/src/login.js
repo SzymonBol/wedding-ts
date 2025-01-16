@@ -4,7 +4,10 @@ import bcrypt from 'bcrypt';
 const whiteList = [
   '/invitation/',
   '/update-invitation',
-  '/login-user'
+  '/login-user',
+  '/schedule',
+  '/create-schedule-point',
+  '/delete-schedule-point'
 ];
 
 export function generateAccessToken(username) {

@@ -1,0 +1,19 @@
+@if(schedule().length > 0){
+  @for(scheduleItem of schedule(); track scheduleItem.time){
+  <div class="schedule-item">
+    <mat-icon [fontIcon]="scheduleItem.icon" class="schedule-icon"></mat-icon>
+    <span class="schedule-time">{{scheduleItem.time}}</span>
+
+    <span class="point"></span>
+
+    <div class="schedule-text">
+      <span class="title fancy-font">{{scheduleItem.title}}</span>
+      @if(scheduleItem.description) {<span class="description ">{{scheduleItem.description}}</span>}
+    </div>
+
+  </div>
+  }
+  <span class="schedule-line"></span>
+} @else {
+  <span>Grafik w krótce się pojawi 👀</span>
+}
