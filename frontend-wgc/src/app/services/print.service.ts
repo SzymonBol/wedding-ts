@@ -14,8 +14,8 @@ type WindowFrameExtended = Window & { printPdfFrame: Window };
 export class PrintService {
   pdfmake: any;
 
-  print(definition: DocumentPrintsType, data: any): void {
-    const docDefinition = DocumentsPrintSettings[definition](data);
+  print(definition: DocumentPrintsType, ...args: any): void {
+    const docDefinition = DocumentsPrintSettings[definition](...args);
 
     this.pdfmake = pdfMake;
     this.pdfmake.vfs = pdfFonts.vfs;

@@ -117,22 +117,21 @@ export class AdminTableComponent {
   }
 
   printQrCodes(): void {
-    // const mockData: GuestsTableData = {
-    //   qrCodeUrl: 'dupa',
-    //   code: '1234',
-    //   guests: [
-    //     { name: 'Imie', surname: 'Nazwisko', isGoing: false, isVege: false },
-    //   ],
-    //   goingGuests: { allGuests: 4, goingGuests: 2 },
-    //   dietCount: { meatGuests: 2, vegeGuests: 0 },
-    //   accommodation: 'Nie',
-    //   comment: 'dupa',
-    //   confirmed: false,
-    // };
+    const sizeAndNoColumns = window.prompt(
+      'Wprowadź rozmiar kodu qr, ilość kolumn i margines rozdzielone średnikiem',
+      '70;3;10'
+    );
+    if (sizeAndNoColumns && /^\d+;\d+;\d+$/.test(sizeAndNoColumns)) {
+      let [qrSize, noColumns, margin] = sizeAndNoColumns.split(';');
 
-    // const mockDataArray = Array.from({ length: 15 }).map(() => mockData);
-
-    this.printService.print('qrcode', this.guestsTableData());
+      this.printService.print(
+        'qrcode',
+        this.guestsTableData(),
+        Number(qrSize),
+        Number(noColumns),
+        Number(margin)
+      );
+    }
   }
 
   async deleteInvitation(id: string) {

@@ -2,73 +2,97 @@ import { Content, Margins, ContentStack } from 'pdfmake/interfaces';
 import { DocumentDefinition } from '../DocumentDefinition';
 import { GuestsTableData } from '../../../types/admin-panel.types';
 
-export function qrCodesDoc(data: GuestsTableData[]): DocumentDefinition {
+export function qrCodesDoc(
+  data: GuestsTableData[],
+  qrCodeSize: number,
+  numberOfColumns: number,
+  margin: number
+): DocumentDefinition {
+  console.log(data);
+  console.log(qrCodeSize);
+  console.log(numberOfColumns);
   const content: Content[] = [];
   console.log(data);
   const doc: DocumentDefinition = new DocumentDefinition(content);
   doc.setMargins([20, 20, 20, 20]);
   doc.setPageSize('A4');
   doc.pageOrientation = 'landscape';
-  doc.setContent(_createContent(data));
+  doc.setContent(_createContent(data, qrCodeSize, numberOfColumns, margin));
 
   return doc;
 }
 
-const _createContent = (data: GuestsTableData[]): ContentStack => {
+const _createContent = (
+  data: GuestsTableData[],
+  qrCodeSize: number,
+  columnsPerRow: number,
+  margin: number
+): ContentStack => {
+  const invitationCells = generateInvitationCells(data, qrCodeSize, margin);
+  const tableBody = [];
+
+  for (let i = 0; i < invitationCells.length; i += columnsPerRow) {
+    const row: Content[] = invitationCells.slice(i, i + columnsPerRow);
+    while (row.length < columnsPerRow) {
+      row.push({ text: '' });
+    }
+    tableBody.push(row);
+  }
+
   return {
-    stack: [data.map((el) => _createCell(el))],
+    stack: [
+      {
+        table: {
+          widths: Array(columnsPerRow).fill('auto'),
+          body: tableBody,
+        },
+        layout: 'noBorders',
+      },
+    ],
 
     margin: [0, 0, 0, 0],
   };
 };
 
-const _createCell = (data: GuestsTableData): Content => {
-  const qrSize = 90; // Dowolna liczba, sensowne rozmiary w przedziale 70-120
-
-  // const noColumns = 3;
-  // const columns = Array.from({ length: noColumns }, () => []);
-  // for (let i = 0; i < noColumns; i++) {}
-
-  const content: Content = [
-    {
-      // columns: [
-      //   {
-      //     stack: [
-      //       { qr: data.qrCodeUrl, fit: qrSize, alignment: 'center' },
-      //       { text: data.code, alignment: 'center' },
-      //     ],
-      //   },
-      //   {
-      //     stack: [
-      //       data.guests.map((guest) => ({
-      //         text: `${guest.name} ${guest.surname}`,
-      //       })),
-      //     ],
-      //   },
-      // ],
-      layout: 'noBorders',
-      table: {
-        widths: ['auto', 'auto'],
-        body: [
-          [
+const generateInvitationCells = (
+  invitations: GuestsTableData[],
+  qrCodeSize: number,
+  margin: number
+): Content[] => {
+  const invitationCells: any = invitations.map((invitation) => {
+    return {
+      stack: [
+        {
+          columns: [
             {
-              qr: data.qrCodeUrl,
-              fit: qrSize,
+              stack: [
+                { qr: invitation.qrCodeUrl, fit: qrCodeSize }, // QR code with specified size
+                {
+                  text: invitation.code,
+                  margin: [0, margin, 0, 0],
+                  alignment: 'center',
+                },
+              ],
+              width: 'auto',
             },
             {
               stack: [
-                data.guests.map((guest) => ({
+                invitation.guests.map((guest) => ({
                   text: `${guest.name} ${guest.surname}`,
                 })),
               ],
-              alignment: 'justify',
+              width: '*',
+              margin: [10, 0, 0, 0],
             },
           ],
-          [{ text: data.code, alignment: 'center' }, { text: '' }],
-        ],
-      },
-    },
-  ];
+          margin: [0, 10, 0, 10],
+          pageBreak: 'avoid',
+        },
+      ],
+      margin: [10, 10, 10, 10],
+      pageBreak: 'avoid',
+    };
+  });
 
-  return content;
+  return invitationCells;
 };
