@@ -21,7 +21,9 @@ export class GuestConfirmationStatusComponent implements ControlValueAccessor{
   editMode = input<boolean>(true);
   goingStatus = model<boolean>(true);
 
-  status = signal<string>('yes');
+  status = computed(()=> {
+    return this.goingStatus() ? 'yes' : 'no';
+  })
 
   onChange: any = () => {}
   onTouch: any = () => {}
@@ -39,7 +41,6 @@ export class GuestConfirmationStatusComponent implements ControlValueAccessor{
   }
 
   valueChanged($event: string){
-    this.status.set($event);
     this.writeValue($event === 'yes' ? true : false);
     this.onChange(this.goingStatus());
   }

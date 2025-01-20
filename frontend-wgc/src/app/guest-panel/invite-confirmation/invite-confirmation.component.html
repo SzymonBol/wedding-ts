@@ -11,29 +11,31 @@
             Bardzo prosimy o zaznaczenie diety oraz informacje czy potrzebujecie noclegu. 
         </span>
         @if(canEditBasedOnDate || isConfirmedSig() || isUserLoggedIn()){
-        <div class="form-container">
-          @for(guest of guestsSig(); track $index){
-            <div class="guest-row">
-              <span class="header">{{guest.name}} {{guest.surname}}</span>
+        <div class="form-container" [formGroup]="form">
+          <ng-container formArrayName="guests">
+          @for(guest of guests.controls; track $index){
+            <div class="guest-row" [formGroupName]="$index">
+              <span class="header">{{guest.get('name')?.value}} {{guest.get('surname')?.value}}</span>
               <div class="guest-options">
                 <span>
-                  <app-guest-confirmation-status [editMode]="editModeSig()" [(ngModel)]="guest.isGoing"></app-guest-confirmation-status>
+                  <app-guest-confirmation-status [editMode]="editModeSig()" formControlName="isGoing"></app-guest-confirmation-status>
                 </span>
-                @if (!(isConfirmedSig() && guest.isGoing === false) || editModeSig()) {
-                <span class="diet-option">
+                @if (!(isConfirmedSig() && guest.get('isGoing')?.value === false) || editModeSig()) {
+                <span class="diet-option">  
                   <span class="diet-option-label">Opcja jedzeniowa: </span>
-                  <app-diet-switch [(ngModel)]="guest.isVege" [editMode]="editModeSig()"></app-diet-switch>
+                  <app-diet-switch formControlName="isVege" [editMode]="editModeSig()"></app-diet-switch>
                 </span>
               }
               </div>
             </div>
           }
+          </ng-container>
           <div class="invitation-comments">
             <label class="accomodation-header"> 
               <mat-icon>hotel</mat-icon> 
               <span class="accomodation-text">Nocleg</span>
             </label>
-            <mat-radio-group aria-label="Zakwaterowanie" [(ngModel)]="needAccommodation" [disabled]="!editModeSig()">
+            <mat-radio-group aria-label="Zakwaterowanie" formControlName="needAccommodation">
               <mat-radio-button [value]="false">We własnym zakresie</mat-radio-button>
               <mat-radio-button [value]="true">Będziemy potrzebować noclegu</mat-radio-button>
             </mat-radio-group>
@@ -41,7 +43,7 @@
           
           <div class="invitation-comments">
             <label for="comments-id">Dodatkowe uwagi: </label>
-            <textarea id="comments-id" placeholder="Brak" [(ngModel)]="comment" [disabled]="!editModeSig()" maxlength="1024"></textarea>
+            <textarea id="comments-id" placeholder="Brak" formControlName="comment" maxlength="1024"></textarea>
           </div>
         </div>
         <div class="end-info">
