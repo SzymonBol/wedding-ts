@@ -117,22 +117,22 @@ export class AdminTableComponent {
   }
 
   printQrCodes(): void {
-    const mockData: GuestsTableData = {
-      qrCodeUrl: 'dupa',
-      code: '1234',
-      guests: [
-        { name: 'Imie', surname: 'Nazwisko', isGoing: false, isVege: false },
-      ],
-      goingGuests: { allGuests: 4, goingGuests: 2 },
-      dietCount: { meatGuests: 2, vegeGuests: 0 },
-      accommodation: 'Nie',
-      comment: 'dupa',
-      confirmed: false,
-    };
+    // const mockData: GuestsTableData = {
+    //   qrCodeUrl: 'dupa',
+    //   code: '1234',
+    //   guests: [
+    //     { name: 'Imie', surname: 'Nazwisko', isGoing: false, isVege: false },
+    //   ],
+    //   goingGuests: { allGuests: 4, goingGuests: 2 },
+    //   dietCount: { meatGuests: 2, vegeGuests: 0 },
+    //   accommodation: 'Nie',
+    //   comment: 'dupa',
+    //   confirmed: false,
+    // };
 
-    const mockDataArray = Array.from({ length: 15 }).map(() => mockData);
+    // const mockDataArray = Array.from({ length: 15 }).map(() => mockData);
 
-    this.printService.print('qrcode', mockDataArray);
+    this.printService.print('qrcode', this.guestsTableData());
   }
 
   async deleteInvitation(id: string) {
