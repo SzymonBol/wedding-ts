@@ -29,6 +29,7 @@ export class DocumentDefinition implements TDocumentDefinitions {
   styles: StyleDictionary | undefined;
   defaultStyle: Style | undefined;
   pageOrientation?: PageOrientation;
+  info?: { title: string };
 
   constructor(content?: Content[]) {
     this.content = content ? content : [];
@@ -60,6 +61,10 @@ export class DocumentDefinition implements TDocumentDefinitions {
       { text: name, fontSize: 8, alignment: align },
     ];
     return result;
+  }
+
+  setTitle(title: string): void {
+    this.info = { title };
   }
 
   setPageSize(pageSize: PageSize): void {

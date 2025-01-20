@@ -8,16 +8,13 @@ export function qrCodesDoc(
   numberOfColumns: number,
   margin: number
 ): DocumentDefinition {
-  console.log(data);
-  console.log(qrCodeSize);
-  console.log(numberOfColumns);
   const content: Content[] = [];
-  console.log(data);
   const doc: DocumentDefinition = new DocumentDefinition(content);
   doc.setMargins([20, 20, 20, 20]);
   doc.setPageSize('A4');
   doc.pageOrientation = 'landscape';
   doc.setContent(_createContent(data, qrCodeSize, numberOfColumns, margin));
+  doc.setTitle('Zaproszenia');
 
   return doc;
 }

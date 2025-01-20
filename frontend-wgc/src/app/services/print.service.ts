@@ -22,6 +22,6 @@ export class PrintService {
 
     const frames = window.frames as WindowFrameExtended;
 
-    this.pdfmake.createPdf(docDefinition).print({}, frames.printPdfFrame);
+    this.pdfmake.createPdf(docDefinition).open({}, frames.printPdfFrame);
   }
 }
