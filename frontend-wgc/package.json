@@ -23,9 +23,11 @@
     "@ngrx/operators": "^18.0.2",
     "@ngrx/signals": "^18.0.2",
     "@types/pdfmake": "^0.2.10",
+    "@types/qrcode-svg": "^1.1.5",
     "angularx-qrcode": "^18.0.2",
     "ngx-cookie-service": "^18.0.0",
     "pdfmake": "^0.2.16",
+    "qrcode-svg": "^1.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

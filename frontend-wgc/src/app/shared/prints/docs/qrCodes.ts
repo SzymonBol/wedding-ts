@@ -1,36 +1,28 @@
 import { Content, Margins, ContentStack } from 'pdfmake/interfaces';
 import { DocumentDefinition } from '../DocumentDefinition';
 import { GuestsTableData } from '../../../types/admin-panel.types';
+import QRCode from 'qrcode-svg';
 
-export function qrCodesDoc(
-  data: GuestsTableData[],
-  qrCodeSize: number,
-  numberOfColumns: number,
-  margin: number
-): DocumentDefinition {
+export function qrCodesDoc(data: GuestsTableData[]): DocumentDefinition {
   const content: Content[] = [];
   const doc: DocumentDefinition = new DocumentDefinition(content);
   doc.setMargins([20, 20, 20, 20]);
   doc.setPageSize('A4');
   doc.pageOrientation = 'landscape';
-  doc.setContent(_createContent(data, qrCodeSize, numberOfColumns, margin));
+
+  doc.setContent(_createContent(data));
   doc.setTitle('Zaproszenia');
 
   return doc;
 }
 
-const _createContent = (
-  data: GuestsTableData[],
-  qrCodeSize: number,
-  columnsPerRow: number,
-  margin: number
-): ContentStack => {
-  const invitationCells = generateInvitationCells(data, qrCodeSize, margin);
+const _createContent = (data: GuestsTableData[]): ContentStack => {
+  const invitationCells = generateInvitationCells(data);
   const tableBody = [];
 
-  for (let i = 0; i < invitationCells.length; i += columnsPerRow) {
-    const row: Content[] = invitationCells.slice(i, i + columnsPerRow);
-    while (row.length < columnsPerRow) {
+  for (let i = 0; i < invitationCells.length; i += 4) {
+    const row: Content[] = invitationCells.slice(i, i + 4);
+    while (row.length < 4) {
       row.push({ text: '' });
     }
     tableBody.push(row);
@@ -40,7 +32,7 @@ const _createContent = (
     stack: [
       {
         table: {
-          widths: Array(columnsPerRow).fill('auto'),
+          widths: Array(4).fill('auto'),
           body: tableBody,
         },
         layout: 'noBorders',
@@ -51,22 +43,27 @@ const _createContent = (
   };
 };
 
-const generateInvitationCells = (
-  invitations: GuestsTableData[],
-  qrCodeSize: number,
-  margin: number
-): Content[] => {
-  const invitationCells: any = invitations.map((invitation) => {
+const generateInvitationCells = (invitations: GuestsTableData[]): Content[] => {
+  const invitationCells: any = invitations.map((invitation, i) => {
     return {
       stack: [
         {
           columns: [
             {
               stack: [
-                { qr: invitation.qrCodeUrl, fit: qrCodeSize }, // QR code with specified size
+                {
+                  svg: new QRCode({
+                    content: invitation.qrCodeUrl,
+                    width: 69,
+                    height: 69,
+                    ecl: 'L',
+                  }).svg(),
+                  width: 69,
+                  height: 69,
+                },
                 {
                   text: invitation.code,
-                  margin: [0, margin, 0, 0],
+                  margin: [0, 0, 0, 0],
                   alignment: 'center',
                 },
               ],
@@ -83,11 +80,11 @@ const generateInvitationCells = (
             },
           ],
           margin: [0, 10, 0, 10],
-          pageBreak: 'avoid',
+          // pageBreak: 'avoid',
         },
       ],
+      pageBreak: (i + 1) % 16 === 0 ? 'after' : undefined,
       margin: [10, 10, 10, 10],
-      pageBreak: 'avoid',
     };
   });
 

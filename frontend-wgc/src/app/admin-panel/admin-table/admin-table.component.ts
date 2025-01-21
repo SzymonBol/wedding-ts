@@ -117,21 +117,7 @@ export class AdminTableComponent {
   }
 
   printQrCodes(): void {
-    const sizeAndNoColumns = window.prompt(
-      'Wprowadź rozmiar kodu qr, ilość kolumn i margines rozdzielone średnikiem',
-      '70;3;10'
-    );
-    if (sizeAndNoColumns && /^\d+;\d+;\d+$/.test(sizeAndNoColumns)) {
-      let [qrSize, noColumns, margin] = sizeAndNoColumns.split(';');
-
-      this.printService.print(
-        'qrcode',
-        this.guestsTableData(),
-        Number(qrSize),
-        Number(noColumns),
-        Number(margin)
-      );
-    }
+    this.printService.print('qrcode', this.guestsTableData());
   }
 
   async deleteInvitation(id: string) {
