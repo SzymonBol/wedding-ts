@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, untracked, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { GuestData } from '../../types/guests-store-data.types';
 import { ROUTE } from '../../shared/routes.enum';
@@ -17,11 +17,25 @@ import { firstValueFrom } from 'rxjs';
 import { ConfirmationDialogService } from '../confirmation-dialog/service/confirmation-dialog.service';
 import { ConfrimationDialogData } from '../../types/confirmation-dialog-data.types';
 import { Router } from '@angular/router';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-admin-table',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, QRCodeModule, GoingGuestsCountComponent, VegeMeatCountComponent, MatButtonModule, MatPaginatorModule, MatSortModule],
+  imports: [MatTableModule, 
+    MatIconModule,
+    QRCodeModule,
+    GoingGuestsCountComponent, 
+    VegeMeatCountComponent, 
+    MatButtonModule, 
+    MatPaginatorModule, 
+    MatSortModule, 
+    MatCheckboxModule,
+    MatExpansionModule,
+    NgClass
+  ],
   templateUrl: './admin-table.component.html',
   styleUrl: './admin-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -48,6 +62,9 @@ export class AdminTableComponent {
 
   private _snackBar = inject(MatSnackBar);
   private confirmationDialogService = inject(ConfirmationDialogService);
+  readonly panelOpenState = signal(false);
+  readonly showOnlyGoingPeople = signal(false);
+  readonly markVegePeople = signal(false);
 
   displayedColumns: string[] = ['qrCodeUrl', 'guests', 'goingGuests', 'dietCount', 'accommodation', 'comment', 'confirmed', 'options'];
   paginator = viewChild(MatPaginator);

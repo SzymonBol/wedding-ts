@@ -21,3 +21,8 @@ export type GuestStoreData = {
     comment: string | null;
     needAccommodation: boolean;
 }
+
+export const isGuestDataArrayType = (value: any) :value is GuestData[] =>{
+    console.log(value[0]);
+    return value && value.length > 0 && 'name' in value[0] && 'surname' in value[0] && 'isGoing' in value[0] && 'isVege' in value[0];
+} 

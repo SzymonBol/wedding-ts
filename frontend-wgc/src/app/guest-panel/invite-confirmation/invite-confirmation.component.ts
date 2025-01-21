@@ -8,7 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { GuestConfirmationStatusComponent } from "../../shared/components/guest-confirmation-status/guest-confirmation-status.component";
 import { InvitationService } from '../../services/invitation-service.service';
 import { firstValueFrom } from 'rxjs';
-import { GuestData, Invitation } from '../../types/guests-store-data.types';
+import { GuestData, Invitation, isGuestDataArrayType } from '../../types/guests-store-data.types';
 import {MatRadioModule} from '@angular/material/radio';
 import { EnterCodeComponent } from "./enter-code/enter-code.component";
 import { environment } from '../../../environments/environment';
@@ -69,7 +69,7 @@ export class InviteConfirmationComponent {
     this.guestsSig()?.forEach( g => {
       const guest = this.fb.group({
         name: [g.name],
-        surbane: [g.surname],
+        surname: [g.surname],
         isVege: [g.isVege],
         isGoing: [g.isGoing]
       })
@@ -92,24 +92,24 @@ export class InviteConfirmationComponent {
 
   async updateData() {
     const {guests, comment, needAccommodation} = this.form.value;
-    
+    if(!isGuestDataArrayType(guests)) return;
 
     try{
       this.store.loadingData();
-      this.editModeSig.set(false);
       const invitationId = this.store.invitationId ? this.store.invitationId() : null;
       if(invitationId){
         const invitation : Invitation = {
           id: invitationId,
-          guests: this.guestsSig()!,
-          comment: this.comment,
+          guests: guests,
+          comment: comment ?? '',
           confirmed: true,
-          needAccommodation: this.needAccommodation
+          needAccommodation: needAccommodation ? true : false
         }
         
         await firstValueFrom(this.InvitationService.updateInvitationData(invitation));
         this.store.updateConfirmation(true);
         this.store.finishLoading();
+        this.editModeSig.set(false);
       }
     }
     catch (e){

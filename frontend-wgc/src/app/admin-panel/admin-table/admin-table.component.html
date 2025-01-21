@@ -1,3 +1,19 @@
+<div class="additional-options">
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Dotatkowe opcje </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="panel-container">
+        <mat-checkbox [checked]="showOnlyGoingPeople()" (change)="showOnlyGoingPeople.set($event.checked)">Pokaż tylko potwierdzonych</mat-checkbox>
+        <mat-checkbox [checked]="markVegePeople()" (change)="markVegePeople.set($event.checked)">Zaznacz vege</mat-checkbox>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+
 <table mat-table [dataSource]="dataSource" matSort matSortActive="confirmed" matSortDirection="desc">
 
     <!-- QR -->
@@ -17,7 +33,9 @@
         <td mat-cell *matCellDef="let element"> 
             <div class="invieted-guests">
                 @for(guest of element.guests; track $index){
-                    <span>{{guest.name}} {{guest.surname}}</span>    
+                  @if(showOnlyGoingPeople() && guest.isGoing || !showOnlyGoingPeople()){
+                    <span [ngClass]="{'vege-person' : markVegePeople() && guest.isVege && guest.isGoing}">{{guest.name}} {{guest.surname}}</span>    
+                  }
                 }
             </div>
 
@@ -50,7 +68,7 @@
 
     <!-- ACCOMMODATION -->
     <ng-container matColumnDef="accommodation">
-        <th mat-header-cell *matHeaderCellDef> Nocleg </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nocleg </th>
         <td mat-cell *matCellDef="let element"> 
           @if(!element.confirmed || element.goingGuests.goingGuests === 0){
             <span> - </span>
@@ -62,7 +80,7 @@
 
     <!-- COMMENT -->
     <ng-container matColumnDef="comment">
-      <th mat-header-cell *matHeaderCellDef> Komentarze </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Komentarze </th>
       <td mat-cell *matCellDef="let element"> 
         @if(!element.confirmed || element.goingGuests.goingGuests === 0){
           <span> - </span>
@@ -74,7 +92,7 @@
 
       <!-- CONFIRMED -->
       <ng-container matColumnDef="confirmed">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Potwierdzenie </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Udzielono odpowiedzi </th>
         <td mat-cell *matCellDef="let element" > 
             <div class="invitation-confirmed-icon">
                 @if(element.confirmed){

@@ -1,5 +1,34 @@
 @use 'colors';
 
+:host{
+    padding-bottom: 32px;
+}
+
+.additional-options{
+    display: flex;
+    justify-content: flex-start;
+    margin: 24px 0; 
+
+    .mat-expansion-panel-header:not([aria-disabled=true]) {
+        background: antiquewhite;
+    }
+
+    > mat-accordion {
+        width: 25%;
+    }
+
+}
+
+.panel-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.vege-person{
+    color: colors.$vegeText;
+    font-weight: 700;
+}
+
 .qr-code{
     display: flex;
     flex-direction: column;
