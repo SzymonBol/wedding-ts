@@ -5,7 +5,7 @@
         <mat-panel-title> Dotatkowe opcje </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="panel-container">
-        <mat-checkbox [checked]="showOnlyGoingPeople()" (change)="showOnlyGoingPeople.set($event.checked)">Pokaż tylko potwierdzonych</mat-checkbox>
+        <mat-checkbox [checked]="showOnlyGoingPeople()" (change)="showOnlyGoingPeople.set($event.checked)">Pokaż gości którzy przyjdą</mat-checkbox>
         <mat-checkbox [checked]="markVegePeople()" (change)="markVegePeople.set($event.checked)">Zaznacz vege</mat-checkbox>
       </div>
 
