@@ -7,7 +7,7 @@
       <div class="panel-container">
         <mat-checkbox [checked]="showOnlyGoingPeople()" (change)="showOnlyGoingPeople.set($event.checked)">Pokaż gości którzy przyjdą</mat-checkbox>
         <mat-checkbox [checked]="markVegePeople()" (change)="markVegePeople.set($event.checked)">Zaznacz vege</mat-checkbox>
-        <button (click)="printQrCodes()">TEST</button>
+        <button class="print-qr" mat-button (click)="printQrCodes()"> <mat-icon>qr_code</mat-icon> Drukuj kody QR</button>
       </div>
 
     </mat-expansion-panel>
