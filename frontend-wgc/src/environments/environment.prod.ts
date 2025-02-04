@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://backend-api',
+    apiUrl: 'https://wedding-ts.onrender.com',
     mrEmail: 'bol.szymon@gmail.com',
     missEmail: 'teresajawor31210@gmail.com',
     mrPhone: '728996233',

@@ -22,7 +22,7 @@ const scheduleCollection = db.collection(process.env.COLLECTION_NAME_SCHEDULE);
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:4200", 
+  origin: ["http://localhost:4200", "https://filifion.usermd.net"],
   credentials: true
 }));
 app.use(cookieParser());
