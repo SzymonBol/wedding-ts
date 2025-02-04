@@ -29,47 +29,47 @@
     font-weight: 700;
 }
 
-.qr-code{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.qr-code {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8px 0;
+
+  .text-code {
+    font-size: 17px;
+  }
+}
+
+.invieted-guests {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  span {
     margin: 8px 0;
-
-    .text-code{
-        font-size: 17px;
-    }
+  }
 }
 
-.invieted-guests{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.invitation-confirmed-icon {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 32px;
 
-    span{
-        margin: 8px 0;
-    }
+  .yes {
+    color: colors.$successGreen;
+  }
+
+  .no {
+    color: colors.$warningOrange;
+  }
 }
 
-.invitation-confirmed-icon{
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 32px;
-
-    .yes{
-        color: colors.$successGreen;
-    }
-    
-    .no{
-        color: colors.$warningOrange;
-    }
+.manage-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.manage-buttons-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.manage-button{
-    margin: 16px 0;
+.manage-button {
+  margin: 16px 0;
 }

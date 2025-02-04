@@ -7,7 +7,7 @@ import { MatIcon } from '@angular/material/icon';
   standalone: true,
   imports: [MatIcon],
   templateUrl: './guest-summary.component.html',
-  styleUrl: './guest-summary.component.scss'
+  styleUrl: './guest-summary.component.scss',
 })
 export class GuestSummaryComponent {
   private invitations = inject(AdminStore).entities;
@@ -20,30 +20,31 @@ export class GuestSummaryComponent {
     let goingGuest = 0;
     let refusedGuest = 0;
     let notConfirmedGuestsCount = 0;
-    let needAccommodationCount =0;
+    let needAccommodationCount = 0;
     let allGuestsCount = 0;
 
-    if(invitationsData){
-      invitationsData.forEach(invitation => {
-        if(invitation.confirmed){
-          invitation.guests.forEach(guest => {
-            if(guest.isGoing) {
+    if (invitationsData) {
+      invitationsData.forEach((invitation) => {
+        if (invitation.confirmed) {
+          invitation.guests.forEach((guest) => {
+            if (guest.isGoing) {
               goingGuest++;
-              if(guest.isVege) vegeCount++; else meatCount ++;
-              
-              if(invitation.needAccommodation) needAccommodationCount++;
+              if (guest.isVege) vegeCount++;
+              else meatCount++;
+
+              if (invitation.needAccommodation) needAccommodationCount++;
             } else refusedGuest++;
-            
+
             confirmedCount++;
             allGuestsCount++;
-          })
+          });
         } else {
           invitation.guests.forEach(() => {
             notConfirmedGuestsCount++;
             allGuestsCount++;
-          })
+          });
         }
-      })
+      });
     }
 
     return {
@@ -54,7 +55,7 @@ export class GuestSummaryComponent {
       meatCount,
       vegeCount,
       needAccommodationCount,
-      allGuestsCount
-    }
-  })
+      allGuestsCount,
+    };
+  });
 }

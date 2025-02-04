@@ -7,6 +7,7 @@
       <div class="panel-container">
         <mat-checkbox [checked]="showOnlyGoingPeople()" (change)="showOnlyGoingPeople.set($event.checked)">Pokaż gości którzy przyjdą</mat-checkbox>
         <mat-checkbox [checked]="markVegePeople()" (change)="markVegePeople.set($event.checked)">Zaznacz vege</mat-checkbox>
+        <button (click)="printQrCodes()">TEST</button>
       </div>
 
     </mat-expansion-panel>
@@ -21,7 +22,12 @@
       <th mat-header-cell *matHeaderCellDef> Kod QR </th>
       <td mat-cell *matCellDef="let element"> 
         <div class="qr-code">
-          <qrcode [qrdata]="element.qrCodeUrl" [width]="128" [errorCorrectionLevel]="'M'"></qrcode>
+          <qrcode
+          [qrdata]="element.qrCodeUrl"
+          [width]="128"
+          [errorCorrectionLevel]="'M'"
+          [colorLight]="'#ffffff00'"
+        ></qrcode>
           <span class="text-code">{{element.code}}</span>
         </div>
       </td>
@@ -42,33 +48,39 @@
         </td>
       </ng-container>
 
-    <!-- GOING GUESTS COUNT -->
-    <ng-container matColumnDef="goingGuests">
-        <th mat-header-cell *matHeaderCellDef> Ilość osób </th>
-        <td mat-cell *matCellDef="let element"> 
-          @if(!element.confirmed){
-            <span> - </span>
-          }@else{
-            <app-going-guests-count [allGuestsCount]="element.goingGuests.allGuests" [goingGuestsCount]="element.goingGuests.goingGuests" />
-          }
-        </td>
-      </ng-container>
+  <!-- GOING GUESTS COUNT -->
+  <ng-container matColumnDef="goingGuests">
+    <th mat-header-cell *matHeaderCellDef>Ilość osób</th>
+    <td mat-cell *matCellDef="let element">
+      @if(!element.confirmed){
+      <span> - </span>
+      }@else{
+      <app-going-guests-count
+        [allGuestsCount]="element.goingGuests.allGuests"
+        [goingGuestsCount]="element.goingGuests.goingGuests"
+      />
+      }
+    </td>
+  </ng-container>
 
-    <!-- VEGE GUESTS COUNT -->
-    <ng-container matColumnDef="dietCount">
-        <th mat-header-cell *matHeaderCellDef> Opcje żywieniowe </th>
-        <td mat-cell *matCellDef="let element">
-          @if(!element.confirmed || element.goingGuests.goingGuests === 0){
-            <span> - </span>
-          }@else{ 
-            <app-vege-meat-count [meatCount]="element.dietCount.meatGuests" [vegeCount]="element.dietCount.vegeGuests"/>
-          }    
-        </td>
-      </ng-container>
+  <!-- VEGE GUESTS COUNT -->
+  <ng-container matColumnDef="dietCount">
+    <th mat-header-cell *matHeaderCellDef>Opcje żywieniowe</th>
+    <td mat-cell *matCellDef="let element">
+      @if(!element.confirmed || element.goingGuests.goingGuests === 0){
+      <span> - </span>
+      }@else{
+      <app-vege-meat-count
+        [meatCount]="element.dietCount.meatGuests"
+        [vegeCount]="element.dietCount.vegeGuests"
+      />
+      }
+    </td>
+  </ng-container>
 
     <!-- ACCOMMODATION -->
     <ng-container matColumnDef="accommodation">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nocleg </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nocleg </th>
         <td mat-cell *matCellDef="let element"> 
           @if(!element.confirmed || element.goingGuests.goingGuests === 0){
             <span> - </span>
@@ -104,26 +116,36 @@
         </td>
       </ng-container>
 
-      <!-- OPTIONS -->
-      <ng-container matColumnDef="options">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" > 
-          <div class="manage-buttons-container">
-            <button mat-icon-button (click)="editInvitation(element.code)" class="manage-button">
-              <mat-icon fontIcon="edit"></mat-icon>
-            </button>
-            <button mat-icon-button (click)="openDeleteDialog(element.code, element.guests)" class="manage-button">
-              <mat-icon fontIcon="delete"></mat-icon>
-            </button>
-          </div>
-        </td>
-      </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  <!-- OPTIONS -->
+  <ng-container matColumnDef="options">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <div class="manage-buttons-container">
+        <button
+          mat-icon-button
+          (click)="editInvitation(element.code)"
+          class="manage-button"
+        >
+          <mat-icon fontIcon="edit"></mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="openDeleteDialog(element.code, element.guests)"
+          class="manage-button"
+        >
+          <mat-icon fontIcon="delete"></mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-    aria-label="Select page of periodic elements">
- </mat-paginator>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements"
+>
+</mat-paginator>
