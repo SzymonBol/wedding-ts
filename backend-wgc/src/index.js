@@ -57,7 +57,7 @@ app.post('/login-user', async (req, res) => {
   const credentials = req.body;
   const result = await validateLoginCredentials(usersCollection, credentials);
   if(result.token !== null){
-    res.cookie("authToken", result.token, {httpOnly: true});
+    res.cookie("authToken", result.token, {httpOnly: true, sameSite: 'none'});
   }
 
   res.status(result.status);
