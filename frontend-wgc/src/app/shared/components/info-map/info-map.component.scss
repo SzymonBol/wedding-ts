@@ -6,12 +6,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: colors.$background;
     padding: 16px;
     border-radius: 8px;
-    border: 1px solid colors.$secondary;
     margin: 16px 0;
-    box-shadow: 0 0 14px -3px colors.$primary;
+    // box-shadow: 0 0 14px -3px colors.$primary;
+    box-shadow: 0 0 14px -3px #835720;
 }
 
 .map-info{
