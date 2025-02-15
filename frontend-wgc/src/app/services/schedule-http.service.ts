@@ -10,7 +10,7 @@ export class ScheduleHttpSrv{
     private http = inject(HttpClient);
     private _scheduleItems = signal<PartyScheduleItem[]>([]);
     public scheduleItems = computed(()=> {
-        return this._scheduleItems().sort((a,b) => a.time < b.time ? -1 : 1);;
+        return this._scheduleItems().sort((a,b) => a.time < b.time ? -1 : 1);
     })
 
 

@@ -7,13 +7,12 @@ import {
 import { TopSectionComponent } from './top-section/top-section.component';
 import { AdminTableComponent } from './admin-table/admin-table.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { DietTableComponent } from './diet-table/diet-table.component';
-import { GoingGuestsTableComponent } from './going-guests-table/going-guests-table.component';
 import { GuestSummaryComponent } from './guest-summary/guest-summary.component';
 import { firstValueFrom } from 'rxjs';
 import { GuestAdminService } from '../services/guest-admin.service';
 import { AdminStore } from '../shared/store/admin.store';
 import { CreateInvitationComponent } from './create-invitation/create-invitation.component';
+import { ManageScheduleComponent } from "./manage-schedule/manage-schedule.component";
 
 @Component({
   selector: 'app-admin-panel',
@@ -22,11 +21,10 @@ import { CreateInvitationComponent } from './create-invitation/create-invitation
     TopSectionComponent,
     AdminTableComponent,
     MatTabsModule,
-    DietTableComponent,
-    GoingGuestsTableComponent,
     GuestSummaryComponent,
     CreateInvitationComponent,
-  ],
+    ManageScheduleComponent
+],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

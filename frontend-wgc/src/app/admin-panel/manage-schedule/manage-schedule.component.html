@@ -1,0 +1,26 @@
+<div>
+    @for(item of items(); track $index){
+        <div class="editable-item">
+            <mat-icon>{{item.icon}}</mat-icon>
+            <span>{{item.time | toHours}}</span>
+            <span>{{item.title}}</span>
+            @if(item.description){
+                <span>- {{item.description}}</span>
+            }
+            
+            <button mat-icon-button>
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+    }
+    <button mat-mini-fab color="">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<div class="schedule-preview">
+    <h3 class="fancy-font">Podgląd:</h3>
+    <app-party-schedule />
+</div>
+
+

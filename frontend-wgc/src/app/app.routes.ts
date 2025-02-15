@@ -26,8 +26,7 @@ export const routes: Routes = [
                 .then( c => c.InviteConfirmationComponent),
                 resolve: [getInvitationDataResolver]
             },
-        ],
-        resolve: [getSessionResolver]
+        ]
     },
     {
         path: `${BASE_ROUTES.ADMIN}/${BASE_ROUTES.LOGIN}`, 

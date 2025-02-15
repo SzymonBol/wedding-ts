@@ -2,7 +2,7 @@
   @for(scheduleItem of schedule(); track scheduleItem.time){
   <div class="schedule-item">
     <mat-icon [fontIcon]="scheduleItem.icon" class="schedule-icon"></mat-icon>
-    <span class="schedule-time">{{scheduleItem.time}}</span>
+    <span class="schedule-time">{{scheduleItem.time | toHours}}</span>
 
     <span class="point"></span>
 

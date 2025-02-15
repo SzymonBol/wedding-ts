@@ -1,3 +1,4 @@
+github
 [done] Stwórz bazę danych - nosql, na szybko 
 [done] Dodaj jakiś rekord do bazy danych: id, guest: [{name, surname, isGoing (yes/no/maybe/null), comment, isVege}], isConfirmed
 [done] Stwórz projekt
@@ -16,16 +17,18 @@
 [done] Na podstawie odpowiedzi z backendu jeśli jakikolwiek osoba z zaproszenia ma staus, że będzie to zielony przcisk powinen się pokazać jako zaznaczony. 
 [done] Dodaj nocleg na listę zaproszeń 
 [done] Rozszerz zaproszenia oraz nocleg
-[] Przerób uuid na 8-10 znakowy kod
+[done] Przerób uuid na 8-10 znakowy kod
 [done] Utwórz widok który umożliwi wpisanie kodu z zaproszenia
 [done] Dodaj zapytanie api które wyciągnie zaproszenie na podstawie kodu
-[] Dodaj dane zaproszenia do session storage
-[] Dodaj na stronie głównej panel z zaproszeniem
+[done] Dodaj na stronie głównej panel z zaproszeniem
 [done] Dodaj przykładowy plan wesela 
-[] Dodaj przykładowy rozkład stolików 
-[] Dodaj na stronie głównej odnośniki do pozostałych podstron
+[done] Dodaj na stronie głównej odnośniki do pozostałych podstron
 [done] Dostosuj dla mobile/tablet/desktop
-
+[] Dodaj dane zaproszenia do session storage
+[done] Zmień mechnizm z godzin na pełne daty przy harmonogramie
+[] Dodaj panel do ządzania hamonogramem
+[] Uzupelnić bazę o poprawne dane
+[done] Dodać liść jako ikonę w przeglądarce
 
 
 
@@ -36,7 +39,7 @@
 [done] Stwórz request w API który sprawdzi czy użytkownik o podanym loginie i haśle już istnieje + zapisze jakiś hash jako token
 [done] Stwórz route /admin do komponentu Admin-Management
 [done] Dodaj komponent logowania
-[] Dodaj komponent zarządzania
+[done] Dodaj komponent zarządzania
 [done] Dodaj interceptor który będzie dokładał token do wysyłanych zapytań
 [done] Obsługa tokenu po stronie bazy -> 
 [done] Zaloguj na użytkownika
@@ -45,12 +48,10 @@
 	| Imiona i nazwiska na zaproszeniu - jedno pod drugim 
 	| Kółko zielone jeśli wszyscy potwierdzili - Czerwone jeśli wszyscy odmówili - dla każdego osobno jesli jest mix ide + nie ide 
 	| isVege - ikonka z badge (ilość osób vege na zaproszeniu) + tooltip kto / ikonka mięsa
-[] Przycisk importuj dane - Dodaj odczyt z xml -> każdy wiersz to jedno zaproszenie
+[] Przycisk importuj dane - Dodaj odczyt z x -> każdy wiersz to jedno zaproszenie
 [] Po imporcie danych wyświetla się tabela na dole z przyciskiem "Zaktualizuj dane"
 [done] Dodaj mechnizm który będzie generował QR code dla każdego zaproszenia
-[] Dodaj przycisk "Pobierz dane" do excela (na początek) + mechanizm który będzie w stanie przerobić dane i zapisać w excel
-[] Po prawej stronie nad tabelą będzie przycisk "Edytuj dane" -> dla każdej osoby będzie można zmienić status, dopisać kaszojada, zazanczyć czy jest ktoś vege
-[] Dodaj request który masowo zmieni dane -> dostanie całą tabice i na podstawie id zmieni dane w środku lub utworzy obiekt 
+
 
 
 [deleted] Stwórz na backendzie request typu patch, który zaupdatuje imie i nazwisko osoby (zmiana jest jedynie możliwa dla osób nie wyszczegónionych w zaproszeniu - flaga isInInvitation)
@@ -67,7 +68,10 @@
 [deleted] Stwórz resolver, który pobierze id z url i odpyta backend o dane -> zapis w store
 [deleted] Dodaj pole z komentarzem dla każdej osoby w trybie edycji na zakładce listy osób
 [deleted] Wygeneruj QR code dla localhost z zaproszeniem + testy 
-
+[deleted] Dodaj przykładowy rozkład stolików
+[deleted] Po prawej stronie nad tabelą będzie przycisk "Edytuj dane" -> dla każdej osoby będzie można zmienić status, dopisać kaszojada, zazanczyć czy jest ktoś vege
+[deleted] Dodaj przycisk "Pobierz dane" do excela (na początek) + mechanizm który będzie w stanie przerobić dane i zapisać w excel
+[deleted] Dodaj request który masowo zmieni dane -> dostanie całą tabice i na podstawie id zmieni dane w środku lub utworzy obiekt 
 
 1. przypadek testowy 
 Waldi i Ania, bez dzieci. Wchodzą na link i widzą "Serdecznie zapraszamy Waldemara i Annę na wesele..." + 2 przyciski "Potwierdzam przybycie" oraz "Nie pojawię się".

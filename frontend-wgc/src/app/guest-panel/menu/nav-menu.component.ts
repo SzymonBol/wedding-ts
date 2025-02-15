@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, computed, effect, inject, output, signal } from '@angular/core';
 import { ROUTE } from '../../shared/routes.enum';
 import { MenuItem } from './types/menu.interface';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, NavigationSkipped, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { NgClass } from '@angular/common'
 import { toSignal } from '@angular/core/rxjs-interop'
@@ -21,15 +21,15 @@ export class NavMenuComponent implements AfterViewInit {
   protected currentUrl = signal<string>('');
   
   protected selectedItem = computed(() => {
-    const change =this.routerChange();
-    if(change instanceof NavigationEnd){
-      if(change.url.includes(ROUTE.HOME)){
-        return ROUTE.HOME;
-      } else if(change.url.includes(ROUTE.INVITE_CONFIRMATION)){
-        return ROUTE.INVITE_CONFIRMATION;
-      }
-    } 
-    return '';
+      const change =this.routerChange();
+      if(change instanceof NavigationEnd || change instanceof NavigationSkipped){
+        if(change.url.includes(ROUTE.HOME) || change.url === '/'){
+          return ROUTE.HOME;
+        } else if(change.url.includes(ROUTE.INVITE_CONFIRMATION)){
+          return ROUTE.INVITE_CONFIRMATION;
+        }
+      } 
+      return '';
   })
   itemClicked = output<void>();
 

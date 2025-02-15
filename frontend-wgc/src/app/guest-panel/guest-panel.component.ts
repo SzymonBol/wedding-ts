@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, NgZone } from '@angular/core';
+import { AfterViewInit, Component, inject, NgZone, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -11,6 +11,8 @@ import { ROUTE } from '../shared/routes.enum';
 import { AuthDataStore } from '../shared/store/auth.store';
 import { ConfirmationDialogService } from '../admin-panel/confirmation-dialog/service/confirmation-dialog.service';
 import { DesktopMenuComponent } from "./menu/desktop-menu/desktop-menu.component";
+import { HttpAuthService } from '../services/auth.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -28,19 +30,33 @@ import { DesktopMenuComponent } from "./menu/desktop-menu/desktop-menu.component
   templateUrl: './guest-panel.component.html',
   styleUrl: './guest-panel.component.scss'
 })
-export class GuestPanelComponent implements AfterViewInit {
+export class GuestPanelComponent implements OnInit, AfterViewInit {
   protected store = inject(GuestDataStore);
-  protected user = inject(AuthDataStore).loggedUser;
+  private authStore = inject(AuthDataStore);
+  protected user = this.authStore.loggedUser;
   readonly confirmationDialogService = inject(ConfirmationDialogService);
   protected isLoadingSig = this.store.isLoading;
   private zone =inject(NgZone);
   private router = inject(Router);
   protected envitoment = environment;
-  
+  private authService = inject(HttpAuthService);
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
+    this.store.loadingData();
+  }
+
+  async ngAfterViewInit(): Promise<void> {
     const appContentRef = document.getElementById('application-content');
     const applicationHeader = document.getElementById('application-header');
+
+        try{
+          const result = await firstValueFrom(this.authService.checkSession());
+          this.authStore.updateLoginStatus(result);
+          this.store.finishLoading();
+        } catch(error){
+          this.store.finishLoading();
+          console.warn('There is no existing session');
+        }
 
     const observer = new ResizeObserver(entries => {
       this.zone.run(() => {
