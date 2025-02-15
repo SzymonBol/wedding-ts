@@ -90,7 +90,7 @@ app.get('/check-session', async (req, res) => {
 })
 
 app.get('/logout', async (req, res) => {
-  res.cookie("authToken", 'logged_out', {httpOnly: true});
+  res.cookie("authToken", 'logged_out', {httpOnly: true, sameSite: 'none', secure: true});
   res.send();
 })
 
