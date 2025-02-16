@@ -1,7 +1,16 @@
+@use 'colors';
+
 :host{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.manage-schedule-container{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid colors.$primary;
+    padding-bottom: 40px;
 }
 
 .editable-item{
@@ -17,4 +26,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.add-button{
+    align-self: center;
 }

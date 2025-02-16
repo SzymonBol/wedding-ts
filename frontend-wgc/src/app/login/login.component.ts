@@ -9,6 +9,7 @@ import { HttpAuthService } from '../services/auth.service';
 import { AuthCredentials, LoginResponse } from '../types/auth.types';
 import { firstValueFrom, tap } from 'rxjs';
 import { AuthDataStore } from '../shared/store/auth.store';
+import { GuestDataStore } from '../shared/store/guest-panel.store';
 
 @Component({
   selector: 'app-login',
@@ -25,11 +26,13 @@ export class LoginComponent {
 
   private router = inject(Router);
   private authStore = inject(AuthDataStore);
+  private store = inject(GuestDataStore);
   private authService = inject(HttpAuthService);
   error = signal<string | undefined>(undefined);
 
 
   async onSubmit(){
+    this.store.loadingData()
     const login = this.loginForm.controls.login.value;
     const password = this.loginForm.controls.password.value;
 
@@ -53,6 +56,7 @@ export class LoginComponent {
     } catch(error){
       this.authStore.updateLoginStatus({isFine: false, user: null});
       console.error(error);
+      this.store.finishLoading();
     }
   }
 

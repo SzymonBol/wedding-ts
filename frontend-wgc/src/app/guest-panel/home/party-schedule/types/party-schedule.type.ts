@@ -1,5 +1,5 @@
 export interface PartyScheduleItem{
-  _id: string;
+  _id?: string;
   time: string;
   title: string;
   description?: string;

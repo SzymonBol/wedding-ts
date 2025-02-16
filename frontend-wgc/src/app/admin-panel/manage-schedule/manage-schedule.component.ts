@@ -1,9 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ScheduleHttpSrv } from '../../services/schedule-http.service';
 import { PartyScheduleComponent } from "../../guest-panel/home/party-schedule/party-schedule.component";
 import { MatIcon } from '@angular/material/icon';
 import { ToHoursPipe } from "../../guest-panel/home/party-schedule/pipe/to-hours.pipe";
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { ScheduleItemDialogComponent } from './schedule-item-dialog/schedule-item-dialog.component';
 
 @Component({
   selector: 'app-manage-schedule',
@@ -12,15 +14,13 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './manage-schedule.component.html',
   styleUrl: './manage-schedule.component.scss'
 })
-export class ManageScheduleComponent implements OnInit {
-
+export class ManageScheduleComponent {
+  readonly dialogServ = inject(MatDialog);
   private scheduleSrv = inject(ScheduleHttpSrv);
   items = this.scheduleSrv.scheduleItems;
 
-  ngOnInit(): void {
-    if(this.items.length === 0){
-      this.scheduleSrv.fetchSchedule();
-    }
+  openAddDialog(){
+    this.dialogServ.open(ScheduleItemDialogComponent);
   }
 
 }

@@ -7,6 +7,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { apiAddressInterceptor } from './interceptor/api-address.interceptor';
 import { withCredentialsInterceptor } from './interceptor/credentials.interceptor';
 import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([apiAddressInterceptor, withCredentialsInterceptor])
     ),
+    provideNativeDateAdapter(),
     {
       provide: GALLERY_CONFIG,
       useValue: {

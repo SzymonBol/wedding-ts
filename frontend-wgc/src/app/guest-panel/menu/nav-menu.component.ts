@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgClass } from '@angular/common'
 import { toSignal } from '@angular/core/rxjs-interop'
 import { menuItemsData } from './menu-items.const';
+import { SelectedItemService } from './service/selected-menu-item.service';
 
 @Component({
   selector: 'app-menu',
@@ -17,22 +18,10 @@ import { menuItemsData } from './menu-items.const';
 export class NavMenuComponent implements AfterViewInit {
 
   private router = inject(Router);
-  routerChange = toSignal(this.router.events);
   protected currentUrl = signal<string>('');
-  
-  protected selectedItem = computed(() => {
-      const change =this.routerChange();
-      if(change instanceof NavigationEnd || change instanceof NavigationSkipped){
-        if(change.url.includes(ROUTE.HOME) || change.url === '/'){
-          return ROUTE.HOME;
-        } else if(change.url.includes(ROUTE.INVITE_CONFIRMATION)){
-          return ROUTE.INVITE_CONFIRMATION;
-        }
-      } 
-      return '';
-  })
   itemClicked = output<void>();
-
+  selectedItem = inject(SelectedItemService).selectedItem;
+  
   menuItems : MenuItem[] = menuItemsData;
 
   ngAfterViewInit(): void {

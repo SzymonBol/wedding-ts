@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { menuItemsData } from '../menu-items.const';
 import { MenuItem } from '../types/menu.interface';
 import { NavigationEnd, NavigationSkipped, Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ROUTE } from '../../../shared/routes.enum';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NgClass } from '@angular/common';
+import { SelectedItemService } from '../service/selected-menu-item.service';
 
 @Component({
   selector: 'app-desktop-menu',
@@ -21,20 +22,7 @@ export class DesktopMenuComponent {
   router = inject(Router);
   loggedUser = inject(AuthDataStore).loggedUser;
   ROUTE=ROUTE;
-
-  routerChange= toSignal(this.router.events);
-
-  protected selectedItem = computed(() => {
-    const change =this.routerChange();
-    if(change instanceof NavigationEnd || change instanceof NavigationSkipped){
-      if(change.url.includes(ROUTE.HOME) || change.url === '/'){
-        return ROUTE.HOME;
-      } else if(change.url.includes(ROUTE.INVITE_CONFIRMATION)){
-        return ROUTE.INVITE_CONFIRMATION;
-      }
-    } 
-    return '';
-  })
+  selectedItem = inject(SelectedItemService).selectedItem;
 
   navigate(route: string) {
     this.router.navigateByUrl(route);

@@ -13,6 +13,7 @@ import { GuestAdminService } from '../services/guest-admin.service';
 import { AdminStore } from '../shared/store/admin.store';
 import { CreateInvitationComponent } from './create-invitation/create-invitation.component';
 import { ManageScheduleComponent } from "./manage-schedule/manage-schedule.component";
+import { GuestDataStore } from '../shared/store/guest-panel.store';
 
 @Component({
   selector: 'app-admin-panel',
@@ -32,9 +33,11 @@ import { ManageScheduleComponent } from "./manage-schedule/manage-schedule.compo
 export class AdminPanelComponent implements OnInit {
   private guestsService = inject(GuestAdminService);
   private adminStore = inject(AdminStore);
+  private store = inject(GuestDataStore);
 
   async ngOnInit() {
     const guestes = await firstValueFrom(this.guestsService.getGuests());
     this.adminStore.setStoreState(guestes);
+    this.store.finishLoading();
   }
 }

@@ -1,4 +1,4 @@
-<div>
+<div class="manage-schedule-container">
     @for(item of items(); track $index){
         <div class="editable-item">
             <mat-icon>{{item.icon}}</mat-icon>
@@ -13,7 +13,7 @@
             </button>
         </div>
     }
-    <button mat-mini-fab color="">
+    <button mat-mini-fab color="" class="add-button" (click)="openAddDialog()">
         <mat-icon>add</mat-icon>
     </button>
 </div>

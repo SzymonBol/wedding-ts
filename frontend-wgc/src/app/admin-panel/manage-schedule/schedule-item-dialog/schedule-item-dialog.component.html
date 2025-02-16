@@ -1,1 +1,51 @@
-<p>schedule-item-dialog works!</p>
+<h2 mat-dialog-title>{{text().header}}</h2>
+
+<mat-dialog-content style="overflow-y: hidden;">
+    <p>{{text().desciption}}</p>
+    <form [formGroup]="form" class="schedule-item-form">
+        <mat-form-field>
+            <mat-label>Ikona</mat-label>
+            <input matInput formControlName="icon">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Nazwa</mat-label>
+            <input matInput formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Opis</mat-label>
+            <input matInput formControlName="description">
+        </mat-form-field>
+
+        <div class="date-row">
+            <mat-form-field>
+                <mat-label>Data</mat-label>
+                <input matInput [matDatepicker]="datepicker" formControlName="date">
+                <mat-datepicker #datepicker/>
+                <mat-datepicker-toggle [for]="datepicker" matSuffix/>
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Godzina</mat-label>
+                <input matInput formControlName="time">
+            </mat-form-field>
+        </div>
+    </form>    
+</mat-dialog-content>
+
+
+<mat-dialog-actions>
+    <mat-checkbox [(ngModel)]="addNext" >Dodaj kolejny</mat-checkbox>
+    <button mat-button mat-dialog-close type="button">
+        Usuń
+    </button>
+
+    <button mat-button mat-dialog-close type="button">
+        Anuluj
+    </button>
+    <button mat-flat-button (click)="submit()" type="submit">
+        {{text().confirmButton}}
+    </button>
+</mat-dialog-actions>
+
