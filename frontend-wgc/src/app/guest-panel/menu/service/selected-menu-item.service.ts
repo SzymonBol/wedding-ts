@@ -9,7 +9,6 @@ export class SelectedItemService{
     private readonly routerChange = toSignal(inject(Router).events);
       
       selectedItemEff = effect(() => {
-        console.log(this.selectedItem());
           const change =this.routerChange();
           if(change instanceof NavigationEnd || change instanceof NavigationSkipped){
             if(change.url.includes(ROUTE.HOME) || change.url === '/'){

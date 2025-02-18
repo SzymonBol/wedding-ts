@@ -45,7 +45,7 @@
                     <span class="contact-owner">{{envitoment.mr}}</span>
                     <div class="contact-footer">
                         <mat-icon class="contact-icon">phone</mat-icon>
-                        <span>{{envitoment.mrPhone}}</span>
+                        <a [href]="'tel:'+envitoment.mrPhone" class="phone-number">{{envitoment.mrPhone}}</a>
                     </div>
                     <div class="contact-footer">
                         <mat-icon class="contact-icon">email</mat-icon>
@@ -56,7 +56,7 @@
                     <span class="contact-owner">{{envitoment.miss}}</span>
                     <div class="contact-footer">
                         <mat-icon class="contact-icon">phone</mat-icon>
-                        <span>{{envitoment.missPhone}}</span>
+                        <a [href]="'tel:'+envitoment.missPhone" class="phone-number">{{envitoment.missPhone}}</a>
                     </div>
                     <div class="contact-footer">
                         <mat-icon class="contact-icon">email</mat-icon>

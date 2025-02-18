@@ -6,6 +6,7 @@ import { ToHoursPipe } from "../../guest-panel/home/party-schedule/pipe/to-hours
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { ScheduleItemDialogComponent } from './schedule-item-dialog/schedule-item-dialog.component';
+import { PartyScheduleItem } from '../../guest-panel/home/party-schedule/types/party-schedule.type';
 
 @Component({
   selector: 'app-manage-schedule',
@@ -21,6 +22,13 @@ export class ManageScheduleComponent {
 
   openAddDialog(){
     this.dialogServ.open(ScheduleItemDialogComponent);
+  }
+
+  openEditDialog(scheduleItem: PartyScheduleItem){
+    this.dialogServ.open(ScheduleItemDialogComponent,  {
+      data: scheduleItem,
+    });
+    
   }
 
 }

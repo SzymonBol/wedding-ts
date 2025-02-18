@@ -1,5 +1,5 @@
 @if(schedule().length > 0){
-  @for(scheduleItem of schedule(); track scheduleItem.time){
+  @for(scheduleItem of schedule(); track scheduleItem._id){
   <div class="schedule-item">
     <span class="schedule-icon">
       <mat-icon [fontIcon]="scheduleItem.icon" class="schedule-icon"></mat-icon>

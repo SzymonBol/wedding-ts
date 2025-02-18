@@ -1,14 +1,16 @@
 <div class="manage-schedule-container">
+    <h1 class="fancy-font center">Zarządzanie harmonogramem</h1>
+
     @for(item of items(); track $index){
         <div class="editable-item">
             <mat-icon>{{item.icon}}</mat-icon>
             <span>{{item.time | toHours}}</span>
             <span>{{item.title}}</span>
             @if(item.description){
-                <span>- {{item.description}}</span>
+                <span class="description">- {{item.description}}</span>
             }
             
-            <button mat-icon-button>
+            <button mat-icon-button (click)="openEditDialog(item)">
                 <mat-icon>edit</mat-icon>
             </button>
         </div>

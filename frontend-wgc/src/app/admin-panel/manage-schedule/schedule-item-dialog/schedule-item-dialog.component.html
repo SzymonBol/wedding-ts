@@ -36,16 +36,23 @@
 
 
 <mat-dialog-actions>
-    <mat-checkbox [(ngModel)]="addNext" >Dodaj kolejny</mat-checkbox>
-    <button mat-button mat-dialog-close type="button">
-        Usuń
-    </button>
-
-    <button mat-button mat-dialog-close type="button">
-        Anuluj
-    </button>
-    <button mat-flat-button (click)="submit()" type="submit">
-        {{text().confirmButton}}
-    </button>
+    <div class="buttons-container">
+        <div class="changed-actions">
+            @if(id()){
+                <button mat-button mat-dialog-close type="button" (click)="deletePoint()">
+                    Usuń
+                </button>
+            } @else {
+                <mat-checkbox [(ngModel)]="addNext" >Dodaj kolejny</mat-checkbox>
+            }
+        </div>
+    
+        <button mat-button mat-dialog-close type="button">
+            Anuluj
+        </button>
+        <button mat-flat-button (click)="submit()" type="submit">
+            {{text().confirmButton}}
+        </button>
+    </div>
 </mat-dialog-actions>
 

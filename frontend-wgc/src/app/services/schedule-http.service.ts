@@ -23,7 +23,11 @@ export class ScheduleHttpSrv{
         return this.http.post('/create-schedule-point', item);
     }
 
-    public deleteScheduleItem(item: PartyScheduleItem){
-        return this.http.delete(`/delete-schedule-point/${item._id}`);
+    public updateSchedulePoint(item: PartyScheduleItem, id: string){
+        return this.http.put('/update-schedule-point/'+id, item);
+    }
+
+    public deleteScheduleItem(id: string){
+        return this.http.delete(`/delete-schedule-point/${id}`);
     }
 }

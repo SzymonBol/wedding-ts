@@ -9,3 +9,13 @@
     flex-direction: row;
     gap: 16px;
 }
+
+.buttons-container{
+    display: flex;
+    width: 100%;
+}
+
+.changed-actions{
+    align-self: flex-start;
+    flex: 1;
+}

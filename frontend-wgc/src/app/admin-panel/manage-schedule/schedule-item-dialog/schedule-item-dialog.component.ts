@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -34,21 +34,22 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 })
 export class ScheduleItemDialogComponent {
   readonly dialogRef = inject(MatDialogRef<ScheduleItemDialogComponent>);
+  readonly data = inject<PartyScheduleItem>(MAT_DIALOG_DATA);
   readonly formBuilder = inject(FormBuilder);
   readonly scheduleService = inject(ScheduleHttpSrv);
-  protected id = signal<string | undefined>(undefined);
+  protected id = signal<string | undefined>(this.data?._id ?? undefined);
   protected addNext = false;
 
   text = computed(() => {
     if(this.id()){
       return {
-        header: '',
-        desciption: '',
-        confirmButton: ''
+        header: 'Edycja',
+        desciption: 'Zmień dane w punkcie harmonogramu',
+        confirmButton: 'Zmień'
       }
     } else {
       return {
-        header: 'Dodaj punkt harmonogramu',
+        header: 'Dodawanie',
         desciption: 'Uzupełnij formularz o poprawne dane i zatwierdź przyciskiem.',
         confirmButton: 'Dodaj'
       }
@@ -56,11 +57,11 @@ export class ScheduleItemDialogComponent {
   })
 
   form = this.formBuilder.group({
-    icon: ['', Validators.required],
-    title: ['', Validators.required],
-    description: [''],
-    date: [new Date(environment.weddingDate), Validators.required],
-    time: ['', Validators.required]
+    icon: [this.data?.icon ?? '', Validators.required],
+    title: [this.data?.title ?? '', Validators.required],
+    description: [this.data?.description ?? ''],
+    date: [this.data?.time ? new Date(this.data.time) : new Date(environment.weddingDate), Validators.required],
+    time: [this.getInitialTime(), Validators.required]
   })
 
   closeDialog(){
@@ -85,13 +86,41 @@ export class ScheduleItemDialogComponent {
       time: date.toISOString()
     }
 
-    await firstValueFrom(this.scheduleService.createSchedulePoint(item));
+    const id = this.id();
+    if(id){
+      await firstValueFrom(this.scheduleService.updateSchedulePoint(item, id));
+    } else {
+      await firstValueFrom(this.scheduleService.createSchedulePoint(item));;
+    }
 
     this.scheduleService.fetchSchedule();
 
-    if(this.addNext)
+    if(this.addNext){
       this.form.reset();
+      this.form.controls.date.setValue(new Date(environment.weddingDate));
+    }
     else
       this.dialogRef.close();
   }
+
+  async deletePoint(){
+    const id = this.id();
+    try{
+      if(id) await firstValueFrom(this.scheduleService.deleteScheduleItem(id));
+      this.scheduleService.fetchSchedule();
+    } catch(err){
+      console.error(err);
+    }
+
+  }
+
+  private getInitialTime(){
+    if(this.data?.time){
+      const date = new Date(this.data.time);
+      return ('0' + date.getHours().toString()).slice(-2)+ ':' + ('0' + date.getMinutes().toString()).slice(-2);
+    } else 
+      return '';
+  }
+
+
 }

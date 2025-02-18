@@ -5,7 +5,7 @@ import { createInvitation, deleteInvitation, findInvitationById, getAllInvitatio
 import cors from 'cors';
 import { authenticateToken, createUser, validateLoginCredentials} from './login.js'
 import cookieParser from "cookie-parser";
-import { createSchedulePoint, getSchedule, deleteSchedulePoint } from './schedule-crud.js';
+import { createSchedulePoint, getSchedule, deleteSchedulePoint, updateSchedulePoint } from './schedule-crud.js';
 import { ObjectId } from 'mongodb';
 
 config();
@@ -108,6 +108,13 @@ app.delete('/delete-invitation/:id', async (req, res) => {
 app.post('/create-schedule-point', async (req, res) => { 
   const schedulePoint = req.body;  
   const result = await createSchedulePoint(scheduleCollection, schedulePoint);
+  res.send(result);
+})
+
+app.put('/update-schedule-point/:id', async (req, res) => { 
+  const schedulePoint = req.body;  
+  const id = new ObjectId(req.params.id);  
+  const result = await updateSchedulePoint(scheduleCollection, schedulePoint, id);
   res.send(result);
 })
 

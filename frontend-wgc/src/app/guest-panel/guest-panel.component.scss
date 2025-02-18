@@ -114,6 +114,14 @@ mat-drawer-content {
                     font-size: 16px;
                 }
 
+                .phone-number{
+                    color: colors.$smoked-text;
+
+                    &:visited{
+                        color: colors.$smoked-text;
+                    }
+                }
+
                 .footer-email{
                     color: colors.$smoked-text;
     

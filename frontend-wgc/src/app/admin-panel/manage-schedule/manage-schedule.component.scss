@@ -6,11 +6,20 @@
     align-items: center;
 }
 
+.center{
+    text-align: center;
+    font-size: 54px;
+}
+
 .manage-schedule-container{
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid colors.$primary;
     padding-bottom: 40px;
+}
+
+.description{
+    max-width: 700px;
 }
 
 .editable-item{
