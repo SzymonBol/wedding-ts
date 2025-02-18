@@ -61,7 +61,7 @@ export class QuotationsComponent implements OnInit, OnDestroy{
       from: '1670'
     },
     {
-      text: 'Co to jest małżeństwo? Jest to wspólnota dwojga ludzi, którzy nieustannie sobie przebaczają”.',
+      text: 'Co to jest małżeństwo? Jest to wspólnota dwojga ludzi, którzy nieustannie sobie przebaczają.',
       author: 'ks. Piotr Pawlukiewicz'
     },
   ]

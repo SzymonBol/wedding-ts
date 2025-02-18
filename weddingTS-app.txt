@@ -26,8 +26,8 @@ github
 [done] Dostosuj dla mobile/tablet/desktop
 [] Dodaj dane zaproszenia do session storage
 [done] Zmień mechnizm z godzin na pełne daty przy harmonogramie
-[] Dodaj panel do ządzania hamonogramem
-[] Uzupelnić bazę o poprawne dane
+[done] Dodaj panel do ządzania hamonogramem
+[in progress] Uzupelnić bazę o poprawne dane
 [done] Dodać liść jako ikonę w przeglądarce
 
 
