@@ -5,6 +5,8 @@ import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
 import { inject } from "@angular/core";
 import { InvitationService } from "../../services/invitation-service.service";
 import { tapResponse } from '@ngrx/operators';
+import { MatDialog } from "@angular/material/dialog";
+import { InvalidCodeDialogComponent } from "../../guest-panel/invite-confirmation/invalid-code-dialog/invalid-code-dialog.component";
 
 const initialState: GuestStoreData = {
     invitationId: undefined,
@@ -12,13 +14,14 @@ const initialState: GuestStoreData = {
     guestsData: undefined,
     confirmed: false,
     comment: null,
-    needAccommodation: false
+    needAccommodation: false,
+    countOfFailedCodesProvided: 0
 }
 
 export const GuestDataStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
-    withMethods((store, invitationService = inject(InvitationService)) => (
+    withMethods((store, invitationService = inject(InvitationService), dialogServ = inject(MatDialog)) => (
         {
             loadingData(): void {
                 patchState(store, { isLoading: true });
@@ -42,6 +45,8 @@ export const GuestDataStore = signalStore(
                         next: (invitation) => patchState(store, { guestsData : invitation.guests, invitationId: invitation.id, comment: invitation.comment,
                           confirmed: invitation.confirmed, needAccommodation: invitation.needAccommodation, isLoading: false }),
                         error: (err) => {
+                          patchState(store, { countOfFailedCodesProvided: store.countOfFailedCodesProvided()+1 })
+                          dialogServ.open(InvalidCodeDialogComponent, {data: store.countOfFailedCodesProvided, disableClose: true});
                           patchState(store, { isLoading: false });
                           console.error(err);
                         },

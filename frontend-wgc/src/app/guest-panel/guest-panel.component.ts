@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, NgZone, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, inject, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
@@ -38,6 +38,8 @@ export class GuestPanelComponent implements OnInit, AfterViewInit {
   protected envitoment = environment;
   private authService = inject(HttpAuthService);
 
+  @ViewChild('drawer', { static: true }) public drawer!: MatDrawer;
+
   ngOnInit(): void {
     this.store.loadingData();
   }
@@ -45,6 +47,13 @@ export class GuestPanelComponent implements OnInit, AfterViewInit {
   async ngAfterViewInit(): Promise<void> {
     const appContentRef = document.getElementById('application-content');
     const applicationHeader = document.getElementById('application-header');
+    const draw = document.getElementById('mat-menu-drawer');
+    if(draw){
+      draw.style.visibility = 'hidden';
+      setTimeout(() => {
+        draw.style.display = 'visible';
+      })
+    }
 
         try{
           const result = await firstValueFrom(this.authService.checkSession());
@@ -55,21 +64,21 @@ export class GuestPanelComponent implements OnInit, AfterViewInit {
           console.warn('There is no existing session');
         }
 
-    const observer = new ResizeObserver(entries => {
-      this.zone.run(() => {
-        if(appContentRef){
-          appContentRef.style.marginTop = `${entries[0].contentRect.height +24}px`
-        }
+      const observer = new ResizeObserver(entries => {
+        this.zone.run(() => {
+          if(appContentRef){
+            appContentRef.style.marginTop = `${entries[0].contentRect.height +24}px`
+          }
+        });
       });
-    });
-   
-    if(applicationHeader){
-      observer.observe(applicationHeader);
-    }
+    
+      if(applicationHeader){
+        observer.observe(applicationHeader);
+      }
   }
 
-  toggleDrawer(drawer : MatDrawer) {
-    drawer.toggle();
+  toggleDrawer() {
+    this.drawer.toggle();
   }
 
   navigateToAdminPanel(){

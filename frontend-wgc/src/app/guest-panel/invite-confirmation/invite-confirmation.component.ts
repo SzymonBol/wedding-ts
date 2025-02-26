@@ -48,6 +48,7 @@ export class InviteConfirmationComponent {
   )
 
   editModeEff = effect(() => {
+    this.isConfirmedSig();
     if(this.editModeSig()){
       this.form.controls.comment.enable();
       this.form.controls.needAccommodation.enable()

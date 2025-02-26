@@ -1,0 +1,28 @@
+@use "colors";
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.counter{
+    font-size: 36px;
+    font-weight: 600;
+    height: 36px;
+}
+
+.last-info{
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    text-align: center;
+}
+
+.number{
+    color: colors.$smoked-text;
+}
+
+.phone-number{
+    color: colors.$smoked-text;
+}

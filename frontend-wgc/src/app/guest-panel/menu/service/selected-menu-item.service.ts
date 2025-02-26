@@ -13,8 +13,8 @@ export class SelectedItemService{
           if(change instanceof NavigationEnd || change instanceof NavigationSkipped){
             if(change.url.includes(ROUTE.HOME) || change.url === '/'){
               this.selectedItem.set(ROUTE.HOME);
-            } else if(change.url.includes(ROUTE.INVITE_CONFIRMATION)){
-              this.selectedItem.set(ROUTE.INVITE_CONFIRMATION);
+            } else if(change.url.includes(ROUTE.ENTER_CODE)){
+              this.selectedItem.set(ROUTE.ENTER_CODE);
             }
           }
       }, {allowSignalWrites: true});

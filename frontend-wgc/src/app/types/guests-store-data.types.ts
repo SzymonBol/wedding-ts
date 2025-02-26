@@ -20,6 +20,7 @@ export type GuestStoreData = {
     confirmed: boolean;
     comment: string | null;
     needAccommodation: boolean;
+    countOfFailedCodesProvided: number;
 }
 
 export const isGuestDataArrayType = (value: any) :value is GuestData[] =>{

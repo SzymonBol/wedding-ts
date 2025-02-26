@@ -1,11 +1,11 @@
 <mat-drawer-container [hasBackdrop]="true" class="main-container">
-    <mat-drawer #drawer mode="over" autoFocus="false" position="end">
+    <mat-drawer #drawer mode="over" autoFocus="false" position="end" id="mat-menu-drawer">
         <div class="menu-content">
-            <button mat-icon-button class="close-button" (click)="toggleDrawer(drawer)" color="">
+            <button mat-icon-button class="close-button" (click)="toggleDrawer()" color="">
                 <mat-icon>close-button</mat-icon>
             </button>
             <img src="ts_wedding_logo.png" height="100" class="menu-logo-img">
-            <app-menu (itemClicked)="toggleDrawer(drawer)" />
+            <app-menu (itemClicked)="toggleDrawer()" />
         </div>
         <div class="admin-panel-button">
             <button mat-icon-button  (click)="navigateToAdminPanel()">
@@ -28,7 +28,7 @@
                 <img src="lisc.png"  class="header-logo-img">
                 <span class="header-text fancy-font">Wesele Teresy & Szymona</span> 
             </span>
-            <button mat-icon-button (click)="toggleDrawer(drawer)" class="mobile-view">
+            <button mat-icon-button (click)="toggleDrawer()" class="mobile-view">
                 <mat-icon>menu</mat-icon>
             </button>
             <div class="desktop-view">

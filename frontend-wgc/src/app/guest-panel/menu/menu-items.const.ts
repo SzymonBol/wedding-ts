@@ -8,7 +8,7 @@ export const menuItemsData : MenuItem[] = [
       isActive: false,
     },
     {
-      targetRoute: ROUTE.INVITE_CONFIRMATION,
+      targetRoute: ROUTE.ENTER_CODE,
       label: 'Potwierdź zaproszenie',
       isActive: false,
     }

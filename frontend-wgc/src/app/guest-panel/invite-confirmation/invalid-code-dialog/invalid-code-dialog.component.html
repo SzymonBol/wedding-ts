@@ -1,0 +1,77 @@
+
+<h2 mat-dialog-title>{{header()}}</h2>
+
+<mat-dialog-content style="overflow-y: hidden;">
+
+    <ng-template #normal>
+        <p>Sprawdź czy wprowadziłeś poprawny kod. Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
+        <ul>
+            <li> duże o oraz zero oraz duże q ( O / 0 / Q )</li>
+            <li> małe L oraz duże i (I / l)</li>
+            <li> litera W oraz podwójne V (W / VV)</li>
+            <li> liczba 5 oraz duże s (5 / S)</li>
+        </ul>
+    </ng-template>
+
+    <ng-template #more>
+        <p>Sprawdź czy wprowadziłeś poprawny kod. Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
+        <ul>
+            <li><strong>O</strong> (litera O) ↔ <strong>0</strong> (zero)</li>
+            <li><strong>I</strong> (wielkie i) ↔ <strong>1</strong> (jeden) ↔ <strong>l</strong> (małe L)</li>
+            <li><strong>Z</strong> (wielkie Z) ↔ <strong>2</strong> (dwa)</li>
+            <li><strong>S</strong> (wielkie S) ↔ <strong>5</strong> (pięć)</li>
+            <li><strong>B</strong> (wielkie B) ↔ <strong>8</strong> (osiem)</li>
+            <li><strong>G</strong> (wielkie G) ↔ <strong>6</strong> (sześć)</li>
+            <li><strong>q</strong> (małe q) ↔ <strong>9</strong> (dziewięć)</li>
+            <li><strong>I</strong> (wielkie i) ↔ <strong>l</strong> (małe L)</li>
+            <li><strong>U</strong> (wielkie U) ↔ <strong>V</strong> (wielkie V)</li>
+            <li><strong>rn</strong> (kombinacja "r" i "n") ↔ <strong>m</strong> (małe M)</li>
+            <li><strong>vv</strong> (dwa razy "v") ↔ <strong>w</strong> (małe W)</li>
+          </ul>
+    </ng-template>
+
+    <ng-template #more4>
+        <div class="flex-column">
+            <p>Daj sobie czas. Wdech. Wydech. Nigdzie się nam nie spieszy. Spórbuj wprowadzić kod jeszcze raz za 10 sek. patrząc na to świeżym okiem.</p>
+                <span class="counter">
+                    {{counter()}}
+                </span>
+        </div>
+    </ng-template>
+
+    <ng-template #more5>
+        <p>
+            Ciężka sprawa. Gdzieś tutaj jest błąd...
+        </p>
+        <p>
+            Ale jak sam nie może, to Bóg dopomoże! Walnij zdrowaśkę i spróbuj ponowinie.
+        </p>
+    </ng-template>
+
+    <ng-template #police>
+        <div class="flex-column">
+            <span class="last-info">Dzwonie po policę</span>
+            <img src="parrot.jpg" height="300">
+            <p class="last-info"> Albo nie... To Ty zadzwoń do nas i potwierdz zaproszenie telefonicznie. 😎</p>
+            <span class="number">
+                Tereska - <a class="phone-number" [href]="'tel:'+ env.missPhone">{{env.missPhone}}</a>
+            </span>
+            <span class="number">
+                Szymon - <a class="phone-number" [href]="'tel:'+ env.mrPhone">{{env.mrPhone}}</a>
+            </span>
+            
+            
+        </div>
+    </ng-template>
+
+    <ng-container *ngTemplateOutlet="selectedTemplate"></ng-container>
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button mat-dialog-close [disabled]="disableButton">
+        OK
+    </button>
+</mat-dialog-actions>
+

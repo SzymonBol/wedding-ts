@@ -1,5 +1,22 @@
 @use 'breakpoints';
 
+:host{
+    display: flex;
+    justify-content: center;
+}
+
+.guest-enter-code-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .header{
+        font-weight: 600;
+        font-size: 54px;
+        text-align: center;
+    }
+}
+
 .info-text{
     text-align: center;
     display: flex;

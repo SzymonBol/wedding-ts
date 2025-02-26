@@ -26,6 +26,11 @@ export const routes: Routes = [
                 .then( c => c.InviteConfirmationComponent),
                 resolve: [getInvitationDataResolver]
             },
+            {
+                path: `${BASE_ROUTES.ENTER_CODE}`,
+                loadComponent: () => import('./guest-panel/invite-confirmation/enter-code/enter-code.component')
+                .then( c => c.EnterCodeComponent)
+            },
         ]
     },
     {

@@ -18,6 +18,6 @@ export class InvitationBaseInfoComponent {
   protected envitoment = environment;
 
   navigateToConfirmation(){
-    this.router.navigateByUrl(ROUTE.INVITE_CONFIRMATION);
+    this.router.navigateByUrl(ROUTE.ENTER_CODE);
   }
 }
