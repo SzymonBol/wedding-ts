@@ -41,7 +41,7 @@ export class InvalidCodeDialogComponent implements AfterViewInit{
       case 3 : return 'Sprawdź dokładnie wprowadzone znaki';
       case 4 : return 'Nie spiesz się!';
       case 5 : return 'Spokojnie, nie denerwuj się, weźmiemy zaproszenie i będziemy potwierdzać!';
-      default : return 'Żarty się skończyły. Dzowń na telefon.'
+      default : return 'Żarty się skończyły.'
     }
   })
 

@@ -4,7 +4,7 @@
 <mat-dialog-content style="overflow-y: hidden;">
 
     <ng-template #normal>
-        <p>Sprawdź czy wprowadziłeś poprawny kod. Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
+        <p>Sprawdź czy wprowadzono poprawny kod. Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
         <ul>
             <li> duże o oraz zero oraz duże q ( O / 0 / Q )</li>
             <li> małe L oraz duże i (I / l)</li>
@@ -14,7 +14,7 @@
     </ng-template>
 
     <ng-template #more>
-        <p>Sprawdź czy wprowadziłeś poprawny kod. Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
+        <p>Sprawdź czy wprowadzono poprawny kod. Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
         <ul>
             <li><strong>O</strong> (litera O) ↔ <strong>0</strong> (zero)</li>
             <li><strong>I</strong> (wielkie i) ↔ <strong>1</strong> (jeden) ↔ <strong>l</strong> (małe L)</li>
@@ -32,7 +32,7 @@
 
     <ng-template #more4>
         <div class="flex-column">
-            <p>Daj sobie czas. Wdech. Wydech. Nigdzie się nam nie spieszy. Spórbuj wprowadzić kod jeszcze raz za 10 sek. patrząc na to świeżym okiem.</p>
+            <p>Daj sobie czas. Wdech. Wydech. Nigdzie się nie spieszy. Spórbuj wprowadzić kod jeszcze raz za 10 sek. patrząc na to świeżym okiem 😊</p>
                 <span class="counter">
                     {{counter()}}
                 </span>
@@ -44,7 +44,7 @@
             Ciężka sprawa. Gdzieś tutaj jest błąd...
         </p>
         <p>
-            Ale jak sam nie może, to Bóg dopomoże! Odmów zdrowaśkę i spróbuj ponowinie.
+            Ale jak sam nie może, to Bóg dopomoże! Odmów zdrowaśkę i spróbuj ponownie!
         </p>
     </ng-template>
 
@@ -52,7 +52,7 @@
         <div class="flex-column">
             <span class="last-info">Dzwonie po policę</span>
             <img src="parrot.jpg" height="300">
-            <p class="last-info"> Albo nie... To Ty zadzwoń do nas i potwierdz zaproszenie telefonicznie. 😎</p>
+            <p class="last-info"> Albo nie... To Ty zadzwoń do nas i potwierdź zaproszenie telefonicznie 😀</p>
             <span class="number">
                 Tereska - <a class="phone-number" [href]="'tel:'+ env.missPhone">{{env.missPhone}}</a>
             </span>
