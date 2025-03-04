@@ -1,5 +1,5 @@
 <div class="menu-items">
     @for(menuItem of menuItems; track menuItem){
-        <button mat-button class="nav-button" (click)="navigate(menuItem.targetRoute)" class="nav-button" [ngClass]="{'selected' : selectedItem() === menuItem.targetRoute}"> {{menuItem.label}} </button>
+        <button mat-button class="nav-button" (click)="navigate(menuItem)" class="nav-button" [ngClass]="{'selected' : selectedItem() === menuItem.targetRoute}"> {{menuItem.label}} </button>
     }
 </div>

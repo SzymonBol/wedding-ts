@@ -1,14 +1,16 @@
 @for(menuItem of menuItems; track menuItem){
     <div [ngClass]="{'selected' : selectedItem() === menuItem.targetRoute}">
-        <button mat-button class="nav-button" (click)="navigate(menuItem.targetRoute)" class="desktop-nav-item"> {{menuItem.label}} </button>
+        <button mat-button class="nav-button" (click)="navigate(menuItem)" class="desktop-nav-item"> {{menuItem.label}} </button>
     </div>
  
 }
-<div class="user-info"> 
-    <button mat-icon-button (click)="navigate(ROUTE.ADMIN_LOGIN)">
-        <mat-icon>person</mat-icon>
-    </button>
-    @if(loggedUser()){
-        <span>{{loggedUser()}}</span>
-    }
-</div>
+@if(loggedUser()){
+    <div class="user-info"> 
+        <button mat-icon-button (click)="navigate(ROUTE.ADMIN_LOGIN)">
+            <mat-icon>person</mat-icon>
+        </button>
+        @if(loggedUser()){
+            <span>{{loggedUser()}}</span>
+        }
+    </div>
+}

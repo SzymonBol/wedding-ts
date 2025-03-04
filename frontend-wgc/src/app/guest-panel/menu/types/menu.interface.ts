@@ -1,5 +1,6 @@
 export interface MenuItem{
     targetRoute : string,
     label: string,
-    isActive: boolean
+    isActive: boolean,
+    external?: boolean
 }

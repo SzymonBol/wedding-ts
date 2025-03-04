@@ -11,5 +11,12 @@ export const menuItemsData : MenuItem[] = [
       targetRoute: ROUTE.ENTER_CODE,
       label: 'Potwierdź zaproszenie',
       isActive: false,
+    },
+    {
+      targetRoute: 'https://drive.google.com/drive/folders/1eL4tdma8yzJykF2I-pdWK5RxD1rgcK8i?usp=drive_link',
+      label: 'Zdjęcia gości',
+      isActive: false,
+      external: true
     }
   ];
+ 
