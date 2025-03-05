@@ -1,93 +1,92 @@
 <div class="guest-confirmation-container">
   <h1 class="fancy-font header">
-      Potwierdź zaproszenie
+    Potwierdź zaproszenie
   </h1>
-
-@if(guestsSig()){
-
-        <span class="welcome-text">
-            Z radaością chcielibyśmy Was zaprosić na nasze wesele! 
-            Poniżej znajdziecie panel w którym macie możliwość potwierdzić swoje przybycie.
-            Bardzo prosimy o zaznaczenie diety oraz informacje czy potrzebujecie noclegu. 
-        </span>
-        @if(canEditBasedOnDate || isConfirmedSig() || isUserLoggedIn()){
-        <div class="form-container" [formGroup]="form">
-          <ng-container formArrayName="guests">
-          @for(guest of guests.controls; track $index){
-            <div class="guest-row" [formGroupName]="$index">
-              <span class="header">{{guest.get('name')?.value}} {{guest.get('surname')?.value}}</span>
-              <div class="guest-options">
-                <span>
-                  <app-guest-confirmation-status [editMode]="editModeSig()" formControlName="isGoing"></app-guest-confirmation-status>
-                </span>
-                @if (!(isConfirmedSig() && guest.get('isGoing')?.value === false) || editModeSig()) {
-                <span class="diet-option">  
-                  <span class="diet-option-label">Opcja jedzeniowa: </span>
-                  <app-diet-switch formControlName="isVege" [editMode]="editModeSig()"></app-diet-switch>
-                </span>
-              }
-              </div>
-            </div>
-          }
-          </ng-container>
-          <div class="invitation-comments">
-            <label class="accomodation-header"> 
-              <mat-icon>hotel</mat-icon> 
-              <span class="accomodation-text">Nocleg</span>
-            </label>
-            <mat-radio-group aria-label="Zakwaterowanie" formControlName="needAccommodation">
-              <mat-radio-button [value]="false">We własnym zakresie</mat-radio-button>
-              <mat-radio-button [value]="true">Będziemy potrzebować noclegu</mat-radio-button>
-            </mat-radio-group>
-          </div>
-          
-          <div class="invitation-comments">
-            <label for="comments-id">Dodatkowe uwagi: </label>
-            <textarea id="comments-id" placeholder="Brak" formControlName="comment" maxlength="1024"></textarea>
-          </div>
-        </div>
-        <div class="end-info">
-          @if(editModeSig() && (canEditBasedOnDate || isUserLoggedIn())){
-            <button mat-flat-button (click)="updateData()"> Potwierdź odpowiedź </button>
-          } @else {
-            <h4>Twoja odpowiedź została zapisana! <br/> Dziękujemy! ❤️</h4>
-
-            @if((canEditBasedOnDate || isUserLoggedIn())){
-              <span>
-                Jakaś pomyłka? Nic nie szkodzi! Kliknij w <a href="" (click)="activeEditMode($event)"> tutaj </a> aby wprowadzić zmiany!
-              </span>
-            }
+  <span class="welcome-text">
+    Z radaością chcielibyśmy Was zaprosić na nasze wesele!
+    Poniżej znajdziecie panel w którym macie możliwość potwierdzić swoje przybycie.
+    <br>
+    <br>
+    Dla każdej osoby należy wybrać odpowiednio: będę / nie będę oraz dietę. 
+    Prosimy również o zaznaczenie informacji czy potrzebujecie noclegu oraz jeśli macie - dodatkowe uwagi.
+  </span>
+  @if(canEditBasedOnDate || isConfirmedSig() || isUserLoggedIn()){
+  <div class="form-container" [formGroup]="form">
+    <ng-container formArrayName="guests">
+      @for(guest of guests.controls; track $index){
+      <div class="guest-row" [formGroupName]="$index">
+        <span class="header">{{guest.get('name')?.value}} {{guest.get('surname')?.value}}</span>
+        <div class="guest-options">
+          <span>
+            <app-guest-confirmation-status [editMode]="editModeSig()"
+              formControlName="isGoing"></app-guest-confirmation-status>
+          </span>
+          @if (!(isConfirmedSig() && guest.get('isGoing')?.value === false) || editModeSig()) {
+          <span class="diet-option">
+            <span class="diet-option-label">Opcja jedzeniowa: </span>
+            <app-diet-switch formControlName="isVege" [editMode]="editModeSig()"></app-diet-switch>
+          </span>
           }
         </div>
-      } @else {
-        <div class="invitation-expired">
-          <div>
-            <mat-icon class="warning-icon" [inline]="true">warning</mat-icon>
-          </div>
-         
-          <div>
-            <p style="font-weight: 600;"> Potwierdzanie zaproszeń zostało zakończone!</p>
-            <p>Nie otrzymaliśmy od Was odpowiedzi.</p>
-            <p>Jeśli coś poszło nie tak, zaproszenie zostało już potwierdzone lub chcesz je teraz potwierdzić, 
-              prosimy o kontakt telefoniczny, abyśmy mogli wprowadzić odpowiednie zmiany 😊.</p>
-              <div class="contacts">
-                <p class="contact">
-                  <mat-icon>phone</mat-icon>
-                  {{enviroment.miss}}:
-                  <a [href]="'tel:'+enviroment.missPhone">{{enviroment.missPhone}}</a>
-                </p>
-              <p class="contact">
-                <mat-icon>phone</mat-icon>
-                {{enviroment.mr}}:
-                <a [href]="'tel:'+enviroment.mrPhone">{{enviroment.mrPhone}}</a>
-              </p>
-              </div>
-
-          </div>
-    </div>
+      </div>
       }
-} @else {
-  <app-enter-code></app-enter-code>
-}
+    </ng-container>
+    <div class="invitation-comments">
+      <label class="accomodation-header">
+        <mat-icon>hotel</mat-icon>
+        <span class="accomodation-text">Nocleg</span>
+      </label>
+      <mat-radio-group aria-label="Zakwaterowanie" formControlName="needAccommodation">
+        <mat-radio-button [value]="false">We własnym zakresie</mat-radio-button>
+        <mat-radio-button [value]="true">Będziemy potrzebować noclegu</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="invitation-comments">
+      <label for="comments-id">Dodatkowe uwagi: </label>
+      <textarea id="comments-id" placeholder="Brak" formControlName="comment" maxlength="1024"></textarea>
+    </div>
+  </div>
+  <div class="end-info">
+    @if(editModeSig() && (canEditBasedOnDate || isUserLoggedIn())){
+      <button mat-flat-button (click)="updateData()"> Potwierdź odpowiedź </button>
+    } @else {
+      <h4>Twoja odpowiedź została zapisana! <br /> Dziękujemy! ❤️</h4>
+
+      @if((canEditBasedOnDate || isUserLoggedIn())){
+      <span>
+        Jakaś pomyłka? Nic nie szkodzi! Kliknij w <a href="" (click)="activeEditMode($event)"> tutaj </a> aby wprowadzić
+        zmiany!
+      </span>
+      }
+    }
+  </div>
+  } @else {
+  <div class="invitation-expired">
+    <div>
+      <mat-icon class="warning-icon" [inline]="true">warning</mat-icon>
+    </div>
+
+    <div>
+      <p style="font-weight: 600;"> Potwierdzanie zaproszeń zostało zakończone!</p>
+      <p>Nie otrzymaliśmy od Was odpowiedzi.</p>
+      <p>Jeśli coś poszło nie tak, zaproszenie zostało już potwierdzone lub chcesz je teraz potwierdzić,
+        prosimy o kontakt telefoniczny, abyśmy mogli wprowadzić odpowiednie zmiany 😊.</p>
+      <div class="contacts">
+        <p class="contact">
+          <mat-icon>phone</mat-icon>
+          {{enviroment.miss}}:
+          <a [href]="'tel:'+enviroment.missPhone">{{enviroment.missPhone}}</a>
+        </p>
+        <p class="contact">
+          <mat-icon>phone</mat-icon>
+          {{enviroment.mr}}:
+          <a [href]="'tel:'+enviroment.mrPhone">{{enviroment.mrPhone}}</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+  }
 
 </div>

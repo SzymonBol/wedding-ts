@@ -1,4 +1,12 @@
 <div class="additional-options">
+
+  <div class="text-filter-container">
+    <mat-form-field class="full-width">
+      <mat-label>Wyszukaj</mat-label>
+      <input matInput (input)="filterChange($event)">
+    </mat-form-field>
+  </div>
+
   <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
       <mat-expansion-panel-header>
@@ -12,6 +20,7 @@
 
     </mat-expansion-panel>
   </mat-accordion>
+ 
 </div>
 
 

@@ -4,7 +4,7 @@
 <mat-dialog-content style="overflow-y: hidden;">
 
     <ng-template #normal>
-        <p>Sprawdź czy wprowadzono poprawny kod. Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
+        <p>Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
         <ul>
             <li> duże o oraz zero oraz duże q ( O / 0 / Q )</li>
             <li> małe L oraz duże i (I / l)</li>
@@ -14,7 +14,7 @@
     </ng-template>
 
     <ng-template #more>
-        <p>Sprawdź czy wprowadzono poprawny kod. Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
+        <p>Zwróć uwagę czy nie zostały pomylone szczególnie podobne do siebie znaki:</p>
         <ul>
             <li><strong>O</strong> (litera O) ↔ <strong>0</strong> (zero)</li>
             <li><strong>I</strong> (wielkie i) ↔ <strong>1</strong> (jeden) ↔ <strong>l</strong> (małe L)</li>
@@ -50,7 +50,7 @@
 
     <ng-template #police>
         <div class="flex-column">
-            <span class="last-info">Dzwonie po policę</span>
+            <span class="last-info">Kim jesteś i co tutaj robisz?! Dzwonie po policę</span>
             <img src="parrot.jpg" height="300">
             <p class="last-info"> Albo nie... To Ty zadzwoń do nas i potwierdź zaproszenie telefonicznie 😀</p>
             <span class="number">
@@ -59,8 +59,6 @@
             <span class="number">
                 Szymon - <a class="phone-number" [href]="'tel:'+ env.mrPhone">{{env.mrPhone}}</a>
             </span>
-            
-            
         </div>
     </ng-template>
 

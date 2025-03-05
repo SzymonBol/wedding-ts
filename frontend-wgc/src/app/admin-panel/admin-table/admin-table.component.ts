@@ -25,6 +25,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NgClass } from '@angular/common';
 import { PrintService } from '../../services/print.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-admin-table',
@@ -39,7 +41,9 @@ import { PrintService } from '../../services/print.service';
     MatSortModule, 
     MatCheckboxModule,
     MatExpansionModule,
-    NgClass
+    NgClass,
+    MatInputModule,
+    MatFormFieldModule
   ],
   templateUrl: './admin-table.component.html',
   styleUrl: './admin-table.component.scss',
@@ -72,6 +76,7 @@ export class AdminTableComponent {
   readonly panelOpenState = signal(false);
   readonly showOnlyGoingPeople = signal(false);
   readonly markVegePeople = signal(false);
+  private textFilter = signal('');
 
   displayedColumns: string[] = [
     'qrCodeUrl',
@@ -99,6 +104,22 @@ export class AdminTableComponent {
       this.dataSource.sort = sort;
     });
   });
+
+  filterEff = effect(() => {
+    const filter = this.textFilter().toLowerCase();
+
+    untracked(() => {
+      const data = this.guestsTableData().filter(invitation => {
+        return !!invitation.guests.find(g => g.name.toLowerCase().includes(filter) || g.surname.toLowerCase().includes(filter)) ;
+      });
+
+      this.dataSource.data = data;
+    });
+  });
+
+  filterChange($event: any){
+    this.textFilter.set($event.target.value);
+  }
 
   editInvitation(id: string) {
     this.router.navigate([ROUTE.INVITE_CONFIRMATION], { queryParams: { id } });
