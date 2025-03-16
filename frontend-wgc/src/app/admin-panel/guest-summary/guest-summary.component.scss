@@ -134,6 +134,16 @@
             color: colors.$vegeText;
         }
     }
+
+    .meat-count{
+        grid-column: 1 / 3;
+        grid-row: 2;
+        justify-content: flex-end;
+    
+        .meat-icon{
+            color: colors.$meatText;
+        }
+    }
     
     .accommodation-count{
         grid-column: 5 / 7;

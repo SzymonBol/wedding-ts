@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://wedding-ts-production.up.railway.app',
+    apiUrl: 'https:/api.wesele-ts.pl',
     mrEmail: 'bol.szymon@gmail.com',
     missEmail: 'teresajawor31210@gmail.com',
     mrPhone: '728996232',

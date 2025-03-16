@@ -57,7 +57,7 @@ app.post('/login-user', async (req, res) => {
   const credentials = req.body;
   const result = await validateLoginCredentials(usersCollection, credentials);
   if(result.token !== null){
-    res.cookie("authToken", result.token, {httpOnly: true, sameSite: 'none', secure: true});
+    res.cookie("authToken", result.token, {httpOnly: true});
   }
 
   res.status(result.status);
@@ -90,7 +90,7 @@ app.get('/check-session', async (req, res) => {
 })
 
 app.get('/logout', async (req, res) => {
-  res.cookie("authToken", 'logged_out', {httpOnly: true, sameSite: 'none', secure: true});
+  res.cookie("authToken", 'logged_out', {httpOnly: true});
   res.send();
 })
 

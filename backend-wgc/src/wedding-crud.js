@@ -1,6 +1,6 @@
 function makeId(length) {
    let result = '';
-   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789';
    const charactersLength = characters.length;
    let counter = 0;
    while (counter < length) {
@@ -11,6 +11,7 @@ function makeId(length) {
 }
 
 export async function findInvitationById(collection, id) {
+   id = id.replace("l", "I");
     return collection.find({ id }).toArray();
  }
 

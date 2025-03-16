@@ -15,7 +15,6 @@ import { environment } from '../../../environments/environment';
 import { AuthDataStore } from '../../shared/store/auth.store';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { ROUTE } from '../../shared/routes.enum';
 
 @Component({
   selector: 'app-invite-confirmation',
@@ -48,6 +47,8 @@ export class InviteConfirmationComponent {
   )
 
   editModeEff = effect(() => {
+    if(this.store.invitationId)
+      console.log(this.store.invitationId());
     this.isConfirmedSig();
     if(this.editModeSig()){
       this.form.controls.comment.enable();

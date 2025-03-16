@@ -14,7 +14,7 @@ export const menuItemsData : MenuItem[] = [
     },
     {
       targetRoute: 'https://drive.google.com/drive/folders/1eL4tdma8yzJykF2I-pdWK5RxD1rgcK8i?usp=drive_link',
-      label: 'Zdjęcia gości',
+      label: 'Wasze zdjęcia',
       isActive: false,
       external: true
     }
