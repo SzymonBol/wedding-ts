@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-invite-confirmation',
   standalone: true,
-  imports: [MatIconModule, DietSwitchComponent, MatButtonModule, ReactiveFormsModule, FormsModule, MatTableModule, GuestConfirmationStatusComponent, MatRadioModule, EnterCodeComponent],
+  imports: [MatIconModule, DietSwitchComponent, MatButtonModule, ReactiveFormsModule, FormsModule, MatTableModule, GuestConfirmationStatusComponent, MatRadioModule],
   templateUrl: './invite-confirmation.component.html',
   styleUrl: './invite-confirmation.component.scss'
 })
@@ -47,8 +47,6 @@ export class InviteConfirmationComponent {
   )
 
   editModeEff = effect(() => {
-    if(this.store.invitationId)
-      console.log(this.store.invitationId());
     this.isConfirmedSig();
     if(this.editModeSig()){
       this.form.controls.comment.enable();
