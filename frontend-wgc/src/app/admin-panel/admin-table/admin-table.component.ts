@@ -27,6 +27,7 @@ import { NgClass } from '@angular/common';
 import { PrintService } from '../../services/print.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { GuestDataStore } from '../../shared/store/guest-panel.store';
 
 @Component({
   selector: 'app-admin-table',
@@ -53,6 +54,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class AdminTableComponent {
   router = inject(Router);
   guestAdminService = inject(GuestAdminService);
+  guestStore = inject(GuestDataStore);
   adminStore = inject(AdminStore);
   printService = inject(PrintService);
   guests = this.adminStore.entities;
@@ -122,6 +124,7 @@ export class AdminTableComponent {
   }
 
   editInvitation(id: string) {
+    this.guestStore.clear();
     this.router.navigate([ROUTE.INVITE_CONFIRMATION], { queryParams: { id } });
   }
 

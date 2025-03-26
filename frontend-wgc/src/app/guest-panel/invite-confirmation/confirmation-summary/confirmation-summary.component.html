@@ -1,0 +1,15 @@
+
+<h2 mat-dialog-title>Podsumowanie</h2>
+
+<mat-dialog-content style="overflow-y: hidden;">
+    <span [innerHTML]="text"></span>
+</mat-dialog-content>
+<mat-dialog-actions style="justify-content: space-between;">
+    <button mat-button mat-dialog-close>
+        Wróć
+    </button>
+    <button mat-flat-button [mat-dialog-close]="true">
+        Potwierdzam
+    </button>
+</mat-dialog-actions>
+

@@ -4,10 +4,10 @@
   </h1>
   <span class="welcome-text">
     Z radaością chcielibyśmy Was zaprosić na nasze wesele!
-    Poniżej znajdziecie panel w którym macie możliwość potwierdzić swoje przybycie.
+    Poniżej znajdziecie panel, w którym macie możliwość potwierdzić swoje przybycie.
     <br>
     <br>
-    Dla każdej osoby należy wybrać odpowiednio: będę / nie będę oraz dietę. 
+    Dla każdej osoby należy wybrać odpowiednio: <b>będę / nie będę </b>  oraz <b>dietę</b>. 
     Prosimy również o zaznaczenie informacji czy potrzebujecie noclegu oraz jeśli macie - dodatkowe uwagi.
   </span>
   @if(canEditBasedOnDate || isConfirmedSig() || isUserLoggedIn()){
@@ -49,7 +49,7 @@
   </div>
   <div class="end-info">
     @if(editModeSig() && (canEditBasedOnDate || isUserLoggedIn())){
-      <button mat-flat-button (click)="updateData()"> Potwierdź odpowiedź </button>
+      <button mat-flat-button (click)="updateData()"> Wyślij odpowiedź </button>
     } @else {
       <h4>Twoja odpowiedź została zapisana! <br /> Dziękujemy! ❤️</h4>
 

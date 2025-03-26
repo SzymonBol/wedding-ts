@@ -26,6 +26,9 @@ export const GuestDataStore = signalStore(
             loadingData(): void {
                 patchState(store, { isLoading: true });
             },
+            clear(): void {
+              patchState(store, { ...initialState });
+            },
             finishLoading(): void {
                     patchState(store, { isLoading: false });
             },

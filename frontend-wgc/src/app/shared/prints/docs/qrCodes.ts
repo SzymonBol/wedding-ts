@@ -1,4 +1,4 @@
-import { Content, Margins, ContentStack } from 'pdfmake/interfaces';
+import { Content, ContentStack } from 'pdfmake/interfaces';
 import { DocumentDefinition } from '../DocumentDefinition';
 import { GuestsTableData } from '../../../types/admin-panel.types';
 import QRCode from 'qrcode-svg';

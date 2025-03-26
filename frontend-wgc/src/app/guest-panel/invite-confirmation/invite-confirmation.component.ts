@@ -10,11 +10,11 @@ import { InvitationService } from '../../services/invitation-service.service';
 import { firstValueFrom } from 'rxjs';
 import { GuestData, Invitation, isGuestDataArrayType } from '../../types/guests-store-data.types';
 import {MatRadioModule} from '@angular/material/radio';
-import { EnterCodeComponent } from "./enter-code/enter-code.component";
 import { environment } from '../../../environments/environment';
 import { AuthDataStore } from '../../shared/store/auth.store';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationSummaryComponent } from './confirmation-summary/confirmation-summary.component';
 
 @Component({
   selector: 'app-invite-confirmation',
@@ -24,20 +24,21 @@ import { Router } from '@angular/router';
   styleUrl: './invite-confirmation.component.scss'
 })
 export class InviteConfirmationComponent {
-  store = inject(GuestDataStore);
+  private store = inject(GuestDataStore);
+  private dialogServ = inject(MatDialog);
+  private invitationService = inject(InvitationService);
+  private _snackBar = inject(MatSnackBar);
+  protected fb = inject(FormBuilder);
+  protected isUserLoggedIn = inject(AuthDataStore).isUserLoggedIn;
+
   isConfirmedSig = this.store.confirmed;
   comment = this.store.comment();
   guestsSig = this.store.guestsData!;
   canEditBasedOnDate = this.getCanEditByDate();
   editModeSig = signal<boolean>(!this.isConfirmedSig());
-  InvitationService = inject(InvitationService);
   needAccommodation = this.store.needAccommodation();
-  isUserLoggedIn = inject(AuthDataStore).isUserLoggedIn;
   enviroment = environment;
-  private _snackBar = inject(MatSnackBar);
-  router = inject(Router);
 
-  fb = inject(FormBuilder);
   form = this.fb.group(
     {
       guests : this.fb.array<GuestData>([]),
@@ -79,11 +80,9 @@ export class InviteConfirmationComponent {
 
   }, {allowSignalWrites: true})
 
-    get guests() {
-      return this.form.controls["guests"] as FormArray;
-    }
-
-  
+  get guests() {
+    return this.form.controls["guests"] as FormArray;
+  }
 
   activeEditMode($event: Event){
     $event.preventDefault();
@@ -91,32 +90,51 @@ export class InviteConfirmationComponent {
   }
 
   async updateData() {
+    if(this.form.controls.guests.value.length === 2 
+      && this.form.controls.guests.value[1]?.isGoing === true
+      && this.form.controls.guests.value[0]?.isGoing === false 
+      && this.form.controls.guests.value[1]?.name === 'Osoba' 
+      && this.form.controls.guests.value[1]?.surname === 'Towarzysząca'){
+        const osTowarzyszaca = this.form.controls.guests.at(1).value as GuestData;
+        this.form.controls.guests.at(1).setValue({...osTowarzyszaca, isGoing : false});
+    }
+
     const {guests, comment, needAccommodation} = this.form.value;
     if(!isGuestDataArrayType(guests)) return;
 
-    try{
-      this.store.loadingData();
-      const invitationId = this.store.invitationId ? this.store.invitationId() : null;
-      if(invitationId){
-        const invitation : Invitation = {
-          id: invitationId,
-          guests: guests,
-          comment: comment ?? '',
-          confirmed: true,
-          needAccommodation: needAccommodation ? true : false
-        }
-        
-        await firstValueFrom(this.InvitationService.updateInvitationData(invitation));
-        this.store.updateConfirmation(true);
-        this.store.finishLoading();
-        this.editModeSig.set(false);
+
+    const invitationId = this.store.invitationId ? this.store.invitationId() : null;
+    if(invitationId){
+      const invitation : Invitation = {
+        id: invitationId,
+        guests: guests,
+        comment: comment ?? '',
+        confirmed: true,
+        needAccommodation: needAccommodation ? true : false
       }
+
+
+
+      const dialogRef = this.dialogServ.open(ConfirmationSummaryComponent, {data: invitation});
+
+      dialogRef.afterClosed().subscribe( async result => {
+        if(result){
+          try{
+            this.store.loadingData();
+            await firstValueFrom(this.invitationService.updateInvitationData(invitation));
+            this.store.updateConfirmation(true);
+            this.editModeSig.set(false);
+            this.store.finishLoading();
+          }
+          catch (e){
+            this._snackBar.open('Bład zapisu', 'OK');
+            this.editModeSig.set(true);
+          }
+        }
+      });
     }
-    catch (e){
-      this.store.finishLoading();
-      this._snackBar.open('Bład zapisu', 'OK');
-      this.editModeSig.set(true);
-    }
+
+
   }
 
   getCanEditByDate(): boolean{
