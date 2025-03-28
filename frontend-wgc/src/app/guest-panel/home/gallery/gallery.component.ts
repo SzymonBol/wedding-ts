@@ -15,7 +15,7 @@ export class TSGalleryComponent implements OnInit {
 
 
   ngOnInit() {
-    for(let i=0; i<28;i++){
+    for(let i=0; i<30;i++){
       const src = `gallery/big/gallery-img-${i}.jpg`;
       const thumb = `gallery/small/gallery-img-${i}.jpg`;
 

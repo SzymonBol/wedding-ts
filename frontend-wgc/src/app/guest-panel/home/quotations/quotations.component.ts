@@ -56,11 +56,6 @@ export class QuotationsComponent implements OnInit, OnDestroy{
       author: 'Jezus Chrystus'
     },
     {
-      text: 'Ja panu nie przerywałem!',
-      author: 'Jan Paweł',
-      from: '1670'
-    },
-    {
       text: 'Co to jest małżeństwo? Jest to wspólnota dwojga ludzi, którzy nieustannie sobie przebaczają.',
       author: 'ks. Piotr Pawlukiewicz'
     },

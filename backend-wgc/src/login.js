@@ -11,7 +11,7 @@ const whiteList = [
 ];
 
 export function generateAccessToken(username) {
-    return jwt.sign( {name : username} , process.env.TOKEN_SECRET, { expiresIn: '1800s' });
+    return jwt.sign( {name : username} , process.env.TOKEN_SECRET, { expiresIn: '10800s' });
   }
 
 export function authenticateToken(req, res, next) {

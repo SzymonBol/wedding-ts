@@ -27,7 +27,7 @@ github
 [] Dodaj dane zaproszenia do session storage
 [done] Zmień mechnizm z godzin na pełne daty przy harmonogramie
 [done] Dodaj panel do ządzania hamonogramem
-[in progress] Uzupelnić bazę o poprawne dane
+[done] Uzupelnić bazę o poprawne dane
 [done] Dodać liść jako ikonę w przeglądarce
 
 

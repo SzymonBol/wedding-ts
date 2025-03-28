@@ -5,7 +5,7 @@
     gap: 12px;
     flex-wrap: wrap;
     flex-direction: column;
-    height: 2400px;
+    height: 2650px;
     align-items: center;
     width: 292px;
 }
@@ -15,7 +15,7 @@
 }
 
 .gallery-img{
-    width: 140px;
+    width: 150px;
 }
 
 img {
@@ -25,7 +25,7 @@ img {
 
 @include breakpoints.bigger-than-mobile{
     :host{
-        height: 3300px;
+        height: 3500px;
         width: 412px;
     }
 
@@ -36,7 +36,7 @@ img {
 
 @include breakpoints.bigger-than-tablet{
     :host{
-        height: 1900px;
+        height: 2090px;
         width: 956px;
     }
 
@@ -48,7 +48,7 @@ img {
 
 @include breakpoints.bigger-than-laptop{
     :host{
-        height: 2100px;
+        height: 2250px;
         width: 1036px;
     }
 
@@ -59,7 +59,7 @@ img {
 
 @include breakpoints.bigger-than-desktop{
     :host{
-        height: 1500px;
+        height: 1510px;
         width: 1560px;
     }
 
