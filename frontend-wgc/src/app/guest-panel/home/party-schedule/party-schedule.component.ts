@@ -26,9 +26,11 @@ export class PartyScheduleComponent implements OnInit{
   schedule = this.scheduleServ.scheduleItems;
 
   async ngOnInit() {
+    console.log('init fetching')
     try{
       await this.scheduleServ.fetchSchedule();
     } catch (err){
+      console.log('error');
       console.error(err);
       const a = err as HttpErrorResponse;
       console.log(a.error);
