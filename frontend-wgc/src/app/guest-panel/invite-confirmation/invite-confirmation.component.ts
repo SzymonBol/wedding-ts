@@ -113,8 +113,11 @@ export class InviteConfirmationComponent {
         needAccommodation: needAccommodation ? true : false
       }
 
-
-
+      const activeElement = document.activeElement as HTMLElement;
+      if (activeElement) {
+        activeElement.blur();
+      }
+      
       const dialogRef = this.dialogServ.open(ConfirmationSummaryComponent, {data: invitation});
 
       dialogRef.afterClosed().subscribe( async result => {

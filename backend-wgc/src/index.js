@@ -26,33 +26,45 @@ app.use(cors({
   credentials: true
 }));
 app.use(cookieParser());
-app.use(authenticateToken)
+app.use(authenticateToken);
+const successResponse = {status: 'success'};
+const errorResponse = {status: 'error'};
 
 //without-verification
 
 app.get('/invitation/:id', async (req, res) => {
     const id = req.params.id;
     let result = await findInvitationById(guestCollection, id);
-    console.info(id);
+    console.info('Fetching invitation with id: ', id);
+    res.type('json');
     if(result.length === 1){
       res.status(200);
       result = result[0];
+      console.info('200 OK - successfully fetching for: '+ result.guests[0].name + ' ' + result.guests[0].surname );
       res.send(result);
     } else if(result.length === 0){
       res.status(400);
-      console.error('Error: No invitation with given id: ' + id);
-      res.send('Error: No invitation with given id: ' + id);
+      console.error('400 ERROR - No invitation with given id: ' + id);
+      res.send({error: '400 ERROR - No invitation with given id: ' + id});
     } else {
       res.status(500);
-      console.error('Error: More then 1 invitation matches with given id: '+ id);
-      res.send('Error: More then 1 invitation matches with given id: '+ id);
+      console.error('500 ERROR - More then 1 invitation matches with given id: '+ id);
+      res.send({error: '500 ERROR - More then 1 invitation matches with given id: '+ id});
     }
 })
 
 app.patch('/update-invitation', async (req, res) => {
-  const {id, guests, confirmed, comment, needAccommodation}= req.body;  
-  const result = await updateInvitationById(guestCollection, id, guests, confirmed, comment, needAccommodation );
-  res.send(result);
+  const {id, guests, confirmed, comment, needAccommodation}= req.body;
+  res.type('json');
+  try{
+    console.info('Trying confirm infitation with id '+ id);
+    await updateInvitationById(guestCollection, id, guests, confirmed, comment, needAccommodation );
+    console.info('Successfully updated invitation '+ id);
+    res.send(successResponse);
+  } catch(error){
+    console.info('Failure updated invitation '+ id);
+    res.send(errorResponse);
+  }
 })
 
 app.post('/login-user', async (req, res) => {
@@ -62,13 +74,26 @@ app.post('/login-user', async (req, res) => {
     res.cookie("authToken", result.token, {httpOnly: true});
   }
 
+  if(result.status === 200){
+    console.info('Logging into user', result.user);
+  } else {
+    console.error('Incorrect login credentials:', credentials.login, credentials.password);
+  }
+
+  res.type('json');
   res.status(result.status);
   res.send({isFine: result.isFine, user: result.user});
 })
 
 app.get('/schedule', async (req, res) => { 
-  const result = await getSchedule(scheduleCollection);
-  res.send(result);
+  console.info('Loading schedule');
+  res.type('json');
+  try{
+    const result = await getSchedule(scheduleCollection);
+    res.send(result);
+  } catch(error){
+    res.send(errorResponse);
+  }
 })
 
 
