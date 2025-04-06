@@ -9,6 +9,7 @@ import { PartyScheduleItem } from "./types/party-schedule.type";
 import { MatIcon } from "@angular/material/icon";
 import { ScheduleHttpSrv } from '../../../services/schedule-http.service';
 import { ToHoursPipe } from "./pipe/to-hours.pipe";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-party-schedule',
@@ -24,7 +25,14 @@ export class PartyScheduleComponent implements OnInit{
   private scheduleServ = inject(ScheduleHttpSrv);
   schedule = this.scheduleServ.scheduleItems;
 
-  ngOnInit() {
-    this.scheduleServ.fetchSchedule();
+  async ngOnInit() {
+    try{
+      await this.scheduleServ.fetchSchedule();
+    } catch (err){
+      console.error(err);
+      const a = err as HttpErrorResponse;
+      console.log(a.error);
+    }
+    
   }
 }

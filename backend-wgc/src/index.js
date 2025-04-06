@@ -33,18 +33,20 @@ app.use(authenticateToken)
 app.get('/invitation/:id', async (req, res) => {
     const id = req.params.id;
     let result = await findInvitationById(guestCollection, id);
+    console.info(id);
     if(result.length === 1){
       res.status(200);
       result = result[0];
       res.send(result);
     } else if(result.length === 0){
       res.status(400);
+      console.error('Error: No invitation with given id: ' + id);
       res.send('Error: No invitation with given id: ' + id);
     } else {
       res.status(500);
+      console.error('Error: More then 1 invitation matches with given id: '+ id);
       res.send('Error: More then 1 invitation matches with given id: '+ id);
     }
-    
 })
 
 app.patch('/update-invitation', async (req, res) => {
