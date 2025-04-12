@@ -21,10 +21,22 @@ const scheduleCollection = db.collection(process.env.COLLECTION_NAME_SCHEDULE);
 
 const app = express();
 app.use(express.json());
+const allowedOrigins = [
+  'http://localhost:4200',
+  'https://wesele-ts.pl',
+  'https://www.wesele-ts.pl'
+];
+
 app.use(cors({
-  origin: ["http://localhost:4200", "https://www.wesele-ts.pl", "https://wesele-ts.pl"],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));
 app.use(cookieParser());
 app.use(authenticateToken);
