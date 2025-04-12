@@ -23,6 +23,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin: ["http://localhost:4200", "https://www.wesele-ts.pl", "https://wesele-ts.pl"],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
 app.use(cookieParser());
