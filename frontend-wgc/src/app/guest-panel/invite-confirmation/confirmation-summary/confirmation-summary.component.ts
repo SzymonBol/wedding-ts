@@ -53,7 +53,7 @@ export class ConfirmationSummaryComponent {
         }
 
         if(goingGuests.length === this.guests.length){
-          return 'Potwierdzasz, że <b>będziecie</b> na weselu ?'
+          return 'Potwierdzasz, że <b>będziecie w pełnym składzie</b> na weselu ?'
         } else if(notGoingGuests.length === this.guests.length){
           return 'Potwierdzasz, że <b>nie będzie</b> Was na weselu ?'
         } else {
@@ -68,7 +68,7 @@ export class ConfirmationSummaryComponent {
           }
 
 
-          return `Potwierdasz, że na weselu <b>będzie</b>: <ul>${goingGuestsString} </ul> oraz, że <b>nie pojawi</b> się: <ul> ${notGoingGuestsString} </ul>`;
+          return `Potwierdasz, że na weselu <b>będą</b>: <ul>${goingGuestsString} </ul> oraz, że <b>nie pojawią</b> się: <ul> ${notGoingGuestsString} </ul>`;
         }
       }
     }

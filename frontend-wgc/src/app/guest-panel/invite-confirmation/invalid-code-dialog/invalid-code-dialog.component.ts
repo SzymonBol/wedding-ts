@@ -36,7 +36,7 @@ export class InvalidCodeDialogComponent implements AfterViewInit{
   header = computed(() => {
     const countOfFailedCodesProvided = this.data();
     switch(countOfFailedCodesProvided){
-      case 1 : return 'Niepoprawny kod';
+      case 1 : return 'Ups.. coś poszło nie tak';
       case 2 : return 'Ups.. coś poszło nie tak';
       case 3 : return 'Sprawdź dokładnie wprowadzone znaki';
       case 4 : return 'Nie spiesz się!';

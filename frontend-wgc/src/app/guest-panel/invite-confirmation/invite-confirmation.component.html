@@ -5,10 +5,17 @@
   <span class="welcome-text">
     Z radaością chcielibyśmy Was zaprosić na nasze wesele!
     Poniżej znajdziecie panel, w którym macie możliwość potwierdzić swoje przybycie.
-    <br>
-    <br>
-    Dla każdej osoby należy wybrać odpowiednio: <b>będę / nie będę</b> oraz <b>dietę</b>. 
-    Prosimy również o zaznaczenie informacji czy potrzebujecie noclegu oraz jeśli macie - dodatkowe uwagi.
+    <ol>
+      <li>
+        Dla każdej osoby należy wybrać odpowiednio: <b>będę / nie będę</b> oraz <b>dietę</b>. 
+      </li>
+      <li>
+        Zaznacz czy potrzebujecie noclegu oraz jeśli macie - dodatkowe uwagi.
+      </li>
+      <li>
+        Wyślij formluarz przyciskiem "Wyślij odpowiedź"
+      </li>
+    </ol>       
   </span>
   @if(canEditBasedOnDate || isConfirmedSig() || isUserLoggedIn()){
   <div class="form-container" [formGroup]="form">
