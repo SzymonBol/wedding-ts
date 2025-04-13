@@ -21,9 +21,8 @@ const scheduleCollection = db.collection(process.env.COLLECTION_NAME_SCHEDULE);
 
 const app = express();
 app.use(express.json());
-
 app.use(cors({
-  origin: 'https://wesele-ts.pl',
+  origin: ["http://localhost:4200", "https://www.wesele-ts.pl", "https://wesele-ts.pl"],
   credentials: true
 }));
 app.use(cookieParser());
