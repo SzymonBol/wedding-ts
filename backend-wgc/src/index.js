@@ -96,6 +96,21 @@ app.get('/schedule', async (req, res) => {
   }
 })
 
+app.post('/log-message', async (req, res) => {
+  const message = req.body;
+  if(message.severity === 'error'){
+    console.error('Frontend - ' + message.text);
+  } 
+  else if(message.severity === 'warning'){
+    console.warn('Frontend - ' + message.text);
+  }
+  else if(message.severity === 'info'){
+    console.info('Frontend - ' + message.text);
+  }
+  
+  res.send(successResponse);
+})
+
 
 //with verification
 

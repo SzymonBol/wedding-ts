@@ -7,7 +7,8 @@ const whiteList = [
   '/login-user',
   '/schedule',
   '/create-schedule-point',
-  '/delete-schedule-point'
+  '/delete-schedule-point',
+  '/log-message'
 ];
 
 export function generateAccessToken(username) {

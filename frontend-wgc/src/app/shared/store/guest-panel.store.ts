@@ -7,6 +7,7 @@ import { InvitationService } from "../../services/invitation-service.service";
 import { tapResponse } from '@ngrx/operators';
 import { MatDialog } from "@angular/material/dialog";
 import { InvalidCodeDialogComponent } from "../../guest-panel/invite-confirmation/invalid-code-dialog/invalid-code-dialog.component";
+import { LogMessageServce } from "../../services/log-message.service";
 
 const initialState: GuestStoreData = {
     invitationId: undefined,
@@ -21,7 +22,7 @@ const initialState: GuestStoreData = {
 export const GuestDataStore = signalStore(
     { providedIn: 'root' },
     withState(initialState),
-    withMethods((store, invitationService = inject(InvitationService), dialogServ = inject(MatDialog)) => (
+    withMethods((store, invitationService = inject(InvitationService), dialogServ = inject(MatDialog), logMessageServce = inject(LogMessageServce)) => (
         {
             loadingData(): void {
                 patchState(store, { isLoading: true });
@@ -45,9 +46,13 @@ export const GuestDataStore = signalStore(
                   switchMap((id) => {
                     return invitationService.fetchInvitationData(id).pipe(
                       tapResponse({
-                        next: (invitation) => patchState(store, { guestsData : invitation.guests, invitationId: invitation.id, comment: invitation.comment,
-                          confirmed: invitation.confirmed, needAccommodation: invitation.needAccommodation, isLoading: false }),
+                        next: (invitation) => { 
+                          logMessageServce.logMessage({text: 'Received data for ' + invitation.guests[0].name + ' ' +  invitation.guests[0].surname, severity: 'info'});
+                          return patchState(store, { guestsData : invitation.guests, invitationId: invitation.id, comment: invitation.comment,
+                          confirmed: invitation.confirmed, needAccommodation: invitation.needAccommodation, isLoading: false })
+                        },
                         error: (err) => {
+                          logMessageServce.logMessage({text: 'Cannot revceived data with error ' + err, severity: 'error'});
                           patchState(store, { countOfFailedCodesProvided: store.countOfFailedCodesProvided()+1 })
                           dialogServ.open(InvalidCodeDialogComponent, {data: store.countOfFailedCodesProvided, disableClose: true});
                           patchState(store, { isLoading: false });

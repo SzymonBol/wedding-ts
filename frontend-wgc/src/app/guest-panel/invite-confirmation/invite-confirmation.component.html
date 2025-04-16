@@ -3,17 +3,17 @@
     Potwierdź zaproszenie
   </h1>
   <span class="welcome-text">
-    Z radaością chcielibyśmy Was zaprosić na nasze wesele!
+    Z radością chcielibyśmy Was zaprosić na nasze wesele!
     Poniżej znajdziecie panel, w którym macie możliwość potwierdzić swoje przybycie.
     <ol>
       <li>
         Dla każdej osoby należy wybrać odpowiednio: <b>będę / nie będę</b> oraz <b>dietę</b>. 
       </li>
       <li>
-        Zaznacz czy potrzebujecie noclegu oraz jeśli macie - dodatkowe uwagi.
+        Zaznacz czy <b>potrzebujecie noclegu</b> oraz jeśli macie - <b>dodatkowe uwagi</b>.
       </li>
       <li>
-        Wyślij formluarz przyciskiem "Wyślij odpowiedź"
+        Zapisz formluarz przyciskiem <span (click)="scrollIntoButton()" class="save-reply">"Zapisz odpowiedź"</span>
       </li>
     </ol>       
   </span>
@@ -56,7 +56,8 @@
   </div>
   <div class="end-info">
     @if(editModeSig() && (canEditBasedOnDate || isUserLoggedIn())){
-      <button mat-flat-button (click)="updateData()"> Wyślij odpowiedź </button>
+      <button mat-flat-button (click)="updateData()" class="save-button" id="save-button" 
+      [@highlightElement]="buttonState()"> Zapisz odpowiedź </button>
     } @else {
       <h4>Twoja odpowiedź została zapisana! <br /> Dziękujemy! ❤️</h4>
 
@@ -95,5 +96,11 @@
     </div>
   </div>
   }
+
+  <div class="flex">
+    <span>Zachęcamy również do zapoznania się całą naszą stroną!</span>
+    <button mat-button (click)="navigateToHomePage()">Przejdź do storny główenj</button>
+  </div>
+
 
 </div>

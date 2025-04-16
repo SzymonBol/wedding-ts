@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ROUTE } from '../../../shared/routes.enum';
+import { LogMessageServce } from '../../../services/log-message.service';
 
 @Component({
   selector: 'app-enter-code',
@@ -17,6 +18,7 @@ import { ROUTE } from '../../../shared/routes.enum';
 export class EnterCodeComponent {
   code = '';
   store = inject(GuestDataStore);
+  logMessageSrv = inject(LogMessageServce);
   router = inject(Router);
   readonly dialogServ = inject(MatDialog);
   
@@ -29,6 +31,7 @@ export class EnterCodeComponent {
   }, {allowSignalWrites: true})
   
   checkInvitationCode() {
+   this.logMessageSrv.logMessage({text: 'Enter code panel confirm button click', severity: 'info'});
    this.store.fetchInvitationDataById(this.code.trim());
   }
 }

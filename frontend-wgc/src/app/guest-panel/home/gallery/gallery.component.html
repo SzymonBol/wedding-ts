@@ -1,5 +1,5 @@
 @for(item of images; track $index){
       <div class="item-container" [lightbox]="$index">
-          <img [src]="item.data?.thumb" class="gallery-img" loading="eager"/>
+          <img [src]="item.data?.thumb" class="gallery-img" loading="eager" (click)="logClick()"/>
       </div>
 }

@@ -16,7 +16,11 @@ export const menuItemsData : MenuItem[] = [
       targetRoute: 'https://drive.google.com/drive/folders/1eL4tdma8yzJykF2I-pdWK5RxD1rgcK8i?usp=drive_link',
       label: 'Wasze zdjęcia',
       isActive: false,
-      external: true
+      external: true,
+      externalConfrimation: {
+        header: 'Wasze zdjęcia',
+        text: "Udostępnamy Wam folder na dysku Google, gdzie możecie podzielić się zdjęciami z Waszych przygodowań do wesela oraz z samej imprezy. Czy chcesz teraz na niego przejść?"
+      }
     }
   ];
  

@@ -13,7 +13,7 @@ export class SelectedItemService{
           if(change instanceof NavigationEnd || change instanceof NavigationSkipped){
             if(change.url.includes(ROUTE.HOME) || change.url === '/'){
               this.selectedItem.set(ROUTE.HOME);
-            } else if(change.url.includes(ROUTE.ENTER_CODE)){
+            } else if(change.url.includes(ROUTE.ENTER_CODE) || change.url.includes(ROUTE.INVITE_CONFIRMATION)){
               this.selectedItem.set(ROUTE.ENTER_CODE);
             }
           }

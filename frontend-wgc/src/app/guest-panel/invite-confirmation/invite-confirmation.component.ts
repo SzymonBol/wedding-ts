@@ -15,20 +15,45 @@ import { AuthDataStore } from '../../shared/store/auth.store';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationSummaryComponent } from './confirmation-summary/confirmation-summary.component';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
+import { Router, ROUTES } from '@angular/router';
+import { ROUTE } from '../../shared/routes.enum';
+import { LogMessageServce } from '../../services/log-message.service';
 
 @Component({
   selector: 'app-invite-confirmation',
   standalone: true,
   imports: [MatIconModule, DietSwitchComponent, MatButtonModule, ReactiveFormsModule, FormsModule, MatTableModule, GuestConfirmationStatusComponent, MatRadioModule],
   templateUrl: './invite-confirmation.component.html',
-  styleUrl: './invite-confirmation.component.scss'
+  styleUrl: './invite-confirmation.component.scss',
+  animations: [
+    trigger('highlightElement', [
+      state(
+        'scrolled',
+        style({
+          backgroundColor: '#e7ab29'
+        }),
+      ),
+      state(
+        'normal',
+        style({
+          backgroundColor: '#885208'
+        }),
+      ),
+      transition('normal => scrolled', [animate('0.6s')]),
+      transition('scrolled => normal', [animate('0.6s')]),
+    ]),
+  ],
 })
 export class InviteConfirmationComponent {
   private store = inject(GuestDataStore);
+  private logMessageSrv = inject(LogMessageServce);
   private dialogServ = inject(MatDialog);
   private invitationService = inject(InvitationService);
   private _snackBar = inject(MatSnackBar);
   protected fb = inject(FormBuilder);
+  protected router = inject(Router);
   protected isUserLoggedIn = inject(AuthDataStore).isUserLoggedIn;
 
   isConfirmedSig = this.store.confirmed;
@@ -38,6 +63,7 @@ export class InviteConfirmationComponent {
   editModeSig = signal<boolean>(!this.isConfirmedSig());
   needAccommodation = this.store.needAccommodation();
   enviroment = environment;
+  buttonState = signal('normal');
 
   form = this.fb.group(
     {
@@ -85,6 +111,11 @@ export class InviteConfirmationComponent {
   }
 
   activeEditMode($event: Event){
+    const guestsData = this.guestsSig()
+    if(guestsData){
+      this.logMessageSrv.logMessage({text: 'Activate edit mode '+ guestsData[0].name +' '+ guestsData[0].surname, severity: 'info'});
+    }
+   
     $event.preventDefault();
     this.editModeSig.set(true);
   }
@@ -145,5 +176,38 @@ export class InviteConfirmationComponent {
     const currentDate = new Date();
 
     return confirmationDate.getTime() - currentDate.getTime()> 0;
+  }
+
+  scrollIntoButton(){
+    this.logMessageSrv.logMessage({text: 'Clicked save invitation in instruction', severity: 'info'});
+    let count = 0;
+
+    if(this.buttonState() === 'normal'){
+      this.buttonState.set('scrolled');
+    } else {
+      this.buttonState.set('normal');
+    }
+    count++;
+
+    const interval = setInterval(() => {
+      if(this.buttonState() === 'normal'){
+        this.buttonState.set('scrolled');
+      } else {
+        this.buttonState.set('normal');
+      }
+      count++;
+
+      if(count > 3){
+        this.buttonState.set('normal');
+        clearInterval(interval);
+      }
+    }, 600);
+    const elem= document.getElementById('save-button');
+    elem?.scrollIntoView({behavior: "smooth", block: "center", inline: "center"});
+  }
+
+  navigateToHomePage(){
+    this.logMessageSrv.logMessage({text: 'Redirect to home page from invite confirmation', severity: 'info'});
+    this.router.navigateByUrl(ROUTE.HOME);
   }
 }

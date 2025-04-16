@@ -30,6 +30,23 @@ li{
     width: 100%;
 }
 
+.save-reply{
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 36px;
+}
+
+.save-button{
+    font-size: 20px;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    margin-top: 36px;
+    gap: 3px;
+}
+
 .guest-row{
     border-bottom: 1px solid black;
     padding: 8px 0;
