@@ -19,6 +19,7 @@ export class ConfirmationDialogService {
         this.dialogServ.open(ConfirmationDialogComponent, { data : {
             header: config.header,
             text: config.text,
+            mode: config.mode ?? 'decision',
             rejectFn: config.rejectFn,
             confirmFn: config.confirmFn
         }})

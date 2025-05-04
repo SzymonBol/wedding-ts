@@ -19,7 +19,7 @@ export const menuItemsData : MenuItem[] = [
       external: true,
       externalConfrimation: {
         header: 'Wasze zdjęcia',
-        text: "Udostępnamy Wam folder na dysku Google, gdzie możecie podzielić się zdjęciami z Waszych przygodowań do wesela oraz z samej imprezy. Czy chcesz teraz na niego przejść?"
+        text: "Udostępniamy Wam folder na dysku Google, gdzie możecie podzielić się zdjęciami z Waszych przygotowań do wesela oraz z samej imprezy. Czy chcesz go teraz otworzyć?"
       }
     }
   ];

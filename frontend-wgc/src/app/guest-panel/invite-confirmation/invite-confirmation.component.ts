@@ -20,6 +20,8 @@ import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 import { Router, ROUTES } from '@angular/router';
 import { ROUTE } from '../../shared/routes.enum';
 import { LogMessageServce } from '../../services/log-message.service';
+import { ConfirmationDialogService } from '../../admin-panel/confirmation-dialog/service/confirmation-dialog.service';
+import { ConfrimationDialogData } from '../../types/confirmation-dialog-data.types';
 
 @Component({
   selector: 'app-invite-confirmation',
@@ -50,6 +52,7 @@ export class InviteConfirmationComponent {
   private store = inject(GuestDataStore);
   private logMessageSrv = inject(LogMessageServce);
   private dialogServ = inject(MatDialog);
+  private confirmationDialogSrv = inject(ConfirmationDialogService);
   private invitationService = inject(InvitationService);
   private _snackBar = inject(MatSnackBar);
   protected fb = inject(FormBuilder);
@@ -74,7 +77,19 @@ export class InviteConfirmationComponent {
   )
 
   editModeEff = effect(() => {
-    this.isConfirmedSig();
+
+    const confirmation = this.isConfirmedSig();
+    if(!confirmation){
+      const config: ConfrimationDialogData = {
+        header: 'Nie zapomnij zapisać!',
+        text: `Po uzupełnieniu formularza, prosimy o zapisanie odpowiedzi przyciskiem <b>"Zapisz odpowiedź"</b> - bez tego nie otrzymamy informacji o Waszej decyzji.`,
+        confirmFn: () => {},
+        rejectFn: () => {},
+        mode: 'info'
+      };
+      this.confirmationDialogSrv.open(config);
+    }
+
     if(this.editModeSig()){
       this.form.controls.comment.enable();
       this.form.controls.needAccommodation.enable()

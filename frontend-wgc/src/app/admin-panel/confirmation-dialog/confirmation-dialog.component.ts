@@ -22,7 +22,7 @@ import {
 })
 export class ConfirmationDialogComponent {
   readonly dialogRef = inject(MatDialogRef<ConfirmationDialogComponent>);
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {header: string, text: string, rejectFn: () => void, confirmFn: () => void}) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {header: string, text: string, rejectFn: () => void, confirmFn: () => void, mode: 'decision' | 'info'}) { }
 
 
   rejectClick(): void {
