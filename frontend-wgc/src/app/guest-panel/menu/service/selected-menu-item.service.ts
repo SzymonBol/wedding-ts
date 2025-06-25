@@ -15,6 +15,8 @@ export class SelectedItemService{
               this.selectedItem.set(ROUTE.HOME);
             } else if(change.url.includes(ROUTE.ENTER_CODE) || change.url.includes(ROUTE.INVITE_CONFIRMATION)){
               this.selectedItem.set(ROUTE.ENTER_CODE);
+            } else if(change.url.includes(ROUTE.SINGBOOK)){
+              this.selectedItem.set(ROUTE.SINGBOOK);
             }
           }
       }, {allowSignalWrites: true});

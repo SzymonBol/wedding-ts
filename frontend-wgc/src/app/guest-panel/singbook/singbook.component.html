@@ -1,0 +1,45 @@
+<h1 class="fancy-font">Śpiewnik</h1>
+<div class="searcher">
+    <mat-accordion >
+        <mat-expansion-panel [expanded]="panelOpenState()" (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+            <mat-expansion-panel-header>
+            <mat-panel-title> Spis treści </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ol>
+                @for (item of options; track $index) {
+                    <li [ngClass]="{'selected' : selectedSongIndex() === $index}" role="button" (click)="selectSong($index)">{{item.title}}</li>
+                }
+            </ol>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <form>
+        <mat-form-field class="full-width">
+            <mat-label>Tytuł piosenki</mat-label>
+            <input type="text" matInput [formControl]="songControl" [matAutocomplete]="auto">
+            @if (songControl.value) {
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="clearField()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            }
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelect($event)">
+                @for (option of filteredOptions | async; track option) {
+                    <mat-option [value]="option">{{option.title}}</mat-option>
+                }
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+</div>
+<div class="song">
+    <h2>{{selectedSong().title}}</h2>
+    <span [innerHTML]="selectedSong().text" class="text"></span>
+</div>
+<div class="paginator">
+    <button mat-icon-button (click)="prev()" [disabled]="selectedSongIndex() === 0">
+        <mat-icon>chevron_left</mat-icon>
+    </button>
+    <span>{{selectedSongIndex() + 1}} / {{options.length}}</span>
+    <button mat-icon-button (click)="next()" [disabled]="selectedSongIndex() === options.length-1">
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+</div>

@@ -6,6 +6,7 @@ export enum BASE_ROUTES {
     ADMIN = 'admin',
     LOGIN = 'logowanie',
     MANAGE_INVITATIONS = 'zarzadzaj-zaproszeniami',
+    SINGBOOK = 'spiewnik',
 }
 
 export enum ROUTE {
@@ -14,4 +15,5 @@ export enum ROUTE {
     ENTER_CODE = `/${BASE_ROUTES.GUEST_PANEL}/${BASE_ROUTES.ENTER_CODE}`,
     ADMIN_LOGIN = `/${BASE_ROUTES.ADMIN}/${BASE_ROUTES.LOGIN}`,
     ADMIN_MANAGE_INVITATIONS = `/${BASE_ROUTES.ADMIN}/${BASE_ROUTES.MANAGE_INVITATIONS}`,
+    SINGBOOK = `/${BASE_ROUTES.GUEST_PANEL}/${BASE_ROUTES.SINGBOOK}`,
 }

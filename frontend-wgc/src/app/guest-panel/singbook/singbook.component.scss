@@ -1,0 +1,51 @@
+@use 'colors';
+
+:host{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.searcher{
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+
+    li{
+        margin: 4px;
+        cursor: pointer;
+    }
+
+    li.selected{
+        color: colors.$primary;
+    }
+
+    li:active,
+    li:hover{
+        color: #7e4704;
+    }
+}
+
+.full-width{
+    width: 100%;
+}
+
+.song{
+    max-width: 600px;
+    text-align: center;
+
+    .text{
+        font-size: 20px;
+    }
+}
+
+.paginator{
+    margin-top: 54px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: center;
+}

@@ -31,6 +31,11 @@ export const routes: Routes = [
                 loadComponent: () => import('./guest-panel/invite-confirmation/enter-code/enter-code.component')
                 .then( c => c.EnterCodeComponent)
             },
+            {
+                path: `${BASE_ROUTES.SINGBOOK}`,
+                loadComponent: () => import('./guest-panel/singbook/singbook.component')
+                .then( c => c.SingbookComponent)
+            },
         ]
     },
     {

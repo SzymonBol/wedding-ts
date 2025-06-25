@@ -13,6 +13,11 @@ export const menuItemsData : MenuItem[] = [
       isActive: false,
     },
     {
+      targetRoute: ROUTE.SINGBOOK,
+      label: 'Śpiewnik',
+      isActive: false,
+    },
+    {
       targetRoute: 'https://drive.google.com/drive/folders/1eL4tdma8yzJykF2I-pdWK5RxD1rgcK8i?usp=drive_link',
       label: 'Wasze zdjęcia',
       isActive: false,
