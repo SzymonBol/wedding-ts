@@ -28,6 +28,7 @@ import { PrintService } from '../../services/print.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GuestDataStore } from '../../shared/store/guest-panel.store';
+import { ExcelGenerator } from '../../services/excel-generator.service';
 
 @Component({
   selector: 'app-admin-table',
@@ -57,6 +58,7 @@ export class AdminTableComponent {
   guestStore = inject(GuestDataStore);
   adminStore = inject(AdminStore);
   printService = inject(PrintService);
+  excelGenerator = inject(ExcelGenerator);
   guests = this.adminStore.entities;
   guestsTableData = computed<GuestsTableData[]>(() => {
     return this.guests().map((invitation) => {
@@ -138,6 +140,10 @@ export class AdminTableComponent {
       rejectFn: () => {},
     };
     this.confirmationDialogService.open(config);
+  }
+
+  generateExcel(): void {
+    this.excelGenerator.generate(this.guestsTableData());
   }
 
   printQrCodes(): void {
